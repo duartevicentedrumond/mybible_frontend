@@ -2,17 +2,18 @@ import './App.css';
 
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import NavBar from "./general_components/NavBar";
-import Transaction from "./transaction_components/Transaction";
+import Home from "./general_components/Home";
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
 
       <BrowserRouter>
         <Routes>
-          <Route path="transaction/*" element={<Transaction/>} />
+          
+          {/* Route for home page which has subpages*/}
+          <Route path="/*" element={<Home/>} />
+
         </Routes>
       </BrowserRouter>
 
