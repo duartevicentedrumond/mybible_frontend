@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./NavBar";
-import Transaction from "../transaction_components/Transaction";
+import Transaction from "../transaction_components/Transaction";    
 
 const Home = () => {
   return (
