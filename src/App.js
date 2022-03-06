@@ -2,9 +2,8 @@ import './App.css';
 
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import TransactionForm from "./transaction_components/TransactionForm";
-import TransactionList from "./transaction_components/TransactionList";
 import NavBar from "./general_components/NavBar";
+import Transaction from "./transaction_components/Transaction";
 
 function App() {
   return (
@@ -13,10 +12,10 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/transaction" element={<TransactionList/>} />
-          <Route path="/transaction/add" element={<TransactionForm/>} />
+          <Route path="transaction/*" element={<Transaction/>} />
         </Routes>
       </BrowserRouter>
+
     </div>
   );
 }
