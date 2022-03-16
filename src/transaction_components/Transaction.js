@@ -7,11 +7,10 @@ import TransactionList from "./TransactionList";
 function Transaction() {
   return (
     <div>
-        Transaction
-
         <Routes>
           <Route path="/" element={<TransactionList/>} />
           <Route path="add" element={<TransactionForm/>} />
+          <Route path="edit/:id" element={<TransactionForm/>} />
         </Routes>
     </div>
   )

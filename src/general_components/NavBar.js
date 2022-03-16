@@ -8,16 +8,16 @@ const NavBar = () => {
   return (
     <div>
 
-        <nav bg="white" class="justify-content-center py-3 pt-sm-4 pb-sm-2">
+        <nav bg="white" className="justify-content-center py-3 pt-sm-4 pb-sm-2">
             <Link to="/">
                 <FiBold size={30} />
             </Link>
         </nav>
-        <nav bg="white" class="justify-content-center pb-3 pt-sm-1 pb-sm-2">
-            <Link to="/transaction" class="px-1 px-sm-2">
+        <nav bg="white" className="justify-content-center pb-3 pt-sm-1 pb-sm-2">
+            <Link to="/transaction" className="px-1 px-sm-2">
                 <MdOutlineAttachMoney size={20} />
             </Link>
-            <Link to="/stuff" class="px-1 px-sm-2">
+            <Link to="/stuff" className="px-1 px-sm-2">
                 <BsBoxSeam size={20} />
             </Link>
         </nav>
