@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
 const TransactionList = () => {
 
-    const {transactions, deleteTransaction} = useContext(GlobalContext)
+    const {transactions, deleteTransaction, getTransactions} = useContext(GlobalContext);
+
+    useEffect(
+        () => {
+            getTransactions();
+        }
+    , []);
 
     return (
         <div className="flex">

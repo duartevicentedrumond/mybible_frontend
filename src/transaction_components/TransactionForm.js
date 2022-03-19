@@ -17,7 +17,7 @@ const TransactionForm = () => {
   });
 
   const handleChange = e => {
-    setTransaction({...transaction, [e.target.name]: e.target.value});
+    setTransaction({...transaction, [e.target.name]: e.target.value});  
   };
 
   const handleSubmit = e => {
