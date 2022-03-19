@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Home from "./general_components/Home";
-import { ContextProvider } from "./context/GlobalContext";
+import { ContextProvider } from "./context/Transaction/TransactionState";
 
 function App() {
   return (

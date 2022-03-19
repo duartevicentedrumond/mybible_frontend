@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from "../context/GlobalContext";
+import TransactionContext from "../context/Transaction/TransactionContext";
 import { useNavigate, useParams } from "react-router-dom";
 
 const TransactionForm = () => {
 
-  const { addTransaction, transactions, updateTransaction } = useContext(GlobalContext);
+  const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
   const history = useNavigate();
   const params = useParams();
 

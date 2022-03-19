@@ -1,14 +1,18 @@
+import { ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
 
 export default function transactionReducer(state, action) {
 
     switch (action.type) {
-        case 'ADD_TRANSACTION':
+        case ADD_TRANSACTION:
             
-            return{
-                transactions: [...state.transactions, action.payload],
+            return {
+                transactions: [
+                    ...state.transactions, 
+                    action.payload
+                ],
             };
 
-        case 'UPDATE_TRANSACTION':
+        case UPDATE_TRANSACTION:
 
             const updatedTransaction = action.payload;
 
@@ -34,16 +38,16 @@ export default function transactionReducer(state, action) {
                 transactions: updatedTransactions,
             };
 
-        case 'DELETE_TRANSACTION':
+        case DELETE_TRANSACTION:
             
             return{
                 transactions: state.transactions.filter(
-                    transaction => transaction.id !== action.payload
+                    (transaction) => transaction.id !== action.payload
                 ),
             };
     
         default:
-            break;
+            return state;
     }
 
 }

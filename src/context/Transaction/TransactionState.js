@@ -1,12 +1,13 @@
-import { createContext, useReducer } from "react";
-import transactionReducer from "./TransactionReducer";
+import { useReducer } from "react";
 import axios from "axios";
-    
+
+import transactionReducer from "./TransactionReducer";
+import TransactionContext from "./TransactionContext";
+import { ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
+
 const initialState = {
     transactions: []
-}
-
-export const GlobalContext = createContext(initialState)
+};
 
 export const ContextProvider = ({ children }) => {
 
@@ -26,7 +27,7 @@ export const ContextProvider = ({ children }) => {
     const addTransaction = (transaction) => {
 
         dispatch({
-            type: 'ADD_TRANSACTION', 
+            type: ADD_TRANSACTION, 
             payload: transaction
         });
     };
@@ -34,7 +35,7 @@ export const ContextProvider = ({ children }) => {
     const updateTransaction = (transaction) => {
 
         dispatch({
-            type: 'UPDATE_TRANSACTION', 
+            type: UPDATE_TRANSACTION, 
             payload: transaction
         });
     };
@@ -42,15 +43,15 @@ export const ContextProvider = ({ children }) => {
     const deleteTransaction = (id) => {
         
         dispatch({
-            type: 'DELETE_TRANSACTION',
+            type: DELETE_TRANSACTION,
             payload: id,
         });
 
     };
 
     return (
-        <GlobalContext.Provider value={{ ...state, getTransactions, getTransaction, addTransaction, deleteTransaction, updateTransaction }}>
+        <TransactionContext.Provider value={{ ...state, getTransactions, getTransaction, addTransaction, deleteTransaction, updateTransaction }}>
             {children}
-        </GlobalContext.Provider>
+        </TransactionContext.Provider>
     )
-}
+};

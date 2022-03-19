@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { GlobalContext } from "../context/GlobalContext";
+import TransactionContext from "../context/Transaction/TransactionContext";
 import { Link } from "react-router-dom";
 
 const TransactionList = () => {
 
-    const {transactions, deleteTransaction, getTransactions} = useContext(GlobalContext);
+    const {transactions, deleteTransaction, getTransactions} = useContext(TransactionContext);
 
     useEffect(
         () => {
