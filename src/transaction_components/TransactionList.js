@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 const TransactionList = () => {
 
-    const {transactions, deleteTransaction, getTransactions} = useContext(TransactionContext);
+    //Get getTransactions function and transactions state object from TransactionState through TransactionContext
+    const {transactions, getTransactions} = useContext(TransactionContext);
 
+    //Execute getTransactions function as soon as the page is rendered
     useEffect(
         () => {
             getTransactions();
@@ -19,32 +21,56 @@ const TransactionList = () => {
                 new
             </Link>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {transactions.map( (transaction) => ( 
-                    
-                    <tr key={transaction.id}>
-                        <th scope="row">
-                            <Link to={`/transaction/edit/${transaction.id}`}> 
-                                {transaction.id}
-                            </Link>
-                        </th>
-                        <th>{transaction.date}</th>
-                        <th>{transaction.description}</th>
-                        <th>{transaction.amount}</th>
-                    </tr>
-                    
-                    ))}
-                </tbody>
-            </table>
+            <div className='table-responsive'>
+
+                {/*
+                    Render a table with the following features:
+                        - table-hover: highlight the table's row when hovered
+                        - table-sm: reduce row vertical spacing
+                        - w-auto: auto columns' width
+
+                        <th>
+                            - text-end: horizontal align text to right
+                            - text-start: horizontal align text to left
+                            - px-4: column horizontal padding (left and right) with 4
+                */}
+                <table className="table table-hover table-sm w-auto">
+
+                    <thead>
+                        <tr>
+                            <th scope="col" className="text-end px-4">Date</th>
+                            <th scope="col" className="text-start px-4">Amount</th>
+                            <th scope="col" className="text-start px-4">Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {transactions.map( (transaction) => ( 
+                        
+                        <tr key={transaction.id}>
+                            <th scope="col" className="text-end px-4">
+                                <Link to={`/transaction/edit/${transaction.id}`}> 
+                                    {transaction.date}
+                                </Link>
+                            </th>
+                            <th scope="col" className="text-start px-4">
+                                <Link to={`/transaction/edit/${transaction.id}`}> 
+                                    {transaction.amount}
+                                </Link>
+                            </th>
+                            <th scope="col" className="text-start px-4">
+                                <Link to={`/transaction/edit/${transaction.id}`}> 
+                                    {transaction.description}
+                                </Link>
+                            </th>
+                        </tr>
+                        
+                        ))}
+                    </tbody>
+
+                </table>
+
+            </div>
         </div>
     )
 }
