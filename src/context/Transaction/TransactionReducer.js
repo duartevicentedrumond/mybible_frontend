@@ -1,8 +1,16 @@
-import { ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
+import { GET_TRANSACTIONS, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
 
 export default function transactionReducer(state, action) {
 
     switch (action.type) {
+        
+        case GET_TRANSACTIONS:
+
+            return {
+                ...state.transactions,
+                transactions: action.payload,
+            }
+        
         case ADD_TRANSACTION:
             
             return {

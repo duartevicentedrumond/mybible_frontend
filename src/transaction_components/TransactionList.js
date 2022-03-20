@@ -15,9 +15,9 @@ const TransactionList = () => {
     return (
         <div className="flex">
 
-            <button> 
-                New
-            </button>
+            <Link to={'/transaction/add'}> 
+                new
+            </Link>
 
             <div className='flex'>
                 {transactions.map( (transaction) => ( 

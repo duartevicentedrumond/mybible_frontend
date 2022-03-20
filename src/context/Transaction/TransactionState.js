@@ -3,7 +3,7 @@ import axios from "axios";
 
 import transactionReducer from "./TransactionReducer";
 import TransactionContext from "./TransactionContext";
-import { ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
+import { GET_TRANSACTIONS, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
 
 const initialState = {
     transactions: []
@@ -16,7 +16,11 @@ export const ContextProvider = ({ children }) => {
     const getTransactions = async () => {
         const response = await axios.get(
             'http://localhost:8080/transaction/getAll');
-        console.log(response.data)
+
+        dispatch({
+            type: GET_TRANSACTIONS,
+            payload: response.data,
+        });
     };
 
     const getTransaction = async (id) => {
@@ -24,7 +28,14 @@ export const ContextProvider = ({ children }) => {
         console.log(response)
     };
 
-    const addTransaction = (transaction) => {
+    const addTransaction = async (transaction) => {
+
+        const newTransaction = transaction;
+
+        const response = await axios.post(
+            'http://localhost:8080/transaction/add', newTransaction);
+        
+        console.log(response.data);
 
         dispatch({
             type: ADD_TRANSACTION, 
