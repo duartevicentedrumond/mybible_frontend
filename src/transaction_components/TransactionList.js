@@ -19,25 +19,34 @@ const TransactionList = () => {
                 new
             </Link>
 
-            <div className='flex'>
-                {transactions.map( (transaction) => ( 
-                
-                <div>
-                    <div key={transaction.id}>
-                        {transaction.description}
-                    </div>
-                    <button onClick={() => deleteTransaction(transaction.id)}> 
-                        delete
-                    </button>
-                    <Link to={`/transaction/edit/${transaction.id}`}> 
-                        edit
-                    </Link>
-                </div>
-                
-                ))}
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {transactions.map( (transaction) => ( 
+                    
+                    <tr key={transaction.id}>
+                        <th scope="row">
+                            <Link to={`/transaction/edit/${transaction.id}`}> 
+                                {transaction.id}
+                            </Link>
+                        </th>
+                        <th>{transaction.date}</th>
+                        <th>{transaction.description}</th>
+                        <th>{transaction.amount}</th>
+                    </tr>
+                    
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
 
-export default TransactionList
+export default TransactionList;
