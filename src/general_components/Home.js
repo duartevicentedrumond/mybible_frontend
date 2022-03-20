@@ -11,12 +11,14 @@ const Home = () => {
 
         <NavBar/>
 
-        <Routes>
-        
-            {/* Route for 'transaction' page which has subpages*/}
-            <Route path="transaction/*" element={<Transaction/>} />
+        <div className='px-5 pt-3'>
+          <Routes>
+          
+              {/* Route for 'transaction' page which has subpages*/}
+              <Route path="transaction/*" element={<Transaction/>} />
 
-        </Routes>
+          </Routes>
+        </div>
     </div>
   )
 }
