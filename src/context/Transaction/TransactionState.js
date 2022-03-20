@@ -43,7 +43,14 @@ export const ContextProvider = ({ children }) => {
         });
     };
 
-    const updateTransaction = (transaction) => {
+    const updateTransaction = async (transaction) => {
+
+        const updatedTransaction = transaction;
+
+        const response = await axios.put(
+            'http://localhost:8080/transaction/update/' + updatedTransaction.id, updatedTransaction);
+        
+        console.log(response.data);
 
         dispatch({
             type: UPDATE_TRANSACTION, 
