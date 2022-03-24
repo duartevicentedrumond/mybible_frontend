@@ -11,16 +11,16 @@ function Transaction() {
 
       <div className="text-start py-3">
 
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page">
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link" aria-current="page">
               <Styled__Nav.TabLink to={'/transaction'}>
                 Transactions
               </Styled__Nav.TabLink>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page">
+          <li className="nav-item">
+            <a className="nav-link" aria-current="page">
               <Styled__Nav.TabLink to={'/transaction/add'}>
                 New
               </Styled__Nav.TabLink>

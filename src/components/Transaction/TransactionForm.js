@@ -25,7 +25,7 @@ const TransactionForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if(transaction.id){
+    if(transaction.transactionId){
       updateTransaction(transaction);
     }
     else{
@@ -38,7 +38,7 @@ const TransactionForm = () => {
   useEffect(
     () => {
 
-      const transactionFound = transactions.find( (transaction) => transaction.id == params.id);
+      const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
       if(transactionFound) {
         setTransaction(transactionFound);
@@ -51,7 +51,7 @@ const TransactionForm = () => {
       
       <div className="row">
         <Styled__Title.MainTitle>
-          {transaction.id ? 'Transaction #' + transaction.id : 'New transaction'}
+          {transaction.transactionId ? 'Transaction #' + transaction.transactionId : 'New transaction'}
         </Styled__Title.MainTitle>
       </div>
 
@@ -122,7 +122,7 @@ const TransactionForm = () => {
 
           <div className="d-flex flex-column text-start px-1">
             <button>
-              {transaction.id ? 'Update' : 'Add new'}
+              {transaction.transactionId ? 'Update' : 'Add new'}
             </button>
           </div>
 

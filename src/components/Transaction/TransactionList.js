@@ -48,19 +48,19 @@ const TransactionList = () => {
                 <Styled__Table.Body style={{'border-top': '0px'}}>
                     {transactions.map( (transaction) => ( 
                         
-                    <tr key={transaction.id}>
+                    <tr key={transaction.transactionId}>
                         <th scope="col" className="col-1 text-end px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.id}`}> 
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}> 
                                 {transaction.date}
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="col-1 text-end px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.id}`}> 
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}> 
                                 {transaction.amount}
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="col-6 text-start px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.id}`}> 
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}> 
                                 {transaction.description}
                             </Styled__Table.RowLink>
                         </th>
