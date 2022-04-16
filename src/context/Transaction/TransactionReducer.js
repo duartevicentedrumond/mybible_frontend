@@ -27,7 +27,7 @@ export default function transactionReducer(state, action) {
             const updatedTransactions = state.transactions.map(
                 (transaction) => {
 
-                    if(transaction.transaction_id == updatedTransaction.transaction_id){
+                    if(transaction.transactionId === updatedTransaction.transactionId){
                         
                         transaction.description = updatedTransaction.description;
                         transaction.date = updatedTransaction.date;

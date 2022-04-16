@@ -15,7 +15,9 @@ const TransactionForm = () => {
     date: '',
     amount: '',
     type: '',
-    category: ''
+    category: {
+      categoryId: ''
+    }
   });
 
   const handleChange = e => {
@@ -114,7 +116,7 @@ const TransactionForm = () => {
                 name="category"
                 placeholder="category..."
                 onChange={handleChange}
-                value={transaction.category}
+                value={transaction.category.categoryId}
               />
             </Styled__Input.Main>
 

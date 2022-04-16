@@ -45,7 +45,16 @@ export const ContextProvider = ({ children }) => {
 
     const updateTransaction = async (transaction) => {
 
-        const updatedTransaction = transaction;
+        let updatedTransaction = {};
+
+        if (typeof transaction.category === 'string') {
+            transaction.category = {
+                categoryId: transaction.category
+            };
+            updatedTransaction = transaction;
+        } else {
+            updatedTransaction = transaction;
+        }
 
         const response = await axios.put(
             'http://localhost:8080/transaction/update/' + updatedTransaction.transactionId, updatedTransaction);

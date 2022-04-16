@@ -12,19 +12,15 @@ function Transaction() {
       <div className="text-start py-3">
 
         <ul className="nav nav-tabs">
-          <li className="nav-item">
-            <a className="nav-link" aria-current="page">
-              <Styled__Nav.TabLink to={'/transaction'}>
-                Transactions
-              </Styled__Nav.TabLink>
-            </a>
+          <li className="nav-item pe-3">
+            <Styled__Nav.TabLink to={'/transaction'}>
+              Transactions
+            </Styled__Nav.TabLink>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" aria-current="page">
-              <Styled__Nav.TabLink to={'/transaction/add'}>
-                New
-              </Styled__Nav.TabLink>
-            </a>
+          <li className="nav-item pe-3">
+            <Styled__Nav.TabLink to={'/transaction/add'}>
+              New
+            </Styled__Nav.TabLink>
           </li>
         </ul>
         

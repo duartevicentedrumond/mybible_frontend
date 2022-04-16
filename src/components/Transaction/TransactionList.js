@@ -45,7 +45,7 @@ const TransactionList = () => {
                     </Styled__Table.Header>
                 </thead>
 
-                <Styled__Table.Body style={{'border-top': '0px'}}>
+                <Styled__Table.Body style={{borderTop: '0px'}}>
                     {transactions.map( (transaction) => ( 
                         
                     <tr key={transaction.transactionId}>
