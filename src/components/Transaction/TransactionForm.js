@@ -5,6 +5,7 @@ import TransactionContext from "../../context/Wallet/Transaction/TransactionCont
 import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
+import { IoAdd, IoSync } from "react-icons/io5";
 
 const TransactionForm = () => {
 
@@ -58,14 +59,20 @@ const TransactionForm = () => {
   return (
     <div className="d-flex flex-column text-start py-3 px-3">
       
-      <div className="row">
-        <Styled__Title.MainTitle>
+      <div className="d-inline-flex flex-row align-items-center">
+        <Styled__Title.MainTitle className='d-flex pe-1'>
           {transaction.transactionId ? 'Transaction #' + transaction.transactionId : 'New transaction'}
         </Styled__Title.MainTitle>
+        <Styled__Title.Button onClick={handleSubmit} className='d-flex'>
+          {transaction.transactionId ? 
+            <IoSync/> : 
+            <IoAdd/>
+          }
+        </Styled__Title.Button>
       </div>
 
       <div className="row">
-        <form onSubmit={handleSubmit}>
+        <form>
           
           <div className="d-flex flex-column text-start py-3">
 
@@ -139,12 +146,6 @@ const TransactionForm = () => {
               </Styled__Input.Select>
             </Styled__Input.Main>
 
-          </div>
-
-          <div className="d-flex flex-column text-start px-1">
-            <button>
-              {transaction.transactionId ? 'Update' : 'Add new'}
-            </button>
           </div>
 
         </form>

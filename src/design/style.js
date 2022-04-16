@@ -9,9 +9,9 @@ const RowBorderColor = "#d9d3d5";
 const CustomedLink = styled(Link)`
     text-decoration: none;
     color: ${MainTextColor};
+    transition: .3s ease-in-out;
     
     &:hover {
-        transition: .3s ease-in-out;
         text-decoration: none;
         color: ${MainTextColor};
     }
@@ -72,8 +72,22 @@ const MainTitle = styled.h2`
     color: ${MainTextColor};
 `;
 
+const Button = styled.button`
+    font-size: ${MainTitleSize-10}px;
+    color: ${MainTextColor};
+    border: none;
+    background-color: white;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        text-decoration: none;
+        font-size: ${MainTitleSize-5}px;
+    }
+`;
+
 export const Styled__Title = {
-    MainTitle
+    MainTitle,
+    Button
 };
 
 const MainInputTextSize = MainTextSize;
