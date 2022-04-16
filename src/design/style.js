@@ -95,8 +95,16 @@ const Input = styled.input`
     color: ${MainTextColor};
 `;
 
+const Select = styled.select`
+    margin-right: 10px;
+    border: none;
+    outline: none;
+    color: ${MainTextColor};
+`;
+
 export const Styled__Input = {
     Main,
     Label,
-    Input
+    Input,
+    Select,
 };

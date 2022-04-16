@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import TransactionContext from "../../context/Transaction/TransactionContext";
+import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import { Styled__Table } from "../../design/style";
 
 const TransactionList = () => {

@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import TransactionContext from "../../context/Transaction/TransactionContext";
+import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
+import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
 
 const TransactionForm = () => {
 
   const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
+  const { categories, getCategories } = useContext(CategoryContext);
   const history = useNavigate();
   const params = useParams();
 
@@ -39,6 +41,8 @@ const TransactionForm = () => {
 
   useEffect(
     () => {
+
+      getCategories();
 
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
@@ -111,13 +115,17 @@ const TransactionForm = () => {
 
             <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
               <Styled__Input.Label>category</Styled__Input.Label>
-              <input 
-                type="text"
+              <Styled__Input.Select 
+                class="form-select"
                 name="category"
-                placeholder="category..."
-                onChange={handleChange}
+                aria-label="category"
                 value={transaction.category.categoryId}
-              />
+                onChange={handleChange}
+              >
+                {categories.map( (category) => (
+                  <option value={category.categoryId}>{category.description}</option>
+                ))}
+              </Styled__Input.Select>
             </Styled__Input.Main>
 
           </div>

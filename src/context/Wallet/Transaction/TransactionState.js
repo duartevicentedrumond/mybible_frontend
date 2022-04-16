@@ -9,7 +9,7 @@ const initialState = {
     transactions: []
 };
 
-export const ContextProvider = ({ children }) => {
+export const TransactionContextProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(transactionReducer, initialState);
 

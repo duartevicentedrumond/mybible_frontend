@@ -50,7 +50,7 @@ export default function transactionReducer(state, action) {
             
             return{
                 transactions: state.transactions.filter(
-                    (transaction) => transaction.transaction_id !== action.payload
+                    (transaction) => transaction.transactionId !== action.payload
                 ),
             };
     
