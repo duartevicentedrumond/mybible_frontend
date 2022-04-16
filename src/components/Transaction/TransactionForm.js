@@ -36,7 +36,7 @@ const TransactionForm = () => {
       addTransaction(transaction);
     }
 
-    history("/");
+    history("/transaction");
   };
 
   useEffect(
