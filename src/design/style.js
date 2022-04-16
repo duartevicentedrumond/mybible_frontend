@@ -114,10 +114,7 @@ const Select = styled.select`
     border: none;
     outline: none;
     color: ${MainTextColor};
-
-    &:-ms-expand {
-        display: none;
-    }
+    appearance: none;
 `;
 
 export const Styled__Input = {
