@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import CategoryContext from "../../context/Wallet/Category/CategoryContext";
+import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
 
 const TransactionForm = () => {
 
   const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
   const { categories, getCategories } = useContext(CategoryContext);
+  const { types, getTypes } = useContext(TypeContext);
   const history = useNavigate();
   const params = useParams();
 
@@ -43,6 +45,7 @@ const TransactionForm = () => {
     () => {
 
       getCategories();
+      getTypes();
 
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
@@ -104,13 +107,19 @@ const TransactionForm = () => {
 
             <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
               <Styled__Input.Label>type</Styled__Input.Label>
-              <input 
-                type="text"
+              <Styled__Input.Select 
+                class="form-select"
                 name="type"
-                placeholder="type..."
+                aria-label="type"
+                value={transaction.type.typeId}
                 onChange={handleChange}
-                value={transaction.type}
-              />
+              >
+                {types.map( (type) => (
+                  <option value={type.typeId}>
+                    {type.description}
+                  </option>
+                ))}
+              </Styled__Input.Select>
             </Styled__Input.Main>
 
             <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
@@ -123,7 +132,9 @@ const TransactionForm = () => {
                 onChange={handleChange}
               >
                 {categories.map( (category) => (
-                  <option value={category.categoryId}>{category.description}</option>
+                  <option value={category.categoryId}>
+                    {category.description}
+                  </option>
                 ))}
               </Styled__Input.Select>
             </Styled__Input.Main>

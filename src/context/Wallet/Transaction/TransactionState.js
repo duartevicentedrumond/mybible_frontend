@@ -56,6 +56,15 @@ export const TransactionContextProvider = ({ children }) => {
             updatedTransaction = transaction;
         }
 
+        if (typeof transaction.type === 'string') {
+            transaction.type = {
+                typeId: transaction.type
+            };
+            updatedTransaction = transaction;
+        } else {
+            updatedTransaction = transaction;
+        }
+
         const response = await axios.put(
             'http://localhost:8080/transaction/update/' + updatedTransaction.transactionId, updatedTransaction);
         
@@ -63,7 +72,7 @@ export const TransactionContextProvider = ({ children }) => {
 
         dispatch({
             type: UPDATE_TRANSACTION, 
-            payload: transaction
+            payload: updatedTransaction
         });
     };
 

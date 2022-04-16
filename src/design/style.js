@@ -100,6 +100,10 @@ const Select = styled.select`
     border: none;
     outline: none;
     color: ${MainTextColor};
+
+    &:-ms-expand {
+        display: none;
+    }
 `;
 
 export const Styled__Input = {

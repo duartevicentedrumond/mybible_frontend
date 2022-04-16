@@ -5,13 +5,15 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./general_components/Home";
 import { TransactionContextProvider } from "./context/Wallet/Transaction/TransactionState";
 import { CategoryContextProvider } from "./context/Wallet/Category/CategoryState";
+import { TypeContextProvider } from "./context/Wallet/Type/TypeState";
 
 function App() {
   return (
     <div className="App">
 
       <TransactionContextProvider>
-        <CategoryContextProvider>
+      <CategoryContextProvider>
+      <TypeContextProvider>
           <BrowserRouter>
             <Routes>
               
@@ -20,7 +22,8 @@ function App() {
 
             </Routes>
           </BrowserRouter>
-        </CategoryContextProvider>
+      </TypeContextProvider>
+      </CategoryContextProvider>
       </TransactionContextProvider>
 
     </div>

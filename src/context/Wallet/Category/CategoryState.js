@@ -48,7 +48,7 @@ export const CategoryContextProvider = ({ children }) => {
         const updatedCategory = category;
 
         const response = await axios.put(
-            'http://localhost:8080/category/update/' + updateCategory.categoryId, updateCategory);
+            'http://localhost:8080/category/update/' + updateCategory.categoryId, updatedCategory);
         
         console.log(response.data);
 
