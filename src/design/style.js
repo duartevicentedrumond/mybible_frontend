@@ -72,6 +72,19 @@ const MainTitle = styled.h2`
     color: ${MainTextColor};
 `;
 
+const InfoTitle = styled.h2`
+    font-size: ${NavTextSize}px;
+    font-weight: 700;
+    color: ${MainTextColor};
+`;
+
+const InfoItem = styled.p`
+    font-size: ${MainTextSize}px;
+    font-weight: 400;
+    color: ${MainTextColor};
+    margin-bottom: 0px;
+`;
+
 const Button = styled.button`
     font-size: ${MainTitleSize-10}px;
     color: ${MainTextColor};
@@ -87,7 +100,9 @@ const Button = styled.button`
 
 export const Styled__Title = {
     MainTitle,
-    Button
+    Button,
+    InfoTitle,
+    InfoItem
 };
 
 const MainInputTextSize = MainTextSize;

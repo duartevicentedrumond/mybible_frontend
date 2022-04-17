@@ -19,9 +19,11 @@ const TransactionForm = () => {
     description: '',
     date: '',
     amount: '',
-    type: '',
+    type: {
+      typeId: '1'
+    },
     category: {
-      categoryId: ''
+      categoryId: '1'
     }
   });
 
@@ -31,6 +33,18 @@ const TransactionForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (typeof transaction.category === 'string') {
+        transaction.category = {
+            categoryId: transaction.category
+        };
+    }
+
+    if (typeof transaction.type === 'string') {
+        transaction.type = {
+            typeId: transaction.type
+        };
+    }
 
     if(transaction.transactionId){
       updateTransaction(transaction);

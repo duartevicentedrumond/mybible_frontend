@@ -6,6 +6,7 @@ import Home from "./general_components/Home";
 import { TransactionContextProvider } from "./context/Wallet/Transaction/TransactionState";
 import { CategoryContextProvider } from "./context/Wallet/Category/CategoryState";
 import { TypeContextProvider } from "./context/Wallet/Type/TypeState";
+import { CategorySumContextProvider } from "./context/Wallet/CategorySum/CategorySumState";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <TransactionContextProvider>
       <CategoryContextProvider>
       <TypeContextProvider>
+      <CategorySumContextProvider>
           <BrowserRouter>
             <Routes>
               
@@ -22,6 +24,7 @@ function App() {
 
             </Routes>
           </BrowserRouter>
+      </CategorySumContextProvider>
       </TypeContextProvider>
       </CategoryContextProvider>
       </TransactionContextProvider>
