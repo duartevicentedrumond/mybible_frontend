@@ -1,20 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
-import CategorySumContext from "../../context/Wallet/CategorySum/CategorySumContext";
 import { Styled__Table } from "../../design/style";
 
 const TransactionList = () => {
 
     //Get getTransactions function and transactions state object from TransactionState through TransactionContext
     const {transactions, getTransactions} = useContext(TransactionContext);
-    const {categoriesSum, getCategoriesSum} = useContext(CategorySumContext);
 
     //Execute getTransactions function as soon as the page is rendered
     useEffect(
         () => {
             getTransactions();
-            getCategoriesSum();
         }
     , []);
 
