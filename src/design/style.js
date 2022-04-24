@@ -106,6 +106,7 @@ export const Styled__Title = {
 };
 
 const MainInputTextSize = MainTextSize;
+const SearchBarColor = "#F5F5F5";
 
 const Main = styled.div`
     font-size: ${MainInputTextSize + 5}px;
@@ -132,9 +133,18 @@ const Select = styled.select`
     appearance: none;
 `;
 
+const SearchBar = styled.input`
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    color: ${MainTextColor};
+    background-color: ${SearchBarColor};
+`;
+
 export const Styled__Input = {
     Main,
     Label,
     Input,
     Select,
+    SearchBar
 };

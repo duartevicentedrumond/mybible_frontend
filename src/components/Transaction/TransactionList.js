@@ -1,12 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
-import { Styled__Table } from "../../design/style";
+import { Styled__Table, Styled__Input } from "../../design/style";
 
 const TransactionList = () => {
 
     //Get getTransactions function and transactions state object from TransactionState through TransactionContext
     const {transactions, getTransactions} = useContext(TransactionContext);
+    const [searchText, setSearchText] = useState("");
+    const filteredTransactions = transactions.filter(
+        transaction => {
+
+
+            if (transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) || String(transaction.transactionId).includes(searchText) || String(transaction.amount).includes(searchText)) {
+                return transaction
+            }
+        }
+    );
+
+    const handleInput = (e) => {
+        const text = e.target.value;
+        setSearchText(text);
+    };
 
     //Execute getTransactions function as soon as the page is rendered
     useEffect(
@@ -16,7 +31,15 @@ const TransactionList = () => {
     , []);
 
     return (
-        <div className="flex table-responsive">
+        <div className="d-flex flex-column table-responsive py-2">
+
+            <Styled__Input.SearchBar
+                className="d-flex flex-row align-items-baseline px-3 py-2"
+                onChange={handleInput}
+                type="text"
+                value={searchText}
+                placeholder="Search..."
+            />
 
             {/*
                 Render a table with the following features:
@@ -33,37 +56,37 @@ const TransactionList = () => {
 
                 <thead>
                     <Styled__Table.Header>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'white-space': 'nowrap'}}>
+                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             #
                         </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'white-space': 'nowrap'}}>
+                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             Date
                         </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'white-space': 'nowrap'}}>
+                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             Amount
                         </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="text-start px-4" style={{'white-space': 'nowrap'}}>
+                        <Styled__Table.HeaderColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
                             Description
                         </Styled__Table.HeaderColumn>
                     </Styled__Table.Header>
                 </thead>
 
                 <Styled__Table.Body style={{borderTop: '0px'}}>
-                    {transactions.map( (transaction) => ( 
+                    {filteredTransactions.map( (transaction) => ( 
                         
                     <tr key={transaction.transactionId}>
                         <th scope="col" className="text-end align-middle px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'white-space': 'nowrap'}}>
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}>
                                 {transaction.transactionId}
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="text-end align-middle px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'white-space': 'nowrap'}}>
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}>
                                 {transaction.date}
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="text-end px-4 align-middle">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'white-space': 'nowrap'}}> 
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}> 
                                 {parseFloat(transaction.amount).toFixed(2)}     €
                             </Styled__Table.RowLink>
                         </th>
