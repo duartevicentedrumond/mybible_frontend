@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { BsBoxSeam } from "react-icons/bs";
+import { FiBold } from "react-icons/fi";
 
 const MainTextColor = "#545454";
 const MainTextSize = 15;
@@ -47,6 +50,62 @@ export const Styled__Table = {
     Header,
     HeaderColumn,
     Body
+};
+
+const CustomedNavBarLink = styled(Link)`
+    text-decoration: none;
+    color: ${MainTextColor};
+    transition: .3s ease-in-out;
+    
+    &:hover {
+        text-decoration: none;
+        transform: scale(1.2);
+        color: ${MainTextColor};
+    }
+    
+`;
+
+const TransactionNavbar = styled(MdOutlineAttachMoney)`
+    text-decoration: none;
+        color: ${MainTextColor};
+        transition: .3s ease-in-out;
+        
+        &:hover {
+            text-decoration: none;
+            transform: scale(1.2);
+            color: ${MainTextColor};
+        }
+`;
+
+const ItemNavbar = styled(BsBoxSeam)`
+    text-decoration: none;
+        color: ${MainTextColor};
+        transition: .3s ease-in-out;
+        
+        &:hover {
+            text-decoration: none;
+            transform: scale(1.2);
+            color: ${MainTextColor};
+        }
+`;
+
+const LogoNavbar = styled(FiBold)`
+    text-decoration: none;
+        color: ${MainTextColor};
+        transition: .3s ease-in-out;
+        
+        &:hover {
+            text-decoration: none;
+            transform: scale(1.2);
+            color: ${MainTextColor};
+        }
+`;
+
+export const Styled__NavBar = {
+    CustomedNavBarLink,
+    TransactionNavbar,
+    ItemNavbar,
+    LogoNavbar
 };
 
 const NavTextSize = MainTextSize + 5;
