@@ -39,7 +39,7 @@ export const TypeContextProvider = ({ children }) => {
 
         dispatch({
             type: ADD_TYPE, 
-            payload: type
+            payload: newType
         });
     };
 
@@ -48,7 +48,7 @@ export const TypeContextProvider = ({ children }) => {
         const updatedType = type;
 
         const response = await axios.put(
-            'http://localhost:8080/type/update/' + updateType.typeId, updatedType);
+            'http://localhost:8080/type/update/' + updatedType.typeId, updatedType);
         
         console.log(response.data);
 

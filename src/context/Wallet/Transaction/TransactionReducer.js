@@ -34,6 +34,7 @@ export default function transactionReducer(state, action) {
                         transaction.amount = updatedTransaction.amount;
                         transaction.category = updatedTransaction.category;
                         transaction.type = updatedTransaction.type;
+                        transaction.person = updatedTransaction.person;
 
                     }
                     

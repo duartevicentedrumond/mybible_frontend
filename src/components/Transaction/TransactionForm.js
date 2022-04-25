@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
+import PersonContext from "../../context/Person/Person/PersonContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 
@@ -12,6 +13,7 @@ const TransactionForm = () => {
   const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
   const { categories, getCategories } = useContext(CategoryContext);
   const { types, getTypes } = useContext(TypeContext);
+  const { people, getPeople } = useContext(PersonContext);
   const history = useNavigate();
   const params = useParams();
 
@@ -24,6 +26,9 @@ const TransactionForm = () => {
     },
     category: {
       categoryId: '1'
+    },
+    person: {
+      personId: '0'
     }
   });
 
@@ -46,6 +51,12 @@ const TransactionForm = () => {
         };
     }
 
+    if (typeof transaction.person === 'string') {
+      transaction.person = {
+          personId: transaction.person
+      };
+  }
+
     if(transaction.transactionId){
       updateTransaction(transaction);
     }
@@ -61,6 +72,7 @@ const TransactionForm = () => {
 
       getCategories();
       getTypes();
+      getPeople();
 
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
@@ -155,6 +167,23 @@ const TransactionForm = () => {
                 {categories.map( (category) => (
                   <option value={category.categoryId}>
                     {category.description}
+                  </option>
+                ))}
+              </Styled__Input.Select>
+            </Styled__Input.Main>
+
+            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+              <Styled__Input.Label>person</Styled__Input.Label>
+              <Styled__Input.Select 
+                class="form-select"
+                name="person"
+                aria-label="person"
+                value={transaction.person.personId}
+                onChange={handleChange}
+              >
+                {people.map( (person) => (
+                  <option value={person.personId}>
+                    {person.nickname}
                   </option>
                 ))}
               </Styled__Input.Select>
