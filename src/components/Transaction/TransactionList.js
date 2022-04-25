@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { IoChevronBackOutline } from "react-icons/io5";
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import { Styled__Table, Styled__Input } from "../../design/style";
@@ -7,6 +8,7 @@ const TransactionList = () => {
 
     //Get getTransactions function and transactions state object from TransactionState through TransactionContext
     const {transactions, getTransactions} = useContext(TransactionContext);
+    
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(
         transaction => {
@@ -17,10 +19,19 @@ const TransactionList = () => {
             }
         }
     );
-
     const handleInput = (e) => {
         const text = e.target.value;
         setSearchText(text);
+        setPageNumber(0);
+    };
+
+    const [pageNumber, setPageNumber] = useState(0);
+    const transactionsPerPage = 8;
+    const pagesVisited = pageNumber * transactionsPerPage;
+    const displayTransactions = filteredTransactions.slice(pagesVisited, pagesVisited+transactionsPerPage);
+    const pageCount = Math.ceil(filteredTransactions.length / transactionsPerPage);
+    const changePage = ({selected}) => {
+        setPageNumber(selected);
     };
 
     //Execute getTransactions function as soon as the page is rendered
@@ -72,7 +83,7 @@ const TransactionList = () => {
                 </thead>
 
                 <Styled__Table.Body style={{borderTop: '0px'}}>
-                    {filteredTransactions.map( (transaction) => ( 
+                    {displayTransactions.map( (transaction) => ( 
                         
                     <tr key={transaction.transactionId}>
                         <th scope="col" className="text-end align-middle px-4">
@@ -101,6 +112,19 @@ const TransactionList = () => {
                 </Styled__Table.Body>
 
             </table>
+
+            {pageCount === 1 ? true : <Styled__Table.ReactPaginateTable
+                className="d-flex justify-content-start px-0 align-items-start"
+                previousLabel={"<"}
+                nextLabel={">"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+            />}
 
         </div>
     )

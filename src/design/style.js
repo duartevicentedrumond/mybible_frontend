@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 import { FiBold } from "react-icons/fi";
+import ReactPaginate from "react-paginate";
 
 const MainTextColor = "#545454";
 const MainTextSize = 15;
@@ -45,11 +46,45 @@ const Body = styled.tbody`
     border-color: ${RowBorderColor};
 `;
 
+const ReactPaginateTable = styled(ReactPaginate).attrs(
+    props => ({
+        containerClassName: props.containerClassName
+    })
+)`
+    
+    font-size: ${MainTextSize}px;
+    list-style: none;
+    text-decoration: none;
+    color: ${MainTextColor};
+
+    a {
+        text-decoration: none;
+        color: ${MainTextColor};
+        transition: .3s ease-in-out;
+        padding-right: 5px;
+        
+        &:hover {
+            text-decoration: none;
+            color: ${MainTextColor};
+            font-size: ${MainTextSize+2}px;
+        }
+    }
+
+    .paginationActive a {
+        text-decoration: none;
+        color: ${MainTextColor};
+        transition: .3s ease-in-out;
+        padding-right: 5px;
+        font-weight: 700;
+    }
+`;
+
 export const Styled__Table = {
     RowLink,
     Header,
     HeaderColumn,
-    Body
+    Body,
+    ReactPaginateTable
 };
 
 const CustomedNavBarLink = styled(Link)`
