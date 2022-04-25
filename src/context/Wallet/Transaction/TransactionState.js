@@ -48,6 +48,8 @@ export const TransactionContextProvider = ({ children }) => {
         const response = await axios.put(
             'http://localhost:8080/transaction/update/' + updatedTransaction.transactionId, updatedTransaction);
 
+            console.log(response)
+
         dispatch({
             type: UPDATE_TRANSACTION, 
             payload: updatedTransaction

@@ -61,7 +61,7 @@ const ReactPaginateTable = styled(ReactPaginate).attrs(
         text-decoration: none;
         color: ${MainTextColor};
         transition: .3s ease-in-out;
-        padding-right: 5px;
+        padding-right: 10px;
         
         &:hover {
             text-decoration: none;
@@ -74,7 +74,7 @@ const ReactPaginateTable = styled(ReactPaginate).attrs(
         text-decoration: none;
         color: ${MainTextColor};
         transition: .3s ease-in-out;
-        padding-right: 5px;
+        padding-right: 10px;
         font-weight: 700;
     }
 `;
@@ -241,4 +241,26 @@ export const Styled__Input = {
     Input,
     Select,
     SearchBar
+};
+
+const ParentChild = styled(Link)`
+    text-decoration: none;
+    color: ${MainTextColor};
+    transition: .3s ease-in-out;
+    font-size: ${MainTextSize}px;
+    border: none;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    &:hover {
+        text-decoration: none;
+        color: ${MainTextColor};
+        background-color: ${SearchBarColor};
+    }
+    
+`;
+
+export const Styled__SideBar = {
+    ParentChild
 };

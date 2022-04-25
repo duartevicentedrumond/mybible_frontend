@@ -4,6 +4,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
+import TransactionRelated from "./TransactionRelated";
 import { Styled__Nav } from "../../design/style";
 
 function Transaction() {
@@ -37,8 +38,8 @@ function Transaction() {
         <div className="col text-start py-3">
           <Routes>
             <Route path="/" element={<TransactionInfo/>} />
-            <Route path="add" element={<TransactionInfo/>} />
-            <Route path="edit/:id" element={<TransactionInfo/>} />
+            <Route path="/add" element={<TransactionRelated/>} />
+            <Route path="/edit/:id" element={<TransactionRelated/>} />
           </Routes>
         </div>
 

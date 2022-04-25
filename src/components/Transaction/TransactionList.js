@@ -12,8 +12,6 @@ const TransactionList = () => {
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(
         transaction => {
-
-
             if (transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) || String(transaction.transactionId).includes(searchText) || String(transaction.amount).includes(searchText)) {
                 return transaction
             }
@@ -87,7 +85,7 @@ const TransactionList = () => {
                         
                     <tr key={transaction.transactionId}>
                         <th scope="col" className="text-end align-middle px-4">
-                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}>
+                            <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`} style={{'whiteSpace': 'nowrap'}}>
                                 {transaction.transactionId}
                             </Styled__Table.RowLink>
                         </th>
@@ -98,7 +96,7 @@ const TransactionList = () => {
                         </th>
                         <th scope="col" className="text-end px-4 align-middle">
                             <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}> 
-                                {parseFloat(transaction.amount).toFixed(2)}     €
+                                {parseFloat(transaction.amount).toFixed(2)} €
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="text-start px-4 align-middle">
