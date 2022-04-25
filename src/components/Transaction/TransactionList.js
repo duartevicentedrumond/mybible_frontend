@@ -113,7 +113,7 @@ const TransactionList = () => {
 
             </table>
 
-            {pageCount === 1 ? true : <Styled__Table.ReactPaginateTable
+            {pageCount <= 1 ? true : <Styled__Table.ReactPaginateTable
                 className="d-flex justify-content-start px-0 align-items-start"
                 previousLabel={"<"}
                 nextLabel={">"}
