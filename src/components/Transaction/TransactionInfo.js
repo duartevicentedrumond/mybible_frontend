@@ -34,7 +34,10 @@ const TransactionInfo = () => {
                 Info
             </Styled__Title.InfoTitle>
             {categoriesSum.map( (category) => (
-                <Styled__Title.InfoItem className='pb-0' key={category.category}>- {category.category}: {parseFloat(category.sum).toFixed(2)}€</Styled__Title.InfoItem>
+                <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
+                    <span>{category.category}</span>
+                    <span>{parseFloat(category.sum).toFixed(2)} €</span>
+                </Styled__Title.InfoItem>
             ))}
 
         </div>
