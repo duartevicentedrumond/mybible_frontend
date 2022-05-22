@@ -174,57 +174,67 @@ const TransactionForm = () => {
 
                 <hr className="my-1"/>
 
-                <Styled__Title.Button onClick={deleteSubtransaction} className='d-flex'>
-                  <IoCloseCircleOutline id={index} />
-                </Styled__Title.Button>
+                <div className="row">
 
-                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                  <Styled__Input.Label>amount</Styled__Input.Label>
-                  <Styled__Input.Input
-                    className="flex-fill"
-                    type="text"
-                    name="amount"
-                    placeholder="amount..."
-                    id={index}
-                    onChange={handleChange}
-                    value={subtransaction.amount}
-                  />
-                </Styled__Input.Main>
+                  <div className="col-auto d-flex align-items-center px-1">
 
-                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                  <Styled__Input.Label>category</Styled__Input.Label>
-                  <Styled__Input.Select
-                    name="category"
-                    aria-label="category"
-                    id={index}
-                    value={subtransaction.category.categoryId}
-                    onChange={handleChange}
-                  >
-                    {categories.map( (category) => (
-                      <option value={category.categoryId}>
-                        {category.description}
-                      </option>
-                    ))}
-                  </Styled__Input.Select>
-                </Styled__Input.Main>
+                    <Styled__Title.Button onClick={deleteSubtransaction} >
+                      <IoCloseCircleOutline id={index} />
+                    </Styled__Title.Button>
 
-                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                  <Styled__Input.Label>person</Styled__Input.Label>
-                  <Styled__Input.Select
-                    name="person"
-                    aria-label="person"
-                    id={index}
-                    value={subtransaction.person.personId}
-                    onChange={handleChange}
-                  >
-                    {people.map( (person) => (
-                      <option value={person.personId}>
-                        {person.nickname}
-                      </option>
-                    ))}
-                  </Styled__Input.Select>
-                </Styled__Input.Main>
+                  </div>
 
+                  <div className="col px-1">
+
+                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                      <Styled__Input.Label>amount</Styled__Input.Label>
+                      <Styled__Input.Input
+                        className="flex-fill"
+                        type="text"
+                        name="amount"
+                        placeholder="amount..."
+                        id={index}
+                        onChange={handleChange}
+                        value={subtransaction.amount}
+                      />
+                    </Styled__Input.Main>
+
+                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                      <Styled__Input.Label>category</Styled__Input.Label>
+                      <Styled__Input.Select
+                        name="category"
+                        aria-label="category"
+                        id={index}
+                        value={subtransaction.category.categoryId}
+                        onChange={handleChange}
+                      >
+                        {categories.map( (category) => (
+                          <option value={category.categoryId}>
+                            {category.description}
+                          </option>
+                        ))}
+                      </Styled__Input.Select>
+                    </Styled__Input.Main>
+
+                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                      <Styled__Input.Label>person</Styled__Input.Label>
+                      <Styled__Input.Select
+                        name="person"
+                        aria-label="person"
+                        id={index}
+                        value={subtransaction.person.personId}
+                        onChange={handleChange}
+                      >
+                        {people.map( (person) => (
+                          <option value={person.personId}>
+                            {person.nickname}
+                          </option>
+                        ))}
+                      </Styled__Input.Select>
+                    </Styled__Input.Main>
+
+                  </div>
+                </div>
               </div>
             ))}
 
