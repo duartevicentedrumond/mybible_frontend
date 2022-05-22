@@ -6,7 +6,7 @@ import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import PersonContext from "../../context/Person/Person/PersonContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
-import { IoAdd, IoSync } from "react-icons/io5";
+import { IoAdd, IoSync, IoCloseCircleOutline } from "react-icons/io5";
 
 const TransactionForm = () => {
 
@@ -20,42 +20,43 @@ const TransactionForm = () => {
   const [transaction, setTransaction] = useState({
     description: '',
     date: '',
-    amount: '',
     type: {
       typeId: '1'
     },
-    category: {
-      categoryId: '1'
-    },
-    person: {
-      personId: '0'
-    }
+    subtransactions: [
+      {
+        amount: '',
+        category: { categoryId: '1' },
+        person: { personId: '1' }
+      },
+    ],
+    deletedSubtransactions: []
   });
 
   const handleChange = e => {
-    setTransaction({...transaction, [e.target.name]: e.target.value});  
+
+    const index = e.target.id;
+
+    if(e.target.name === "category"){
+      transaction.subtransactions[index][e.target.name]['categoryId'] = e.target.value;
+    } else if(e.target.name === "person"){
+      transaction.subtransactions[index][e.target.name]['personId'] = e.target.value;
+    } else if(e.target.name === "type"){
+      transaction[e.target.name]['typeId'] = e.target.value;
+    } else {
+
+      if(index === ''){ //field placed directly inside transaction; it is not an field from transaction's arrays
+        transaction[e.target.name] = e.target.value;
+      } else {
+        transaction.subtransactions[index][e.target.name] = e.target.value;
+      }
+    }
+
+    setTransaction({...transaction, transaction});
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (typeof transaction.category === 'string') {
-        transaction.category = {
-            categoryId: transaction.category
-        };
-    }
-
-    if (typeof transaction.type === 'string') {
-        transaction.type = {
-            typeId: transaction.type
-        };
-    }
-
-    if (typeof transaction.person === 'string') {
-      transaction.person = {
-          personId: transaction.person
-      };
-  }
 
     if(transaction.transactionId){
       updateTransaction(transaction);
@@ -65,6 +66,31 @@ const TransactionForm = () => {
     }
 
     history("/transaction");
+  };
+
+  const addSubtransaction = e => {
+    e.preventDefault();
+
+    const clonedTransaction = {...transaction};
+    const lengthSubtransactions = clonedTransaction.subtransactions.length;
+
+    clonedTransaction.subtransactions[lengthSubtransactions] = {
+      amount: '',
+      category: { categoryId: '1' },
+      person: { personId: '1' }
+    }
+
+    setTransaction({...transaction, clonedTransaction});
+    
+  };
+
+  const deleteSubtransaction = e => {
+    e.preventDefault();
+
+    transaction.subtransactions.splice(e.target.id, 1)
+
+    setTransaction({...transaction, transaction});
+    
   };
 
   useEffect(
@@ -125,23 +151,10 @@ const TransactionForm = () => {
                 value={transaction.date}
               />
             </Styled__Input.Main>
-          
-            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-              <Styled__Input.Label>amount</Styled__Input.Label>
-              <Styled__Input.Input
-                className="flex-fill"
-                type="text"
-                name="amount"
-                placeholder="amount..."
-                onChange={handleChange}
-                value={transaction.amount}
-              />
-            </Styled__Input.Main>
 
             <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
               <Styled__Input.Label>type</Styled__Input.Label>
-              <Styled__Input.Select 
-                class="form-select"
+              <Styled__Input.Select
                 name="type"
                 aria-label="type"
                 value={transaction.type.typeId}
@@ -155,39 +168,69 @@ const TransactionForm = () => {
               </Styled__Input.Select>
             </Styled__Input.Main>
 
-            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-              <Styled__Input.Label>category</Styled__Input.Label>
-              <Styled__Input.Select 
-                class="form-select"
-                name="category"
-                aria-label="category"
-                value={transaction.category.categoryId}
-                onChange={handleChange}
-              >
-                {categories.map( (category) => (
-                  <option value={category.categoryId}>
-                    {category.description}
-                  </option>
-                ))}
-              </Styled__Input.Select>
-            </Styled__Input.Main>
+            {transaction.subtransactions.map( (subtransaction, index) => (
 
-            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-              <Styled__Input.Label>person</Styled__Input.Label>
-              <Styled__Input.Select 
-                class="form-select"
-                name="person"
-                aria-label="person"
-                value={transaction.person.personId}
-                onChange={handleChange}
-              >
-                {people.map( (person) => (
-                  <option value={person.personId}>
-                    {person.nickname}
-                  </option>
-                ))}
-              </Styled__Input.Select>
-            </Styled__Input.Main>
+              <div>
+
+                <hr className="my-1"/>
+
+                <Styled__Title.Button onClick={deleteSubtransaction} className='d-flex'>
+                  <IoCloseCircleOutline id={index} />
+                </Styled__Title.Button>
+
+                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                  <Styled__Input.Label>amount</Styled__Input.Label>
+                  <Styled__Input.Input
+                    className="flex-fill"
+                    type="text"
+                    name="amount"
+                    placeholder="amount..."
+                    id={index}
+                    onChange={handleChange}
+                    value={subtransaction.amount}
+                  />
+                </Styled__Input.Main>
+
+                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                  <Styled__Input.Label>category</Styled__Input.Label>
+                  <Styled__Input.Select
+                    name="category"
+                    aria-label="category"
+                    id={index}
+                    value={subtransaction.category.categoryId}
+                    onChange={handleChange}
+                  >
+                    {categories.map( (category) => (
+                      <option value={category.categoryId}>
+                        {category.description}
+                      </option>
+                    ))}
+                  </Styled__Input.Select>
+                </Styled__Input.Main>
+
+                <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+                  <Styled__Input.Label>person</Styled__Input.Label>
+                  <Styled__Input.Select
+                    name="person"
+                    aria-label="person"
+                    id={index}
+                    value={subtransaction.person.personId}
+                    onChange={handleChange}
+                  >
+                    {people.map( (person) => (
+                      <option value={person.personId}>
+                        {person.nickname}
+                      </option>
+                    ))}
+                  </Styled__Input.Select>
+                </Styled__Input.Main>
+
+              </div>
+            ))}
+
+            <Styled__Title.Button onClick={addSubtransaction} className='d-flex'>
+              <IoAdd/>
+            </Styled__Title.Button>
 
           </div>
 

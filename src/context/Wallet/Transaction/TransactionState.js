@@ -45,6 +45,8 @@ export const TransactionContextProvider = ({ children }) => {
 
         const updatedTransaction = transaction;
 
+        console.log(updatedTransaction);
+
         const response = await axios.put(
             'http://localhost:8080/transaction/update/' + updatedTransaction.transactionId, updatedTransaction);
 

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IoChevronBackOutline } from "react-icons/io5";
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import { Styled__Table, Styled__Input } from "../../design/style";
@@ -12,7 +11,7 @@ const TransactionList = () => {
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(
         transaction => {
-            if (transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) || String(transaction.transactionId).includes(searchText) || String(transaction.amount).includes(searchText)) {
+            if (transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) || String(transaction.transactionId).includes(searchText) || String(transaction.totalAmount).includes(searchText)) {
                 return transaction
             }
         }
@@ -96,7 +95,7 @@ const TransactionList = () => {
                         </th>
                         <th scope="col" className="text-end px-4 align-middle">
                             <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`}style={{'whiteSpace': 'nowrap'}}> 
-                                {parseFloat(transaction.amount).toFixed(2)} €
+                                {parseFloat(transaction.totalAmount).toFixed(2)} €
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="text-start px-4 align-middle">
