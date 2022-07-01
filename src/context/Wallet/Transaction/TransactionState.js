@@ -14,31 +14,42 @@ export const TransactionContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(transactionReducer, initialState);
 
     const getTransactions = async () => {
-        const response = await axios.get(
-            'http://localhost:8080/transaction/getAll');
 
-        dispatch({
-            type: GET_TRANSACTIONS,
-            payload: response.data,
-        });
-    };
-
-    const getTransaction = async (id) => {
-        const response = await axios.get('http://localhost:8080/transaction/' + id);
-        console.log(response)
+        fetch('http://localhost:8080/transaction/getAll')
+            .then( response => response.json())
+            .then( data => {
+                dispatch({
+                    type: GET_TRANSACTIONS, 
+                    payload: data
+                });
+                console.log(data);
+            })
+            .catch(function(error) {
+                console.log("Error getting all transactions from API", error);
+            });
     };
 
     const addTransaction = async (transaction) => {
 
-        const newTransaction = transaction;
+        let fetchData = {
+            method: 'POST',
+            body: JSON.stringify(transaction),
+            headers: new Headers({
+                'Content-Type': 'application/json; charset=UTF-8'
+            })
+        }
 
-        const response = await axios.post(
-            'http://localhost:8080/transaction/add', newTransaction);
-
-        dispatch({
-            type: ADD_TRANSACTION, 
-            payload: transaction
-        });
+        fetch('http://localhost:8080/transaction/add', fetchData)
+            .then( response => response.json())
+            .then( 
+                dispatch({
+                    type: ADD_TRANSACTION, 
+                    payload: transaction
+                })
+            )
+            .catch(function(error) {
+                console.log("Error posting transaction to API", error);
+            });
     };
 
     const updateTransaction = async (transaction) => {
@@ -68,7 +79,7 @@ export const TransactionContextProvider = ({ children }) => {
     };
 
     return (
-        <TransactionContext.Provider value={{ ...state, getTransactions, getTransaction, addTransaction, deleteTransaction, updateTransaction }}>
+        <TransactionContext.Provider value={{ ...state, getTransactions, addTransaction, deleteTransaction, updateTransaction }}>
             {children}
         </TransactionContext.Provider>
     )

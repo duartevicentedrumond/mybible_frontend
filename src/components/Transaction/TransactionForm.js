@@ -6,7 +6,7 @@ import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import PersonContext from "../../context/Person/Person/PersonContext";
 import { Styled__Title, Styled__Input } from "../../design/style";
-import { IoAdd, IoSync, IoCloseCircleOutline } from "react-icons/io5";
+import { IoAdd, IoSync, IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io5";
 
 const TransactionForm = () => {
 
@@ -30,6 +30,7 @@ const TransactionForm = () => {
         person: { personId: '1' }
       },
     ],
+    transactionParent: { transactionId: null },
     deletedSubtransactions: []
   });
 
@@ -43,6 +44,8 @@ const TransactionForm = () => {
       transaction.subtransactions[index][e.target.name]['personId'] = e.target.value;
     } else if(e.target.name === "type"){
       transaction[e.target.name]['typeId'] = e.target.value;
+    } else if(e.target.name === "transactionParent"){
+      transaction[e.target.name]['transactionId'] = e.target.value;
     } else {
 
       if(index === ''){ //field placed directly inside transaction; it is not an field from transaction's arrays
@@ -89,8 +92,7 @@ const TransactionForm = () => {
 
     transaction.subtransactions.splice(e.target.id, 1)
 
-    setTransaction({...transaction, transaction});
-    
+    setTransaction({...transaction, transaction});  
   };
 
   useEffect(
@@ -101,6 +103,15 @@ const TransactionForm = () => {
       getPeople();
 
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
+
+      if (transactionFound.transactionParent === null) {
+
+        transactionFound.transactionParent = { 
+          transactionId: null 
+        };
+      };
+
+      console.log(transactionFound);
 
       if(transactionFound) {
         setTransaction(transactionFound);
@@ -166,6 +177,18 @@ const TransactionForm = () => {
                   </option>
                 ))}
               </Styled__Input.Select>
+            </Styled__Input.Main>
+
+            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
+              <Styled__Input.Label>parent</Styled__Input.Label>
+              <Styled__Input.Input
+                className="flex-fill"
+                type="text"
+                name="transactionParent"
+                placeholder="parent..."
+                onChange={handleChange}
+                value={transaction.transactionParent.transactionId}
+              />
             </Styled__Input.Main>
 
             {transaction.subtransactions.map( (subtransaction, index) => (
@@ -238,9 +261,13 @@ const TransactionForm = () => {
               </div>
             ))}
 
-            <Styled__Title.Button onClick={addSubtransaction} className='d-flex'>
-              <IoAdd/>
-            </Styled__Title.Button>
+            <div className="row">
+
+              <Styled__Title.Button onClick={addSubtransaction} className='d-flex align-items-center px-1'>
+                <IoReturnDownForwardOutline/>
+              </Styled__Title.Button>
+
+            </div>
 
           </div>
 
