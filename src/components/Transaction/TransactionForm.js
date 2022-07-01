@@ -27,7 +27,7 @@ const TransactionForm = () => {
       {
         amount: '',
         category: { categoryId: '1' },
-        person: { personId: '1' }
+        person: { personId: '0' }
       },
     ],
     transactionParent: { transactionId: null },

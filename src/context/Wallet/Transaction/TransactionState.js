@@ -22,7 +22,7 @@ export const TransactionContextProvider = ({ children }) => {
                     type: GET_TRANSACTIONS, 
                     payload: data
                 });
-                console.log(data);
+                console.log("TRANSACTIONS LIST (STATE)\n\n",data);
             })
             .catch(function(error) {
                 console.log("Error getting all transactions from API", error);
@@ -39,8 +39,13 @@ export const TransactionContextProvider = ({ children }) => {
             })
         }
 
+        console.log("TRANSACTION ADDED (STATE)\n\n",JSON.stringify(transaction));
+
         fetch('http://localhost:8080/transaction/add', fetchData)
             .then( response => response.json())
+            .then( data => {
+                console.log("TRANSACTION ADDED RESPONSE (STATE)\n\n",data);
+            })
             .then( 
                 dispatch({
                     type: ADD_TRANSACTION, 
