@@ -104,7 +104,7 @@ const TransactionForm = () => {
 
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
-      if (transactionFound.transactionParent === null) {
+      if (transactionFound && transactionFound.transactionParent === null) {
 
         transactionFound.transactionParent = { 
           transactionId: null 
