@@ -15,7 +15,7 @@ export const TransactionContextProvider = ({ children }) => {
 
     const getTransactions = async () => {
 
-        fetch('http://127.0.0.1:8080/transaction/getAll')
+        fetch('http://localhost:8080/transaction/getAll')
             .then( response => response.json())
             .then( data => {
                 dispatch({
