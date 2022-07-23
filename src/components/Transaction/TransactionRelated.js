@@ -24,7 +24,7 @@ const TransactionRelated = () => {
           personId: '0'
         },
         transactionChild: [],
-        transactionParent: {}
+        transactionParent: { transactionId: null },
       });
 
     //Execute getTransactions function as soon as the page is rendered
@@ -54,13 +54,13 @@ const TransactionRelated = () => {
                         - px-4: column horizontal padding (left and right) with 4
             */}
 
-            {transaction.transactionParent != null ? 
+            {transaction.transactionParent.transactionId != null ? 
             (<Styled__Title.InfoTitle>
                 Parent
             </Styled__Title.InfoTitle>)
             : false }
             <div className="list-group" style={{'borderRadius': '25px'}}>
-                {transaction.transactionParent != null ?  (
+                {transaction.transactionParent.transactionId != null ?  (
                 <Styled__SideBar.ParentChild 
                     to={`/transaction/edit/${transaction.transactionParent.transactionId}`} 
                     className="list-group-item list-group-item-action">
