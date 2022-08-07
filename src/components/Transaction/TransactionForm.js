@@ -20,9 +20,9 @@ const TransactionForm = () => {
   const [transaction, setTransaction] = useState({
     description: '',
     date: '',
-    type: {
-      typeId: '1'
-    },
+    types: [
+      {typeId: '1'}
+    ],
     subtransactions: [
       {
         amount: '',
@@ -168,7 +168,7 @@ const TransactionForm = () => {
               <Styled__Input.Select
                 name="type"
                 aria-label="type"
-                value={transaction.type.typeId}
+                value={transaction.types.typeId}
                 onChange={handleChange}
               >
                 {types.map( (type) => (
