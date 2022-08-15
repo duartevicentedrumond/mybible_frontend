@@ -11,7 +11,11 @@ const TransactionList = () => {
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(
         transaction => {
-            if (transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) || String(transaction.transactionId).includes(searchText) || String(transaction.totalAmount).includes(searchText)) {
+            if (
+                String(transaction.transactionId).includes(searchText) || 
+                transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+                transaction.date.toLowerCase().includes(searchText.toLocaleLowerCase()) || 
+                String(transaction.totalAmount).includes(searchText)) {
                 return transaction
             }
         }
