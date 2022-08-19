@@ -61,6 +61,7 @@ export const TransactionContextProvider = ({ children }) => {
 
         const updatedTransaction = transaction;
 
+        console.log("UPDATED TRANSACTION:\n");
         console.log(updatedTransaction);
 
         const response = await axios.put(

@@ -21,6 +21,7 @@ const TransactionForm = () => {
 
   const [transaction, setTransaction] = useState({
     description: '',
+    customId: null,
     date: '',
     types: [
       {
@@ -35,7 +36,10 @@ const TransactionForm = () => {
         person: { personId: '0' }
       },
     ],
-    transactionParent: { transactionId: null },
+    transactionParent: { 
+      transactionId: null,
+      customId: null
+    },
     deletedSubtransactions: []
   });
 
@@ -193,20 +197,16 @@ const TransactionForm = () => {
               object={transaction}
               setObject={setTransaction}
               name="description"
+              field="description"
             />
 
             {/*transaction date input form*/}
-            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-              <Styled__Input.Label>date</Styled__Input.Label>
-              <Styled__Input.Input
-                className="flex-fill"
-                type="text"
-                name="date"
-                placeholder="date..."
-                onChange={handleChange}
-                value={transaction.date}
-              />
-            </Styled__Input.Main>
+            <InputForm
+              object={transaction}
+              setObject={setTransaction}
+              name="date"
+              field="date"
+            />
 
             {/*transaction types input form*/}
             {types.map(
@@ -231,17 +231,13 @@ const TransactionForm = () => {
             )}
 
             {/*transaction parent input form*/}
-            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-              <Styled__Input.Label>parent</Styled__Input.Label>
-              <Styled__Input.Input
-                className="flex-fill"
-                type="text"
-                name="transactionParent"
-                placeholder="parent..."
-                onChange={handleChange}
-                value={transaction.transactionParent.transactionId}
-              />
-            </Styled__Input.Main>
+            <InputForm
+              object={transaction}
+              subObject="transactionParent"
+              setObject={setTransaction}
+              name="parent"
+              field="transactionId"
+            />
 
             {transaction.subtransactions.map( (subtransaction, index) => (
               <div>
