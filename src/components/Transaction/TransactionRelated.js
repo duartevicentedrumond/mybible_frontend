@@ -23,7 +23,7 @@ const TransactionRelated = () => {
         person: {
           personId: '0'
         },
-        transactionChild: [],
+        transactionChildren: [],
         transactionParent: { transactionId: null },
       });
 
@@ -74,7 +74,7 @@ const TransactionRelated = () => {
             </Styled__Title.InfoTitle>)
             : false }
             <div className="list-group" style={{'borderRadius': '25px'}}>
-                {transaction.transactionChild.length >= 1 ? (transaction.transactionChild.map( (child) => (
+                {transaction.transactionChildren.length >= 1 ? (transaction.transactionChildren.map( (child) => (
                 <Styled__SideBar.ParentChild 
                     to={`/transaction/edit/${child.transactionId}`}
                     className="list-group-item list-group-item-action">

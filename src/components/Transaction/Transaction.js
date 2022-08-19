@@ -38,8 +38,8 @@ function Transaction() {
         <div className="col text-start py-3">
           <Routes>
             <Route path="/" element={<TransactionInfo/>} />
-            <Route path="/add" element={<TransactionRelated/>} />
-            <Route path="/edit/:id" element={<TransactionRelated/>} />
+            {/*<Route path="/add" element={<TransactionRelated/>} />/*}
+            {/*<Route path="/edit/:id" element={<TransactionRelated/>} />*/}
           </Routes>
         </div>
 

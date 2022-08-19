@@ -89,7 +89,7 @@ const TransactionList = () => {
                     <tr key={transaction.transactionId}>
                         <th scope="col" className="text-end align-middle px-4">
                             <Styled__Table.RowLink to={`/transaction/edit/${transaction.transactionId}`} style={{'whiteSpace': 'nowrap'}}>
-                                {transaction.transactionId}
+                                {transaction.customId}
                             </Styled__Table.RowLink>
                         </th>
                         <th scope="col" className="text-end align-middle px-4">
