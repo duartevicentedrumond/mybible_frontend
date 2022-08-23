@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { IoAdd, IoSync, IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io5";
+import { IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io5";
 
 import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import PersonContext from "../../context/Person/Person/PersonContext";
