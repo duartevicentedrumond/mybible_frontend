@@ -2,98 +2,104 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { Modal } from 'react-bootstrap';
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
-import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
-import PersonContext from "../../context/Person/Person/PersonContext";
-import { Styled__Title, Styled__Input } from "../../design/style";
-import { IoAdd, IoSync, IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io5";
+import { Styled__Title } from "../../design/style";
+import { IoAdd, IoSync } from "react-icons/io5";
 
 import InputForm from "./../../general_components/InputForm";
+import SubtransactionsForm from "../Subtransaction/SubtransactionForm";
 
-const TransactionForm = () => {
+export default function TransactionForm() {
 
-  const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
-  const { categories, getCategories } = useContext(CategoryContext);
-  const { types, getTypes } = useContext(TypeContext);
-  const { people, getPeople } = useContext(PersonContext);
-  const history = useNavigate();
-  const params = useParams();
+  //define initial variables
 
-  const [transaction, setTransaction] = useState({
-    description: '',
-    customId: null,
-    date: '',
-    types: [
-      {
-        typeId: '1',
-        checked: true
-      }
-    ],
-    subtransactions: [
-      {
-        amount: '',
-        category: { categoryId: '1' },
-        person: { personId: '0' }
-      },
-    ],
-    transactionParent: { 
-      transactionId: null,
-      customId: null
-    },
-    deletedSubtransactions: []
-  });
+    //get context for addTransaction and updateTransaction functions and transactions object
+    const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
 
-  const handleChange = e => {
+    //get context for getTypes function and types object
+    const { types, getTypes } = useContext(TypeContext);
 
-    const index = e.target.id;
+    //get frontend directory
+    const history = useNavigate();
 
-    if(e.target.name === "category"){
+    //get parameters from url
+    const params = useParams();
 
-      transaction.subtransactions[index][e.target.name]['categoryId'] = e.target.value;
-
-    } else if(e.target.name === "person"){
-      transaction.subtransactions[index][e.target.name]['personId'] = e.target.value;
-    } else if(e.target.name === "types"){
-
-      var clonedTransaction = {...transaction};
-
-      if (e.target.checked) {
-
-        const lengthTypes = clonedTransaction.types.length;
-
-        clonedTransaction.types[lengthTypes] = {
-          typeId: parseFloat(e.target.value)
+    //set state for transaction
+    const [transaction, setTransaction] = useState({
+      description: null,
+      customId: null,
+      date: null,
+      types: [
+        {
+          typeId: null
         }
-
-        setTransaction({...transaction, clonedTransaction});
-
-      } else {
-
-        transaction.types = transaction.types.filter(
-          (type) => type.typeId !== parseFloat(e.target.value)
-        );
-
-        setTransaction({...transaction, transaction});
-
-        console.log(e.target.value)
-        console.log(clonedTransaction)
+      ],
+      subtransactions: [
+        {
+          amount: null,
+          category: { categoryId: '1' },
+          person: { personId: '0' }
+        },
+      ],
+      transactionParent: { 
+        transactionId: null,
+        customId: null
       }
-      
-      console.log(transaction.types)
+    });
 
-    } else if(e.target.name === "transactionParent"){
-      transaction[e.target.name]['transactionId'] = e.target.value;
-    } else {
+  //define handle transaction input changes
 
-      if(index === ''){ //field placed directly inside transaction; it is not an field from transaction's arrays
-        transaction[e.target.name] = e.target.value;
-      } else {
-        transaction.subtransactions[index][e.target.name] = e.target.value;
-      }
-    }
+    //udpate transaction state when description input changes
+    function handleDescriptionChange(e) {
+      setTransaction(existingTransaction => ({
+        ...existingTransaction,
+        description: e.target.value
+      }));
+    };
 
-    setTransaction({...transaction, transaction});
-  };
+    //udpate transaction state when date input changes
+    function handleDateChange(e) {
+      setTransaction(existingTransaction => ({
+        ...existingTransaction,
+        date: e.target.value
+      }));
+    };
+
+    //udpate transaction state when types input changes
+    function handleTypesChange(e) {
+
+        //add new type to transaction if checked
+        if (e.target.checked) {
+
+          setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            types: [
+              ...existingTransaction.types,
+              { typeId: parseFloat(e.target.value) }
+            ]
+          }));
+
+        } else { //remove type from transaction if unchecked
+
+          setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            types: existingTransaction.types.filter(type => type.typeId !== parseFloat(e.target.value))
+          }));
+          
+        }
+    };
+
+    //udpate transaction state when transaction parent input changes
+    function handleTransactionParentChange(e) {
+      setTransaction(existingTransaction => ({
+        ...existingTransaction,
+        transactionParent: {
+          ...existingTransaction.transactionParent,
+          transactionId: e.target.value
+        }
+      }));
+    };
 
   //saves transaction and redirects to transactions list page
   const handleSubmit = e => {
@@ -112,60 +118,47 @@ const TransactionForm = () => {
     history("/transaction");
   };
 
-  //add new subtransaction
-  const addSubtransaction = e => {
-    
-    //prevents page refresh on click
-    e.preventDefault();
-
-    const clonedTransaction = {...transaction};
-    const lengthSubtransactions = clonedTransaction.subtransactions.length;
-
-    clonedTransaction.subtransactions[lengthSubtransactions] = {
-      amount: '',
-      category: { categoryId: '1' },
-      person: { personId: '1' }
-    }
-
-    setTransaction({...transaction, clonedTransaction});
-    
-  };
-
-
-  const deleteSubtransaction = e => {
-    e.preventDefault();
-
-    transaction.subtransactions.splice(e.target.id, 1)
-
-    setTransaction({...transaction, transaction});  
-  };
-
+  //execute on page first render 
   useEffect(
     () => {
 
-      getCategories();
+      //get all existing types for dropdown input
       getTypes();
-      getPeople();
 
-      const description = "description";
-
+      //get transaction (if it exists) from the url id
       const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
 
-      if (transactionFound && transactionFound.transactionParent === null) {
-
-        transactionFound.transactionParent = { 
-          transactionId: null 
-        };
-      };
-
-      console.log(transactionFound);
-
+      // if transaction exists from url id
       if(transactionFound) {
-        setTransaction(transactionFound);
+
+        //set transaction parent id to null when transaction does not have a transaction parent
+        let transactionParent;
+
+        if (transactionFound.transactionParent === null) {
+          transactionParent = null;
+        } else {
+          transactionParent = transactionFound.transactionParent.transactionId;
+        }
+
+        //set transaction state to the values from url id transaction
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          transactionId: transactionFound.transactionId,
+          customId: transactionFound.customId,
+          description: transactionFound.description,
+          date: transactionFound.date,
+          types: transactionFound.types,
+          transactionParent: {
+            ...existingTransaction.transactionParent,
+            transactionId: transactionParent
+          },
+          subtransactions: transactionFound.subtransactions
+        }));
+
       }
 
     }
-  , [params.id, transactions]);
+  , [params.id, transactions]); //page first rendering depends on params.id and transactions
 
   return (
     <div className="d-flex flex-column text-start py-3 px-3">
@@ -194,35 +187,34 @@ const TransactionForm = () => {
 
             {/*transaction description input form*/}
             <InputForm
-              object={transaction}
-              setObject={setTransaction}
-              name="description"
-              field="description"
+              value={transaction.description}
+              onChangeField={handleDescriptionChange}
+              placeholder="description..."
+              label="description"
             />
 
             {/*transaction date input form*/}
             <InputForm
-              object={transaction}
-              setObject={setTransaction}
-              name="date"
-              field="date"
+              value={transaction.date}
+              onChangeField={handleDateChange}
+              placeholder="date..."
+              label="date"
             />
 
             {/*transaction types input form*/}
             {types.map(
-
-              (type) => (
+              (type, i) => (
 
                 <div class="form-check">
                   <input 
                     class="form-check-input"
                     type="checkbox"
                     name="types"
-                    checked={transaction.types.find( (typeTransaction) => typeTransaction.typeId == type.typeId)}
+                    id={i}
+                    checked={transaction.types.find( transactionType => transactionType.typeId === type.typeId)}
                     value={type.typeId}
-                    onChange={handleChange}
-                    id="flexCheckDefault"/>
-                  <label class="form-check-label" for="flexCheckDefault">
+                    onChange={handleTypesChange}/>
+                  <label class="form-check-label">
                     {type.description}
                   </label>
                 </div>
@@ -230,102 +222,19 @@ const TransactionForm = () => {
               )
             )}
 
-            {/*transaction parent input form*/}
+            {/*transaction transaction parent input form*/}
             <InputForm
-              object={transaction}
-              subObject="transactionParent"
-              setObject={setTransaction}
-              name="parent"
-              field="transactionId"
+              value={transaction.transactionParent.transactionId}
+              onChangeField={handleTransactionParentChange}
+              placeholder="parent..."
+              label="parent"
             />
 
-            {transaction.subtransactions.map( (subtransaction, index) => (
-              <div>
-
-                <hr className="my-1"/>
-
-                <div className="row">
-
-                  <div className="col-auto d-flex align-items-center px-1">
-
-                    <Styled__Title.Button onClick={deleteSubtransaction} >
-                      <IoCloseCircleOutline id={index} />
-                    </Styled__Title.Button>
-
-                  </div>
-
-                  <div className="col px-1">
-
-                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                      <Styled__Input.Label>amount</Styled__Input.Label>
-                      <Styled__Input.Input
-                        className="flex-fill"
-                        type="text"
-                        name="amount"
-                        placeholder="amount..."
-                        id={index}
-                        onChange={handleChange}
-                        value={subtransaction.amount}
-                      />
-                    </Styled__Input.Main>
-
-                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                      <Styled__Input.Label>category</Styled__Input.Label>
-                      <Styled__Input.Select
-                        name="category"
-                        aria-label="category"
-                        id={index}
-                        value={subtransaction.category.categoryId}
-                        onChange={handleChange}
-                      >
-                        {categories.map( (category) => (
-                          <option value={category.categoryId}>
-                            {category.description}
-                          </option>
-                        ))}
-                      </Styled__Input.Select>
-                    </Styled__Input.Main>
-
-                    <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                      <Styled__Input.Label>person</Styled__Input.Label>
-                      <Styled__Input.Select
-                        name="person"
-                        aria-label="person"
-                        id={index}
-                        value={subtransaction.person.personId}
-                        onChange={handleChange}
-                      >
-                        {people.map( (person) => (
-                          <option value={person.personId}>
-                            {person.nickname}
-                          </option>
-                        ))}
-                      </Styled__Input.Select>
-                    </Styled__Input.Main>
-
-                  </div>
-                </div>
-              </div>
-              ))}
-
-            {/*add new subtransactions button*/}
-            <div className="row">
-              <Styled__Title.Button onClick={addSubtransaction} className='d-flex align-items-center px-1'>
-                <IoReturnDownForwardOutline/>
-              </Styled__Title.Button>
-            </div>
-
-            <div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Name *"
-                  value={transaction.description}
-                  onChange = {handleChange}
-                  required
-                />
-              </div>
-            </div>
+            {/*transaction subtransactions input form*/}
+            <SubtransactionsForm
+              object={transaction}
+              setObject={setTransaction}
+            />
 
           </div>
 
@@ -334,5 +243,3 @@ const TransactionForm = () => {
     </div>
   )
 };
-
-export default TransactionForm;
