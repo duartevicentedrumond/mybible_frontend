@@ -28,6 +28,7 @@ export default function SubtransactionsForm(data) {
     }
   , []); //no dependency
 
+    //udpate transaction state when subtransactions input changes
     function handleChange(e) {
 
         const index = e.target.id;
@@ -49,34 +50,40 @@ export default function SubtransactionsForm(data) {
         setTransaction({...transaction, transaction});
     };
 
-    //add new subtransaction
-    const addSubtransaction = e => {
+    //update transaction state with new subtransaction
+    function addSubtransaction(e) {
         
         //prevents page refresh on click
         e.preventDefault();
 
-        const clonedTransaction = {...transaction};
-        const lengthSubtransactions = clonedTransaction.subtransactions.length;
-
-        clonedTransaction.subtransactions[lengthSubtransactions] = {
-        amount: '',
-        category: { categoryId: '1' },
-        person: { personId: '1' }
-        }
-
-        setTransaction({...transaction, clonedTransaction});
+        setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            subtransactions: [
+                ...existingTransaction.subtransactions,
+                { 
+                    amount: null,
+                    category: { categoryId: '1' },
+                    person: { personId: '0' }
+                }
+            ]
+        }));
         
     };
 
-    //delete new subtransaction
-    const deleteSubtransaction = e => {
+    //update transaction state by deleting existing subtransaction
+    function deleteSubtransaction(e) {
 
         //prevents page refresh on click
         e.preventDefault();
 
-        transaction.subtransactions.splice(e.target.id, 1)
+        console.log()
 
-        setTransaction({...transaction, transaction});  
+        setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            subtransactions: existingTransaction.subtransactions.filter(
+                (subtransaction, index) => parseFloat(index) !== parseFloat(e.target.id)
+            )
+        }));    
     };
 
     return (
