@@ -118,7 +118,7 @@ export default function TransactionForm() {
     history("/transaction");
   };
 
-  //execute on page first render 
+  //run on the first render and anytime any dependency value changes
   useEffect(
     () => {
 
@@ -232,8 +232,8 @@ export default function TransactionForm() {
 
             {/*transaction subtransactions input form*/}
             <SubtransactionsForm
-              object={transaction}
-              setObject={setTransaction}
+              transaction={transaction}
+              setTransaction={setTransaction}
             />
 
           </div>

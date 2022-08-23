@@ -6,13 +6,17 @@ import PersonContext from "../../context/Person/Person/PersonContext";
 
 import { Styled__Title, Styled__Input } from "../../design/style";
 
-const SubtransactionsForm = (data) => {
+export default function SubtransactionsForm(data) {
 
-    const object = data.object;
-    const setObject = data.setObject;
+    //define initial variables
+        const transaction = data.transaction;
+        const setTransaction = data.setTransaction;
 
-    const { categories, getCategories } = useContext(CategoryContext);
-    const { people, getPeople } = useContext(PersonContext);
+        //get context for getCategories function and categories object
+        const { categories, getCategories } = useContext(CategoryContext);
+
+        //get context for getPeople function and people object
+        const { people, getPeople } = useContext(PersonContext);
 
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
@@ -24,25 +28,25 @@ const SubtransactionsForm = (data) => {
     }
   , []); //no dependency
 
-    const handleChange = e => {
+    function handleChange(e) {
 
         const index = e.target.id;
 
         if(e.target.name === "category"){
-            object.subtransactions[index][e.target.name]['categoryId'] = e.target.value;
+            transaction.subtransactions[index][e.target.name]['categoryId'] = e.target.value;
 
         } else if(e.target.name === "person"){
-            object.subtransactions[index][e.target.name]['personId'] = e.target.value;
+            transaction.subtransactions[index][e.target.name]['personId'] = e.target.value;
         } else {
 
             if(index === ''){ //field placed directly inside transaction; it is not an field from transaction's arrays
-                object[e.target.name] = e.target.value;
+                transaction[e.target.name] = e.target.value;
             } else {
-                object.subtransactions[index][e.target.name] = e.target.value;
+                transaction.subtransactions[index][e.target.name] = e.target.value;
             }
         }
 
-        setObject({...object, object});
+        setTransaction({...transaction, transaction});
     };
 
     //add new subtransaction
@@ -51,7 +55,7 @@ const SubtransactionsForm = (data) => {
         //prevents page refresh on click
         e.preventDefault();
 
-        const clonedTransaction = {...object};
+        const clonedTransaction = {...transaction};
         const lengthSubtransactions = clonedTransaction.subtransactions.length;
 
         clonedTransaction.subtransactions[lengthSubtransactions] = {
@@ -60,7 +64,7 @@ const SubtransactionsForm = (data) => {
         person: { personId: '1' }
         }
 
-        setObject({...object, clonedTransaction});
+        setTransaction({...transaction, clonedTransaction});
         
     };
 
@@ -70,9 +74,9 @@ const SubtransactionsForm = (data) => {
         //prevents page refresh on click
         e.preventDefault();
 
-        object.subtransactions.splice(e.target.id, 1)
+        transaction.subtransactions.splice(e.target.id, 1)
 
-        setObject({...object, object});  
+        setTransaction({...transaction, transaction});  
     };
 
     return (
@@ -80,7 +84,7 @@ const SubtransactionsForm = (data) => {
         <div>
 
             {/*transaction subtransactions input form*/}
-            {object.subtransactions.map( (subtransaction, index) => (
+            {transaction.subtransactions.map( (subtransaction, index) => (
 
                 <div>
 
@@ -167,5 +171,3 @@ const SubtransactionsForm = (data) => {
     )
 
 };
-
-export default SubtransactionsForm;
