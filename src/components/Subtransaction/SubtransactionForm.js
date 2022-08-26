@@ -168,19 +168,17 @@ export default function SubtransactionsForm(data) {
                                 id={index}
                             />
 
-                        </div>
-                        
+                        </div>                        
                     </div>
-
-                    {/*add new subtransactions button*/}
-                    <div className="row">
-                    <Styled__Title.Button onClick={addSubtransaction} className='d-flex align-items-center px-1'>
-                        <IoReturnDownForwardOutline/>
-                    </Styled__Title.Button>
-                    </div>
-
                 </div>
             ))}
+
+            {/*add new subtransactions button*/}
+            <div className="row">
+                <Styled__Title.Button onClick={addSubtransaction} className='d-flex align-items-center px-1'>
+                    <IoReturnDownForwardOutline/>
+                </Styled__Title.Button>
+            </div>
 
         </div>
 
