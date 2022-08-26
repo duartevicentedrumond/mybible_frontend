@@ -6,6 +6,7 @@ import PersonContext from "../../context/Person/Person/PersonContext";
 
 import { Styled__Title, Styled__Input } from "../../design/style";
 import InputForm from "../../general_components/InputForm";
+import SelectForm from "../../general_components/SelectForm";
 
 export default function SubtransactionsForm(data) {
 
@@ -57,6 +58,38 @@ export default function SubtransactionsForm(data) {
         const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
             if(i === parseFloat(e.target.id)) {
                 subtransaction.amount = e.target.value;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    };
+
+    //udpate transaction state when subtransaction category input changes
+    function handleCategoryChange(e) {
+
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(e.target.id)) {
+                subtransaction.category.categoryId = e.target.value;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    };
+
+    //udpate transaction state when subtransaction person input changes
+    function handlePersonChange(e) {
+
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(e.target.id)) {
+                subtransaction.person.personId = e.target.value;
             }
             return subtransaction;
         });
@@ -136,40 +169,26 @@ export default function SubtransactionsForm(data) {
                             />
 
                             {/* subtransaction's category input' */}
-                            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                                <Styled__Input.Label>category</Styled__Input.Label>
-                                <Styled__Input.Select
-                                name="category"
-                                aria-label="category"
-                                id={index}
+                            <SelectForm
                                 value={subtransaction.category.categoryId}
-                                onChange={handleChange}
-                                >
-                                {categories.map( (category) => (
-                                    <option value={category.categoryId}>
-                                    {category.description}
-                                    </option>
-                                ))}
-                                </Styled__Input.Select>
-                            </Styled__Input.Main>
+                                arrayList={categories}
+                                arrayValue="categoryId"
+                                arrayDescription="description"
+                                onChangeField={handleCategoryChange}
+                                label="category"
+                                id={index}
+                            />
 
                             {/* subtransaction's person input' */}
-                            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                                <Styled__Input.Label>person</Styled__Input.Label>
-                                <Styled__Input.Select
-                                name="person"
-                                aria-label="person"
-                                id={index}
+                            <SelectForm
                                 value={subtransaction.person.personId}
-                                onChange={handleChange}
-                                >
-                                {people.map( (person) => (
-                                    <option value={person.personId}>
-                                    {person.nickname}
-                                    </option>
-                                ))}
-                                </Styled__Input.Select>
-                            </Styled__Input.Main>
+                                arrayList={people}
+                                arrayValue="personId"
+                                arrayDescription="nickname"
+                                onChangeField={handlePersonChange}
+                                label="person"
+                                id={index}
+                            />
 
                         </div>
                         
