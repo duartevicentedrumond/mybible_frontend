@@ -6,7 +6,7 @@ import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled__Title } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 
-import InputForm from "./../../general_components/InputForm";
+import InputForm from "../../general_components/Forms/InputForm";
 import SubtransactionsForm from "../Subtransaction/SubtransactionForm";
 
 export default function TransactionForm() {
@@ -205,16 +205,16 @@ export default function TransactionForm() {
             {types.map(
               (type, i) => (
 
-                <div class="form-check">
+                <div className="form-check">
                   <input 
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     name="types"
                     id={i}
                     checked={transaction.types.find( transactionType => transactionType.typeId === type.typeId)}
                     value={type.typeId}
                     onChange={handleTypesChange}/>
-                  <label class="form-check-label">
+                  <label className="form-check-label">
                     {type.description}
                   </label>
                 </div>

@@ -5,8 +5,8 @@ import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import PersonContext from "../../context/Person/Person/PersonContext";
 
 import { Styled__Title, Styled__Input } from "../../design/style";
-import InputForm from "../../general_components/InputForm";
-import SelectForm from "../../general_components/SelectForm";
+import InputForm from "../../general_components/Forms/InputForm";
+import SelectForm from "../../general_components/Forms/SelectForm";
 
 export default function SubtransactionsForm(data) {
 

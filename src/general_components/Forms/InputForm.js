@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Styled__Input } from "../design/style";
+import { Styled__Input } from "../../design/style";
 
 export default function InputForm(data) {
 
