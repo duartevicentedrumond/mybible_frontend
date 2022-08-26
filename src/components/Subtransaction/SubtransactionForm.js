@@ -5,6 +5,7 @@ import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 import PersonContext from "../../context/Person/Person/PersonContext";
 
 import { Styled__Title, Styled__Input } from "../../design/style";
+import InputForm from "../../general_components/InputForm";
 
 export default function SubtransactionsForm(data) {
 
@@ -48,6 +49,22 @@ export default function SubtransactionsForm(data) {
         }
 
         setTransaction({...transaction, transaction});
+    };
+
+    //udpate transaction state when subtransaction amount input changes
+    function handleAmountChange(e) {
+
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(e.target.id)) {
+                subtransaction.amount = e.target.value;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
     };
 
     //update transaction state with new subtransaction
@@ -110,18 +127,13 @@ export default function SubtransactionsForm(data) {
                         <div className="col px-1">
 
                             {/* subtransaction's amount input' */}
-                            <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-                                <Styled__Input.Label>amount</Styled__Input.Label>
-                                <Styled__Input.Input
-                                className="flex-fill"
-                                type="text"
-                                name="amount"
-                                placeholder="amount..."
-                                id={index}
-                                onChange={handleChange}
+                            <InputForm
                                 value={subtransaction.amount}
-                                />
-                            </Styled__Input.Main>
+                                onChangeField={handleAmountChange}
+                                placeholder="amount..."
+                                label="amount"
+                                id={index}
+                            />
 
                             {/* subtransaction's category input' */}
                             <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">

@@ -9,6 +9,7 @@ export default function InputForm(data) {
         const onChangeField = data.onChangeField;
         const placeholder = data.placeholder;
         const label = data.label;
+        const id = data.id;
 
     return (
         <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
@@ -19,6 +20,7 @@ export default function InputForm(data) {
                 placeholder={placeholder}
                 onChange={onChangeField}
                 value={value}
+                id={id}
             />
         </Styled__Input.Main>
     );
