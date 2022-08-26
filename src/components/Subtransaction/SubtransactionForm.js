@@ -30,28 +30,6 @@ export default function SubtransactionsForm(data) {
     }
   , []); //no dependency
 
-    //udpate transaction state when subtransactions input changes
-    function handleChange(e) {
-
-        const index = e.target.id;
-
-        if(e.target.name === "category"){
-            transaction.subtransactions[index][e.target.name]['categoryId'] = e.target.value;
-
-        } else if(e.target.name === "person"){
-            transaction.subtransactions[index][e.target.name]['personId'] = e.target.value;
-        } else {
-
-            if(index === ''){ //field placed directly inside transaction; it is not an field from transaction's arrays
-                transaction[e.target.name] = e.target.value;
-            } else {
-                transaction.subtransactions[index][e.target.name] = e.target.value;
-            }
-        }
-
-        setTransaction({...transaction, transaction});
-    };
-
     //udpate transaction state when subtransaction amount input changes
     function handleAmountChange(e) {
 
