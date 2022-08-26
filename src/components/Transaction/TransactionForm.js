@@ -1,14 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { Modal } from 'react-bootstrap';
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled__Title } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
+import { RiParentLine } from "react-icons/ri";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import CheckForm from "../../general_components/Forms/CheckForm";
-import SubtransactionsForm from "../Subtransaction/SubtransactionForm";
+import SubtransactionsForm from "./SubtransactionForm";
+import TransactionParentForm from "./TransactionParentForm";
 
 export default function TransactionForm() {
 
@@ -48,6 +49,23 @@ export default function TransactionForm() {
         customId: null
       }
     });
+
+  //define states and variables for transactionParent modal form
+
+    //set state for showTransactionParentModal
+    const [showTransactionParentModal, setShowTransactionParentModal] = useState(false);
+
+    //set functions to handle state change
+    function handleShowTransactionParentModal(e) {
+
+      e.preventDefault();
+
+      setShowTransactionParentModal(true);
+    };
+
+    function handleCloseTransactionParentModal() {
+      setShowTransactionParentModal(false);
+    };
 
   //define handle transaction input changes
 
@@ -103,7 +121,7 @@ export default function TransactionForm() {
     };
 
   //saves transaction and redirects to transactions list page
-  const handleSubmit = e => {
+  function handleSubmit(e) {
 
     e.preventDefault();
 
@@ -134,11 +152,14 @@ export default function TransactionForm() {
 
         //set transaction parent id to null when transaction does not have a transaction parent
         let transactionParent;
+        let transactionParentCustomId;
 
         if (transactionFound.transactionParent === null) {
           transactionParent = null;
+          transactionParentCustomId = null;
         } else {
           transactionParent = transactionFound.transactionParent.transactionId;
+          transactionParentCustomId = transactionFound.transactionParent.customId;
         }
 
         //set transaction state to the values from url id transaction
@@ -151,7 +172,8 @@ export default function TransactionForm() {
           types: transactionFound.types,
           transactionParent: {
             ...existingTransaction.transactionParent,
-            transactionId: transactionParent
+            transactionId: transactionParent,
+            customId: transactionParentCustomId
           },
           subtransactions: transactionFound.subtransactions
         }));
@@ -179,6 +201,13 @@ export default function TransactionForm() {
             <IoAdd/>
           }
         </Styled__Title.Button>
+      </div>
+
+      <div className="d-flex flex-row text-start py-0">
+        <Styled__Title.Button onClick={handleShowTransactionParentModal} className='d-flex'>
+          <RiParentLine/>
+        </Styled__Title.Button>
+        {transaction.transactionParent.customId}
       </div>
 
       <div className="row">
@@ -233,6 +262,12 @@ export default function TransactionForm() {
               setTransaction={setTransaction}
             />
 
+            <TransactionParentForm
+              transactionState={[transaction, setTransaction]}
+              showModalState={[showTransactionParentModal, setShowTransactionParentModal]}
+              handleShowModalState={[handleShowTransactionParentModal, handleCloseTransactionParentModal]}
+            />
+        
           </div>
 
         </form>
