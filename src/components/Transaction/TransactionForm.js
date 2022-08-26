@@ -7,6 +7,7 @@ import { Styled__Title } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 
 import InputForm from "../../general_components/Forms/InputForm";
+import CheckForm from "../../general_components/Forms/CheckForm";
 import SubtransactionsForm from "../Subtransaction/SubtransactionForm";
 
 export default function TransactionForm() {
@@ -205,19 +206,15 @@ export default function TransactionForm() {
             {types.map(
               (type, i) => (
 
-                <div className="form-check">
-                  <input 
-                    className="form-check-input"
-                    type="checkbox"
-                    name="types"
-                    id={i}
-                    checked={transaction.types.find( transactionType => transactionType.typeId === type.typeId)}
-                    value={type.typeId}
-                    onChange={handleTypesChange}/>
-                  <label className="form-check-label">
-                    {type.description}
-                  </label>
-                </div>
+                <CheckForm
+                  value={type.typeId}
+                  onChangeField={handleTypesChange}
+                  fieldChecked={
+                    transaction.types.find( transactionType => transactionType.typeId === type.typeId)
+                  }
+                  id={i}
+                  description={type.description}
+                />
 
               )
             )}
