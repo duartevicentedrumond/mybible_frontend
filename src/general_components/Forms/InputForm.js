@@ -12,7 +12,7 @@ export default function InputForm(data) {
         const id = data.id;
 
     return (
-        <div className="d-flex flex-row align-items-baseline py-1">
+        <div className="d-flex flex-row align-items-baseline">
             <Styled.FormLabel>{label}</Styled.FormLabel>
             <Styled.FormInput
                 className="flex-fill"
