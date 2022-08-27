@@ -215,7 +215,7 @@ export default function TransactionForm() {
       />
 
       {/*transaction types button for modal input form*/}
-      <div className="d-inline-flex flex-row align-items-center py-0">
+      <div className="d-inline-flex flex-row align-items-center pt-1">
         <Styled.TitleButton 
           onClick={handleShowTypesModal}
           className='d-flex'
