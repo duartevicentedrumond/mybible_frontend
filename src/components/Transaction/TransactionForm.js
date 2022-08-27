@@ -6,9 +6,9 @@ import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 import { RiParentLine, RiHashtag } from "react-icons/ri";
+import { TiFlowChildren } from "react-icons/ti";
 
 import InputForm from "../../general_components/Forms/InputForm";
-import CheckForm from "../../general_components/Forms/CheckForm";
 import DateForm from "../../general_components/Forms/DateForm";
 import SubtransactionsForm from "./Components/SubtransactionForm";
 import TransactionParentForm from "./Components/TransactionParentForm";
@@ -51,7 +51,8 @@ export default function TransactionForm() {
       transactionParent: { 
         transactionId: null,
         customId: null
-      }
+      },
+      transactionChildren: []
     });
 
   //define states and variables for transactionParent modal form
@@ -167,7 +168,8 @@ export default function TransactionForm() {
             transactionId: transactionParent,
             customId: transactionParentCustomId
           },
-          subtransactions: transactionFound.subtransactions
+          subtransactions: transactionFound.subtransactions,
+          transactionChildren: transactionFound.transactionChildren
         }));
 
       }
@@ -188,7 +190,7 @@ export default function TransactionForm() {
 
         {/*Change upload button icon wether the it's a new transaction or an existing transaction*/}
         <Styled.TitleButton onClick={handleSubmit} className='d-flex'>
-          {transaction.transactionId ? 
+          {transaction.transactionChildren ? 
             <IoSync/> : 
             <IoAdd/>
           }
@@ -204,6 +206,19 @@ export default function TransactionForm() {
           <RiParentLine/>
         </Styled.TitleButton>
         #{transaction.transactionParent.customId}
+        {transaction.transactionChildren[0] ? 
+          <TiFlowChildren
+            className='mx-2'
+          /> : 
+          <div></div>
+        }
+        {transaction.transactionChildren.map(
+          (child) => (
+            <div
+              className='me-2'
+            >#{child.customId}</div>
+          )
+        )}
       </div>
 
       {/*transaction parent modal input form*/}
