@@ -208,7 +208,7 @@ export default function TransactionForm() {
         >
           <RiParentLine/>
         </Styled.TitleButton>
-        #{transaction.transactionParent.customId}
+        {transaction.transactionParent.customId}
         {transaction.transactionChildren[0] ? 
           <TiFlowChildren
             className='mx-2'
