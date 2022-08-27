@@ -99,7 +99,9 @@ export default function TransactionTable(data) {
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
-                                id={transaction.transactionId}
+                                data-transactionid={transaction.transactionId}
+                                data-customid={transaction.customId
+                                }
                             >
                                 {transaction.date}
                             </Styled__Table.RowLink>
@@ -109,7 +111,9 @@ export default function TransactionTable(data) {
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
-                                id={transaction.transactionId}
+                                data-transactionid={transaction.transactionId}
+                                data-customid={transaction.customId
+                                }
                             > 
                                 {parseFloat(transaction.totalAmount).toFixed(2)} €
                             </Styled__Table.RowLink>
@@ -119,7 +123,9 @@ export default function TransactionTable(data) {
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
-                                id={transaction.transactionId}
+                                data-transactionid={transaction.transactionId}
+                                data-customid={transaction.customId
+                                }
                             > 
                                 {transaction.description}
                             </Styled__Table.RowLink>
