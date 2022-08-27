@@ -81,7 +81,7 @@ const TableTitleColumn = styled.th`
     font-weight: ${titleText.normal.weight};
 `;
 
-const ReactPaginateTable = styled(ReactPaginate).attrs(
+const TablePaginate = styled(ReactPaginate).attrs(
     props => ({
         containerClassName: props.containerClassName
     })
@@ -117,7 +117,7 @@ const ReactPaginateTable = styled(ReactPaginate).attrs(
 export const Styled = {
     TableRowLink,
     TableTitleColumn,
-    ReactPaginateTable
+    TablePaginate
 };
 
 const CustomedNavBarLink = styled(Link)`

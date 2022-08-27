@@ -137,7 +137,7 @@ export default function TransactionTable(data) {
 
             </table>
 
-            {pageCount <= 1 ? true : <Styled.ReactPaginateTable
+            {pageCount <= 1 ? true : <Styled.TablePaginate
                 className="d-flex justify-content-start px-0 align-items-start"
                 previousLabel={"<"}
                 nextLabel={">"}
