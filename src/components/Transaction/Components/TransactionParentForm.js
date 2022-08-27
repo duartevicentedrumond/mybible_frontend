@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { Modal } from 'react-bootstrap';
 
-import InputForm from "../../../general_components/Forms/InputForm";
+import { Styled__Title } from "../../../design/style";
 import TransactionContext from "../../../context/Wallet/Transaction/TransactionContext";
 import TransactionTable from "./TransactionTable";
+
+import { RiParentLine } from "react-icons/ri";
 
 export default function TransactionParentForm(data) {
 
@@ -46,6 +48,8 @@ export default function TransactionParentForm(data) {
         //update transaction state when transaction parent input changes
         handleTransactionParentChange(transactionId, customId);
 
+        handleCloseModal();
+
     };
 
     //run on the first render and anytime any dependency value changes
@@ -76,7 +80,11 @@ export default function TransactionParentForm(data) {
             size="lg"
         >
             <Modal.Header>
-                <Modal.Title>Transaction Parent</Modal.Title>
+                <Modal.Title>
+                    <Styled__Title.MainTitle className='d-inline-flex flex-row align-items-center'>
+                        <RiParentLine/> Transaction Parent
+                    </Styled__Title.MainTitle>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {/*transactions list input form*/}
@@ -85,13 +93,6 @@ export default function TransactionParentForm(data) {
                     onRowClick={onRowClick}
                 />
             </Modal.Body>
-            <Modal.Footer>
-                <button
-                    onClick={handleCloseModal}
-                >
-                    Close
-                </button>
-            </Modal.Footer>
         </Modal>
 
     )
