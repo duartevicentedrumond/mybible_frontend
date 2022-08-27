@@ -131,7 +131,7 @@ export default function SubtransactionsForm(data) {
                         <div className="col-auto d-flex align-items-center px-1">
                             <Styled.TitleButton 
                                 onClick={deleteSubtransaction}
-                            >
+                                >
                                 <IoCloseCircleOutline id={index} />
                             </Styled.TitleButton>
                         </div>
@@ -177,7 +177,7 @@ export default function SubtransactionsForm(data) {
 
             {/*add new subtransactions button*/}
             <div className="row">
-                <div className="col-auto d-flex align-items-center px-1">
+                <div className="col-auto d-flex align-items-center px-0">
                     <Styled.TitleButton
                         onClick={addSubtransaction} 
                         className='align-items-start px-1'
