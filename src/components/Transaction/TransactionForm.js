@@ -185,13 +185,13 @@ export default function TransactionForm() {
   , [params.id, transactions]); //page first rendering depends on params.id and transactions
 
   return (
-    <div className="d-flex flex-column text-start py-3 px-3">
+    <div className="d-flex flex-column text-start py-3 px-0">
       
       {/*transaction form title*/}
       <div className="d-inline-flex flex-row align-items-center">
 
         {/*If transaction exists sets transaction number to title*/}
-        <Styled.Title className='d-flex pe-1'>
+        <Styled.Title className='d-flex pe-2'>
           {transaction.customId ? 'Transaction #' + transaction.customId : 'New transaction'}
         </Styled.Title>
 
@@ -216,7 +216,7 @@ export default function TransactionForm() {
       </div>
 
       <div className="row">
-        <div className="d-flex flex-column text-start py-3">
+        <div className="d-flex flex-column text-start py-2">
 
           {/*transaction description input form*/}
           <InputForm

@@ -116,7 +116,7 @@ export default function SubtransactionsForm(data) {
 
     return (
 
-        <div>
+        <div className='py-3'>
 
             {/*transaction subtransactions input form*/}
             {transaction.subtransactions.map( (subtransaction, index) => (
@@ -175,9 +175,14 @@ export default function SubtransactionsForm(data) {
 
             {/*add new subtransactions button*/}
             <div className="row">
-                <Styled.TitleButton onClick={addSubtransaction} className='d-flex align-items-center px-1'>
-                    <IoReturnDownForwardOutline/>
-                </Styled.TitleButton>
+                <div className="col-auto d-flex align-items-center px-1">
+                    <Styled.TitleButton 
+                        onClick={addSubtransaction} 
+                        className='align-items-start px-1'
+                    >
+                        <IoReturnDownForwardOutline/>
+                    </Styled.TitleButton>
+                </div>
             </div>
 
         </div>
