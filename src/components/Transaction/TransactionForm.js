@@ -34,7 +34,7 @@ export default function TransactionForm() {
     const [transaction, setTransaction] = useState({
       description: null,
       customId: null,
-      date: null,
+      date: dateToString(new Date()),
       types: [
         {
           typeId: null,
@@ -54,6 +54,18 @@ export default function TransactionForm() {
       },
       transactionChildren: []
     });
+
+    //function to get string date from date object
+    function dateToString(date) {
+
+      const year = date.getFullYear();
+      const month = ('0' + date.getMonth()).slice(-2);
+      const day = ('0' + date.getDate()).slice(-2);
+      const dateString = year + "-" + month + "-" + day;
+
+      return dateString;
+
+    };
 
   //define states and variables for transactionParent modal form
 
@@ -102,10 +114,7 @@ export default function TransactionForm() {
     //udpate transaction state when date input changes
     function handleDateChange(date) {
 
-      const year = date.getFullYear();
-      const month = ('0' + date.getMonth()).slice(-2);
-      const day = ('0' + date.getDate()).slice(-2);
-      const dateString = year + "-" + month + "-" + day;
+      const dateString = dateToString(date);
 
       setTransaction(existingTransaction => ({
         ...existingTransaction,
