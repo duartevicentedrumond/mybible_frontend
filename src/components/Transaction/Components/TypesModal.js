@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap';
 import { Styled } from "../../../design/style";
 import CheckForm from "../../../general_components/Forms/CheckForm";
 
-import { RiParentLine } from "react-icons/ri";
+import { RiHashtag } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function TypesModal(data) {
@@ -58,7 +58,7 @@ export default function TypesModal(data) {
             <Modal.Header>
                 <Modal.Title>
                     <Styled.Title className='d-inline-flex flex-row align-items-center'>
-                        <RiParentLine/> Transaction Parent
+                        <RiHashtag/> Types
                     </Styled.Title>
                 </Modal.Title>
             </Modal.Header>
