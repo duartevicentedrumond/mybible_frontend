@@ -5,45 +5,80 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FiBold } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 
-const MainTextColor = "#545454";
-const MainTextSize = 15;
-const HeaderTextSize = MainTextSize + 2;
-const RowBorderColor = "#d9d3d5";
+const text = {
+    normal: {
+        color: "#545454",
+        size: 15,
+        weight: 400
+    },
+    hover: {
+        color: "#545454",
+        size: 16,
+        weight: 400
+    }
+};
+
+const titleText = {
+    normal: {
+        color: text.normal.color,
+        size: text.normal.size + 2,
+        weight: text.normal.weight + 100
+    },
+    hover: {
+        color: text.hover.color,
+        size: text.hover.size + 2,
+        weight: text.hover.weight + 100
+    }
+};
+
+const linkText = {
+    normal: {
+        color: text.normal.color,
+        size: text.normal.size,
+        weight: text.normal.weight,
+        decoration: 'none',
+        transition: '0.3s ease-in-out'
+    },
+    hover: {
+        color: text.hover.color,
+        size: text.hover.size,
+        weight: text.hover.weight,
+        decoration: 'none',
+    }
+};
 
 const CustomedLink = styled(Link)`
-    text-decoration: none;
-    color: ${MainTextColor};
-    transition: .3s ease-in-out;
+    text-decoration: ${linkText.normal.decoration};
+    color: ${linkText.normal.color};
+    transition: ${linkText.normal.transition};
     
     &:hover {
         text-decoration: none;
-        color: ${MainTextColor};
+        color: ${linkText.hover.color};
     }
-    
 `;
 
-const RowLink = styled(CustomedLink)`
-    font-size: ${MainTextSize}px;
-    font-weight: 400;
+{/* table style */}
+
+const TableRowLink = styled(Link)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
 
     &:hover {
-        font-size: ${MainTextSize + 1}px;
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
     }
 `;
 
-const HeaderColumn = styled.th`
-    font-size: ${HeaderTextSize}px;
-    font-weight: 500;
-    color: ${MainTextColor};
-`;
-
-const Header = styled.tr`
-    border-color: ${RowBorderColor};
-    border-top: 10;
-`;
-
-const Body = styled.tbody`
-    border-color: ${RowBorderColor};
+const TableTitleColumn = styled.th`
+    color: ${titleText.normal.color};
+    font-size: ${titleText.normal.size}px;
+    font-weight: ${titleText.normal.weight};
 `;
 
 const ReactPaginateTable = styled(ReactPaginate).attrs(
@@ -52,87 +87,85 @@ const ReactPaginateTable = styled(ReactPaginate).attrs(
     })
 )`
     
-    font-size: ${MainTextSize}px;
+    font-size: ${text.normal.size}px;
     list-style: none;
     text-decoration: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
 
     a {
         text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         transition: .3s ease-in-out;
         padding-right: 10px;
         
         &:hover {
             text-decoration: none;
-            color: ${MainTextColor};
-            font-size: ${MainTextSize+2}px;
+            color: ${text.normal.color};
+            font-size: ${text.normal.size+2}px;
         }
     }
 
     .paginationActive a {
         text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         transition: .3s ease-in-out;
         padding-right: 10px;
         font-weight: 700;
     }
 `;
 
-export const Styled__Table = {
-    RowLink,
-    Header,
-    HeaderColumn,
-    Body,
+export const Styled = {
+    TableRowLink,
+    TableTitleColumn,
     ReactPaginateTable
 };
 
 const CustomedNavBarLink = styled(Link)`
     text-decoration: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     transition: .3s ease-in-out;
     
     &:hover {
         text-decoration: none;
         transform: scale(1.2);
-        color: ${MainTextColor};
+        color: ${text.normal.color};
     }
     
 `;
 
 const TransactionNavbar = styled(MdOutlineAttachMoney)`
     text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         transition: .3s ease-in-out;
         
         &:hover {
             text-decoration: none;
             transform: scale(1.2);
-            color: ${MainTextColor};
+            color: ${text.normal.color};
         }
 `;
 
 const ItemNavbar = styled(BsBoxSeam)`
     text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         transition: .3s ease-in-out;
         
         &:hover {
             text-decoration: none;
             transform: scale(1.2);
-            color: ${MainTextColor};
+            color: ${text.normal.color};
         }
 `;
 
 const LogoNavbar = styled(FiBold)`
     text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         transition: .3s ease-in-out;
         
         &:hover {
             text-decoration: none;
             transform: scale(1.2);
-            color: ${MainTextColor};
+            color: ${text.normal.color};
         }
 `;
 
@@ -143,7 +176,7 @@ export const Styled__NavBar = {
     LogoNavbar
 };
 
-const NavTextSize = MainTextSize + 5;
+const NavTextSize = text.normal.size + 5;
 
 const TabLink = styled(CustomedLink)`
     font-size: ${NavTextSize}px;
@@ -158,30 +191,30 @@ export const Styled__Nav = {
     TabLink
 };
 
-const MainTitleSize = MainTextSize + 20;
+const MainTitleSize = text.normal.size + 20;
 
 const MainTitle = styled.h2`
     font-size: ${MainTitleSize}px;
     font-weight: 700;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
 `;
 
 const InfoTitle = styled.h2`
     font-size: ${NavTextSize}px;
     font-weight: 700;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
 `;
 
 const InfoItem = styled.p`
-    font-size: ${MainTextSize}px;
+    font-size: ${text.normal.size}px;
     font-weight: 400;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     margin-bottom: 0px;
 `;
 
 const Button = styled.button`
     font-size: ${MainTitleSize-10}px;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     border: none;
     background-color: white;
     transition: .3s ease-in-out;
@@ -199,12 +232,12 @@ export const Styled__Title = {
     InfoItem
 };
 
-const MainInputTextSize = MainTextSize;
+const MainInputTextSize = text.normal.size;
 const SearchBarColor = "#F5F5F5";
 
 const Main = styled.div`
     font-size: ${MainInputTextSize + 5}px;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
 `;
 
 const Label = styled.label`
@@ -216,14 +249,14 @@ const Input = styled.input`
     margin-right: 10px;
     border: none;
     outline: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
 `;
 
 const Select = styled.select`
     margin-right: 10px;
     border: none;
     outline: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     appearance: none;
 `;
 
@@ -231,7 +264,7 @@ const SearchBar = styled.input`
     border: none;
     border-radius: 25px;
     outline: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     background-color: ${SearchBarColor};
 `;
 
@@ -245,9 +278,9 @@ export const Styled__Input = {
 
 const ParentChild = styled(Link)`
     text-decoration: none;
-    color: ${MainTextColor};
+    color: ${text.normal.color};
     transition: .3s ease-in-out;
-    font-size: ${MainTextSize}px;
+    font-size: ${text.normal.size}px;
     border: none;
     border-radius: 25px;
     padding-left: 20px;
@@ -255,7 +288,7 @@ const ParentChild = styled(Link)`
     
     &:hover {
         text-decoration: none;
-        color: ${MainTextColor};
+        color: ${text.normal.color};
         background-color: ${SearchBarColor};
     }
     

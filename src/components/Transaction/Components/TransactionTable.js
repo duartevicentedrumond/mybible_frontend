@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Styled__Table, Styled__Input } from "./../../../design/style";
+import { Styled, Styled__Input } from "./../../../design/style";
 
 export default function TransactionTable(data) {
 
@@ -62,28 +62,28 @@ export default function TransactionTable(data) {
             <table className="table table-hover table-sm">
 
                 <thead>
-                    <Styled__Table.Header>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                    <tr>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             #
-                        </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                        </Styled.TableTitleColumn>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             Date
-                        </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                        </Styled.TableTitleColumn>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             Amount
-                        </Styled__Table.HeaderColumn>
-                        <Styled__Table.HeaderColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
+                        </Styled.TableTitleColumn>
+                        <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
                             Description
-                        </Styled__Table.HeaderColumn>
-                    </Styled__Table.Header>
+                        </Styled.TableTitleColumn>
+                    </tr>
                 </thead>
 
-                <Styled__Table.Body style={{borderTop: '0px'}}>
+                <tbody style={{borderTop: '0px'}}>
                     {displayTransactions.map( (transaction) => ( 
                         
                     <tr key={transaction.transactionId}>
                         <th scope="col" className="text-end align-middle px-4">
-                            <Styled__Table.RowLink 
+                            <Styled.TableRowLink 
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
@@ -92,10 +92,10 @@ export default function TransactionTable(data) {
                                 }
                             >
                                 {transaction.customId}
-                            </Styled__Table.RowLink>
+                            </Styled.TableRowLink>
                         </th>
                         <th scope="col" className="text-end align-middle px-4">
-                            <Styled__Table.RowLink 
+                            <Styled.TableRowLink 
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
@@ -104,10 +104,10 @@ export default function TransactionTable(data) {
                                 }
                             >
                                 {transaction.date}
-                            </Styled__Table.RowLink>
+                            </Styled.TableRowLink>
                         </th>
                         <th scope="col" className="text-end px-4 align-middle">
-                            <Styled__Table.RowLink 
+                            <Styled.TableRowLink 
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
@@ -116,10 +116,10 @@ export default function TransactionTable(data) {
                                 }
                             > 
                                 {parseFloat(transaction.totalAmount).toFixed(2)} €
-                            </Styled__Table.RowLink>
+                            </Styled.TableRowLink>
                         </th>
                         <th scope="col" className="text-start px-4 align-middle">
-                            <Styled__Table.RowLink 
+                            <Styled.TableRowLink 
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
@@ -128,16 +128,16 @@ export default function TransactionTable(data) {
                                 }
                             > 
                                 {transaction.description}
-                            </Styled__Table.RowLink>
+                            </Styled.TableRowLink>
                         </th>
                     </tr>
                         
                     ))}
-                </Styled__Table.Body>
+                </tbody>
 
             </table>
 
-            {pageCount <= 1 ? true : <Styled__Table.ReactPaginateTable
+            {pageCount <= 1 ? true : <Styled.ReactPaginateTable
                 className="d-flex justify-content-start px-0 align-items-start"
                 previousLabel={"<"}
                 nextLabel={">"}

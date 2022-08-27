@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
@@ -11,6 +9,7 @@ import { RiParentLine } from "react-icons/ri";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import CheckForm from "../../general_components/Forms/CheckForm";
+import DateForm from "../../general_components/Forms/DateForm";
 import SubtransactionsForm from "./Components/SubtransactionForm";
 import TransactionParentForm from "./Components/TransactionParentForm";
 
@@ -228,18 +227,11 @@ export default function TransactionForm() {
           />
 
           {/*transaction date input form*/}
-          <InputForm
+          <DateForm
             value={transaction.date}
             onChangeField={handleDateChange}
             placeholder="date..."
             label="date"
-          />
-
-          <DatePicker 
-            selected={new Date(transaction.date)} 
-            onChange={(date)=>handleDateChange(date)}
-            showYearDropdown
-            dateFormat="yyyy-MM-dd"
           />
 
           {/*transaction types input form*/}
