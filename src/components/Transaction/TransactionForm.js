@@ -19,7 +19,7 @@ export default function TransactionForm() {
   //define initial variables
 
     //get context for addTransaction and updateTransaction functions and transactions object
-    const { addTransaction, transactions, updateTransaction } = useContext(TransactionContext);
+    const { addTransaction, transactions, updateTransaction, getTransactions } = useContext(TransactionContext);
 
     //get context for getTypes function and types object
     const { types, getTypes } = useContext(TypeContext);
@@ -125,6 +125,9 @@ export default function TransactionForm() {
     else{ //if transaction doesn't exist adds new
       addTransaction(transaction);
     }
+
+    //get transactions
+    getTransactions();
 
     //redirects to transactions list page
     history("/transaction");
