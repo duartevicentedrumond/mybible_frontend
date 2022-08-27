@@ -5,13 +5,14 @@ import TransactionContext from "../../context/Wallet/Transaction/TransactionCont
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
-import { RiParentLine } from "react-icons/ri";
+import { RiParentLine, RiHashtag } from "react-icons/ri";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import CheckForm from "../../general_components/Forms/CheckForm";
 import DateForm from "../../general_components/Forms/DateForm";
 import SubtransactionsForm from "./Components/SubtransactionForm";
 import TransactionParentForm from "./Components/TransactionParentForm";
+import TypesModal from "./Components/TypesModal";
 
 export default function TransactionForm() {
 
@@ -36,7 +37,8 @@ export default function TransactionForm() {
       date: null,
       types: [
         {
-          typeId: null
+          typeId: null,
+          description: null
         }
       ],
       subtransactions: [
@@ -69,6 +71,23 @@ export default function TransactionForm() {
       setShowTransactionParentModal(false);
     };
 
+  //define states and variables for types modal form
+
+    //set state for showTypesModal
+    const [showTypesModal, setShowTypesModal] = useState(false);
+
+    //set functions to handle state change
+    function handleShowTypesModal(e) {
+
+      e.preventDefault();
+
+      setShowTypesModal(true);
+    };
+
+    function handleCloseTypesModal() {
+      setShowTypesModal(false);
+    };
+
   //define handle transaction input changes
 
     //udpate transaction state when description input changes
@@ -91,30 +110,6 @@ export default function TransactionForm() {
         ...existingTransaction,
         date: dateString
       }));
-    };
-
-    //udpate transaction state when types input changes
-    function handleTypesChange(e) {
-
-        //add new type to transaction if checked
-        if (e.target.checked) {
-
-          setTransaction(existingTransaction => ({
-            ...existingTransaction,
-            types: [
-              ...existingTransaction.types,
-              { typeId: parseFloat(e.target.value) }
-            ]
-          }));
-
-        } else { //remove type from transaction if unchecked
-
-          setTransaction(existingTransaction => ({
-            ...existingTransaction,
-            types: existingTransaction.types.filter(type => type.typeId !== parseFloat(e.target.value))
-          }));
-          
-        }
     };
 
   //saves transaction and redirects to transactions list page
@@ -175,10 +170,6 @@ export default function TransactionForm() {
           subtransactions: transactionFound.subtransactions
         }));
 
-        const date = new Date(transaction.date);
-
-        console.log(date)
-
       }
 
     }
@@ -215,6 +206,44 @@ export default function TransactionForm() {
         #{transaction.transactionParent.customId}
       </div>
 
+      {/*transaction parent modal input form*/}
+      <TransactionParentForm
+        transactionState={[transaction, setTransaction]}
+        showModal={showTransactionParentModal}
+        handleCloseModal={handleCloseTransactionParentModal}
+        transactions={transactions}
+      />
+
+      {/*transaction types button for modal input form*/}
+      <div className="d-inline-flex flex-row align-items-center py-0">
+        <Styled.TitleButton 
+          onClick={handleShowTypesModal}
+          className='d-flex'
+          style={{fontSize: "18px"}}
+        >
+          <RiHashtag/>
+        </Styled.TitleButton>
+        {types.map(
+          (type) => (
+            transaction.types.filter( transactionType => transactionType.typeId === type.typeId).map(filteredTransactionType => (
+              <Styled.InfoHashTagText
+                className='me-2 px-2'
+              >
+                #{type.description}
+              </Styled.InfoHashTagText>
+            ))
+          )
+        )}
+      </div>
+
+      {/*transaction types modal input form*/}
+      <TypesModal
+        transactionState={[transaction, setTransaction]}
+        showModal={showTypesModal}
+        handleCloseModal={handleCloseTypesModal}
+        types={types}
+      />
+
       <div className="row">
         <div className="d-flex flex-column text-start py-2">
 
@@ -234,34 +263,10 @@ export default function TransactionForm() {
             label="date"
           />
 
-          {/*transaction types input form*/}
-          {types.map(
-            (type, i) => (
-
-              <CheckForm
-                value={type.typeId}
-                onChangeField={handleTypesChange}
-                fieldChecked={
-                  transaction.types.find( transactionType => transactionType.typeId === type.typeId)
-                }
-                id={i}
-                description={type.description}
-              />
-
-            )
-          )}
-
           {/*transaction subtransactions input form*/}
           <SubtransactionsForm
             transaction={transaction}
             setTransaction={setTransaction}
-          />
-
-          <TransactionParentForm
-            transactionState={[transaction, setTransaction]}
-            showModal={showTransactionParentModal}
-            handleCloseModal={handleCloseTransactionParentModal}
-            transactions={transactions}
           />
         
           </div>

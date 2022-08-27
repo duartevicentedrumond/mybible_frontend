@@ -297,6 +297,17 @@ const FormSearchBar = styled.input`
     background-color: ${backgroundColor};
 `;
 
+const InfoHashTagText = styled.div`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+    appearance: none;
+    border-radius: 5px;
+    background-color: ${backgroundColor};
+`;
+
 export const Styled = {
     TableRowLink,
     TableTitleColumn,
@@ -312,7 +323,8 @@ export const Styled = {
     FormInput,
     FormDate,
     FormSelect,
-    FormSearchBar
+    FormSearchBar,
+    InfoHashTagText
 };
 
 const InfoTitle = styled.h2`
