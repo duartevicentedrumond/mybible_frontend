@@ -8,8 +8,8 @@ import { RiParentLine } from "react-icons/ri";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import CheckForm from "../../general_components/Forms/CheckForm";
-import SubtransactionsForm from "./SubtransactionForm";
-import TransactionParentForm from "./TransactionParentForm";
+import SubtransactionsForm from "./Components/SubtransactionForm";
+import TransactionParentForm from "./Components/TransactionParentForm";
 
 export default function TransactionForm() {
 
@@ -203,75 +203,76 @@ export default function TransactionForm() {
         </Styled__Title.Button>
       </div>
 
-      <div className="d-flex flex-row text-start py-0">
-        <Styled__Title.Button onClick={handleShowTransactionParentModal} className='d-flex'>
+      {/*transaction parent button for modal input form*/}
+      <div className="d-inline-flex flex-row align-items-center py-0">
+        <Styled__Title.Button 
+          onClick={handleShowTransactionParentModal} className='d-flex'
+          style={{fontSize: "18px"}}
+        >
           <RiParentLine/>
         </Styled__Title.Button>
-        {transaction.transactionParent.customId}
+        #{transaction.transactionParent.customId}
       </div>
 
       <div className="row">
-        <form>
-          
-          <div className="d-flex flex-column text-start py-3">
+        <div className="d-flex flex-column text-start py-3">
 
-            {/*transaction description input form*/}
-            <InputForm
-              value={transaction.description}
-              onChangeField={handleDescriptionChange}
-              placeholder="description..."
-              label="description"
-            />
+          {/*transaction description input form*/}
+          <InputForm
+            value={transaction.description}
+            onChangeField={handleDescriptionChange}
+            placeholder="description..."
+            label="description"
+          />
 
-            {/*transaction date input form*/}
-            <InputForm
-              value={transaction.date}
-              onChangeField={handleDateChange}
-              placeholder="date..."
-              label="date"
-            />
+          {/*transaction date input form*/}
+          <InputForm
+            value={transaction.date}
+            onChangeField={handleDateChange}
+            placeholder="date..."
+            label="date"
+          />
 
-            {/*transaction types input form*/}
-            {types.map(
-              (type, i) => (
+          {/*transaction types input form*/}
+          {types.map(
+            (type, i) => (
 
-                <CheckForm
-                  value={type.typeId}
-                  onChangeField={handleTypesChange}
-                  fieldChecked={
-                    transaction.types.find( transactionType => transactionType.typeId === type.typeId)
-                  }
-                  id={i}
-                  description={type.description}
-                />
+              <CheckForm
+                value={type.typeId}
+                onChangeField={handleTypesChange}
+                fieldChecked={
+                  transaction.types.find( transactionType => transactionType.typeId === type.typeId)
+                }
+                id={i}
+                description={type.description}
+              />
 
-              )
-            )}
+            )
+          )}
 
-            {/*transaction transaction parent input form*/}
-            <InputForm
-              value={transaction.transactionParent.transactionId}
-              onChangeField={handleTransactionParentChange}
-              placeholder="parent..."
-              label="parent"
-            />
+          {/*transaction transaction parent input form*/}
+          <InputForm
+            value={transaction.transactionParent.transactionId}
+            onChangeField={handleTransactionParentChange}
+            placeholder="parent..."
+            label="parent"
+          />
 
-            {/*transaction subtransactions input form*/}
-            <SubtransactionsForm
-              transaction={transaction}
-              setTransaction={setTransaction}
-            />
+          {/*transaction subtransactions input form*/}
+          <SubtransactionsForm
+            transaction={transaction}
+            setTransaction={setTransaction}
+          />
 
-            <TransactionParentForm
-              transactionState={[transaction, setTransaction]}
-              showModalState={[showTransactionParentModal, setShowTransactionParentModal]}
-              handleShowModalState={[handleShowTransactionParentModal, handleCloseTransactionParentModal]}
-            />
+          <TransactionParentForm
+            transactionState={[transaction, setTransaction]}
+              showModal={showTransactionParentModal}
+            handleCloseModal={handleCloseTransactionParentModal}
+          />
         
           </div>
 
-        </form>
-      </div>
+        </div>
     </div>
   )
 };

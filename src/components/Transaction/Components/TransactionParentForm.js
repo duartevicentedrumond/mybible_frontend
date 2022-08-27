@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 
-import InputForm from "../../general_components/Forms/InputForm";
+import InputForm from "../../../general_components/Forms/InputForm";
+import TransactionList from "../TransactionList";
 
 export default function TransactionParentForm(data) {
 
     //define initial variables
     const [transaction, setTransaction] = data.transactionState;
-    const [showModal, setShowModal] = data.showModalState;
-    const [handleShowModal, handleCloseModal] = data.handleShowModalState;
+    const showModal = data.showModal;
+    const handleCloseModal = data.handleCloseModal;
 
     //udpate transaction state when transaction parent input changes
     function handleTransactionParentChange(e) {
@@ -21,9 +22,16 @@ export default function TransactionParentForm(data) {
         }));
     };
 
+    function onRowClick(e){
+        console.log(e.target)
+    };
+
     return (
 
-        <Modal show={showModal}>
+        <Modal 
+            show={showModal}
+            size="lg"
+        >
             <Modal.Header>
                 <Modal.Title>Transaction Parent</Modal.Title>
             </Modal.Header>
@@ -35,6 +43,7 @@ export default function TransactionParentForm(data) {
                     placeholder="parent..."
                     label="parent"
                 />
+                <TransactionList/>
             </Modal.Body>
             <Modal.Footer>
                 <button
