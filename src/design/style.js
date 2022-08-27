@@ -288,7 +288,7 @@ const FormSelect = styled.select`
 
 const FormSearchBar = styled.input`
     color: ${text.normal.color};
-    font-size: ${text.normal.size + 5}px;
+    font-size: ${text.normal.size}px;
     font-weight: ${text.normal.weight};
     border: none;
     outline: none;
