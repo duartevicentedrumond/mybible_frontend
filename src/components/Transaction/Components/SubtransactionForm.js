@@ -116,7 +116,7 @@ export default function SubtransactionsForm(data) {
 
     return (
 
-        <div className='py-3'>
+        <div className='py-3 ps-2'>
 
             {/*transaction subtransactions input form*/}
             {transaction.subtransactions.map( (subtransaction, index) => (

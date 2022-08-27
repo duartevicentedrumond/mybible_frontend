@@ -10,7 +10,7 @@ export default function DateForm(data) {
         const label = data.label;
 
     return (
-        <div className="d-flex flex-row align-items-baseline py-1">
+        <div className="d-flex flex-row align-items-baseline ps-2">
             <Styled.FormLabel>{label}</Styled.FormLabel>
             <Styled.FormDate 
                 selected={new Date(value)} 

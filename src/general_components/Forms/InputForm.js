@@ -12,7 +12,7 @@ export default function InputForm(data) {
         const id = data.id;
 
     return (
-        <div className="d-flex flex-row align-items-baseline">
+        <div className="d-flex flex-row align-items-baseline ps-2">
             <Styled.FormLabel>{label}</Styled.FormLabel>
             <Styled.FormInput
                 className="flex-fill"
