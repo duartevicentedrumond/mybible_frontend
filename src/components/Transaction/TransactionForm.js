@@ -1,5 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled__Title } from "../../design/style";
@@ -78,10 +81,16 @@ export default function TransactionForm() {
     };
 
     //udpate transaction state when date input changes
-    function handleDateChange(e) {
+    function handleDateChange(date) {
+
+      const year = date.getFullYear();
+      const month = ('0' + date.getMonth()).slice(-2);
+      const day = ('0' + date.getDate()).slice(-2);
+      const dateString = year + "-" + month + "-" + day;
+
       setTransaction(existingTransaction => ({
         ...existingTransaction,
-        date: e.target.value
+        date: dateString
       }));
     };
 
@@ -167,6 +176,10 @@ export default function TransactionForm() {
           subtransactions: transactionFound.subtransactions
         }));
 
+        const date = new Date(transaction.date);
+
+        console.log(date)
+
       }
 
     }
@@ -220,6 +233,13 @@ export default function TransactionForm() {
             onChangeField={handleDateChange}
             placeholder="date..."
             label="date"
+          />
+
+          <DatePicker 
+            selected={new Date(transaction.date)} 
+            onChange={(date)=>handleDateChange(date)}
+            showYearDropdown
+            dateFormat="yyyy-MM-dd"
           />
 
           {/*transaction types input form*/}
