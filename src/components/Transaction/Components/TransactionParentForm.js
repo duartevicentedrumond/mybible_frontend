@@ -7,6 +7,7 @@ import TransactionContext from "../../../context/Wallet/Transaction/TransactionC
 import TransactionTable from "./TransactionTable";
 
 import { RiParentLine } from "react-icons/ri";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function TransactionParentForm(data) {
 
@@ -93,6 +94,13 @@ export default function TransactionParentForm(data) {
                     onRowClick={onRowClick}
                 />
             </Modal.Body>
+            <Modal.Footer>
+                <Styled.TitleButton 
+                    onClick={handleCloseModal}
+                >
+                    <IoCloseCircleOutline/>
+                </Styled.TitleButton>
+            </Modal.Footer>
         </Modal>
 
     )
