@@ -109,17 +109,6 @@ export default function TransactionForm() {
         }
     };
 
-    //udpate transaction state when transaction parent input changes
-    function handleTransactionParentChange(e) {
-      setTransaction(existingTransaction => ({
-        ...existingTransaction,
-        transactionParent: {
-          ...existingTransaction.transactionParent,
-          transactionId: e.target.value
-        }
-      }));
-    };
-
   //saves transaction and redirects to transactions list page
   function handleSubmit(e) {
 
@@ -249,14 +238,6 @@ export default function TransactionForm() {
 
             )
           )}
-
-          {/*transaction transaction parent input form*/}
-          <InputForm
-            value={transaction.transactionParent.transactionId}
-            onChangeField={handleTransactionParentChange}
-            placeholder="parent..."
-            label="parent"
-          />
 
           {/*transaction subtransactions input form*/}
           <SubtransactionsForm

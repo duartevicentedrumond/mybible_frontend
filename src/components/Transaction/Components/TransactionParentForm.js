@@ -79,13 +79,7 @@ export default function TransactionParentForm(data) {
                 <Modal.Title>Transaction Parent</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {/*transaction description input form*/}
-                <InputForm
-                    value={transaction.transactionParent.transactionId}
-                    onChangeField={handleTransactionParentChange}
-                    placeholder="parent..."
-                    label="parent"
-                />
+                {/*transactions list input form*/}
                 <TransactionTable
                     transactions={filteredTransactions}
                     onRowClick={onRowClick}
