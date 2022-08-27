@@ -266,8 +266,9 @@ export default function TransactionForm() {
 
           <TransactionParentForm
             transactionState={[transaction, setTransaction]}
-              showModal={showTransactionParentModal}
+            showModal={showTransactionParentModal}
             handleCloseModal={handleCloseTransactionParentModal}
+            transactions={transactions}
           />
         
           </div>

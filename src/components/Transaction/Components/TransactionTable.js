@@ -87,7 +87,9 @@ export default function TransactionTable(data) {
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/transaction/edit/${transaction.transactionId}`}
                                 onClick={onRowClick}
-                                id={transaction.transactionId}
+                                data-transactionid={transaction.transactionId}
+                                data-customid={transaction.customId
+                                }
                             >
                                 {transaction.customId}
                             </Styled__Table.RowLink>
