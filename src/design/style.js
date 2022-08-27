@@ -44,6 +44,7 @@ const linkText = {
         size: text.hover.size,
         weight: text.hover.weight,
         decoration: 'none',
+        transform: 'scale(1.2)'
     }
 };
 
@@ -72,6 +73,7 @@ const TableRowLink = styled(Link)`
         font-size: ${linkText.hover.size}px;
         font-weight: ${linkText.hover.weight};
         text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform};
     }
 `;
 
@@ -114,66 +116,80 @@ const TablePaginate = styled(ReactPaginate).attrs(
     }
 `;
 
+{/* navbar style */}
+
+const NavBarLink = styled(Link)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform}
+    }
+`;
+
+const NavBarLinkTransactions = styled(MdOutlineAttachMoney)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size + 10}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+        
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size + 10}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform}
+    }
+`;
+
+const NavBarLinkItems = styled(BsBoxSeam)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size + 10}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+        
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size + 10}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform}
+    }
+`;
+
+const NavBarLinkHome = styled(FiBold)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size + 10}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+        
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size + 10}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform}
+    }
+`;
+
 export const Styled = {
     TableRowLink,
     TableTitleColumn,
-    TablePaginate
-};
-
-const CustomedNavBarLink = styled(Link)`
-    text-decoration: none;
-    color: ${text.normal.color};
-    transition: .3s ease-in-out;
-    
-    &:hover {
-        text-decoration: none;
-        transform: scale(1.2);
-        color: ${text.normal.color};
-    }
-    
-`;
-
-const TransactionNavbar = styled(MdOutlineAttachMoney)`
-    text-decoration: none;
-        color: ${text.normal.color};
-        transition: .3s ease-in-out;
-        
-        &:hover {
-            text-decoration: none;
-            transform: scale(1.2);
-            color: ${text.normal.color};
-        }
-`;
-
-const ItemNavbar = styled(BsBoxSeam)`
-    text-decoration: none;
-        color: ${text.normal.color};
-        transition: .3s ease-in-out;
-        
-        &:hover {
-            text-decoration: none;
-            transform: scale(1.2);
-            color: ${text.normal.color};
-        }
-`;
-
-const LogoNavbar = styled(FiBold)`
-    text-decoration: none;
-        color: ${text.normal.color};
-        transition: .3s ease-in-out;
-        
-        &:hover {
-            text-decoration: none;
-            transform: scale(1.2);
-            color: ${text.normal.color};
-        }
-`;
-
-export const Styled__NavBar = {
-    CustomedNavBarLink,
-    TransactionNavbar,
-    ItemNavbar,
-    LogoNavbar
+    TablePaginate,
+    NavBarLink,
+    NavBarLinkTransactions,
+    NavBarLinkItems,
+    NavBarLinkHome
 };
 
 const NavTextSize = text.normal.size + 5;
