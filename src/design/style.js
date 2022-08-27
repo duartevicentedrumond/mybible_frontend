@@ -7,6 +7,8 @@ import ReactPaginate from "react-paginate";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const backgroundColor = "#F5F5F5";
+
 const text = {
     normal: {
         color: "#545454",
@@ -292,7 +294,7 @@ const FormSearchBar = styled.input`
     outline: none;
     appearance: none;
     border-radius: 25px;
-    background-color: "#F5F5F5";
+    background-color: ${backgroundColor};
 `;
 
 export const Styled = {
@@ -344,7 +346,7 @@ const ParentChild = styled(Link)`
     &:hover {
         text-decoration: none;
         color: ${text.normal.color};
-        background-color: "#F5F5F5";
+        background-color: ${backgroundColor};;
     }
     
 `;

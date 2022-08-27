@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { Modal } from 'react-bootstrap';
 
-import { Styled__Title } from "../../../design/style";
+import { Styled } from "../../../design/style";
 import TransactionContext from "../../../context/Wallet/Transaction/TransactionContext";
 import TransactionTable from "./TransactionTable";
 
@@ -81,9 +81,9 @@ export default function TransactionParentForm(data) {
         >
             <Modal.Header>
                 <Modal.Title>
-                    <Styled__Title.MainTitle className='d-inline-flex flex-row align-items-center'>
+                    <Styled.Title className='d-inline-flex flex-row align-items-center'>
                         <RiParentLine/> Transaction Parent
-                    </Styled__Title.MainTitle>
+                    </Styled.Title>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
