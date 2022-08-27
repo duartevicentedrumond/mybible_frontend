@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Styled__Input } from "../../design/style";
+import { Styled } from "../../design/style";
 
 export default function InputForm(data) {
 
@@ -12,9 +12,9 @@ export default function InputForm(data) {
         const id = data.id;
 
     return (
-        <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-            <Styled__Input.Label>{label}</Styled__Input.Label>
-            <Styled__Input.Input
+        <div className="d-flex flex-row align-items-baseline py-1">
+            <Styled.FormLabel>{label}</Styled.FormLabel>
+            <Styled.FormInput
                 className="flex-fill"
                 type="text"
                 placeholder={placeholder}
@@ -22,7 +22,7 @@ export default function InputForm(data) {
                 value={value}
                 id={id}
             />
-        </Styled__Input.Main>
+        </div>
     );
 
 };

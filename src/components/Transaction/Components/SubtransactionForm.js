@@ -4,7 +4,7 @@ import { IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io
 import CategoryContext from "../../../context/Wallet/Category/CategoryContext";
 import PersonContext from "../../../context/Person/Person/PersonContext";
 
-import { Styled__Title, Styled__Input } from "../../../design/style";
+import { Styled } from "../../../design/style";
 import InputForm from "../../../general_components/Forms/InputForm";
 import SelectForm from "../../../general_components/Forms/SelectForm";
 
@@ -129,9 +129,9 @@ export default function SubtransactionsForm(data) {
 
                         {/* delete subtransaction button */}
                         <div className="col-auto d-flex align-items-center px-1">
-                            <Styled__Title.Button onClick={deleteSubtransaction} >
+                            <Styled.TitleButton onClick={deleteSubtransaction} >
                                 <IoCloseCircleOutline id={index} />
-                            </Styled__Title.Button>
+                            </Styled.TitleButton>
                         </div>
 
                         {/* subtransaction form */}
@@ -175,9 +175,9 @@ export default function SubtransactionsForm(data) {
 
             {/*add new subtransactions button*/}
             <div className="row">
-                <Styled__Title.Button onClick={addSubtransaction} className='d-flex align-items-center px-1'>
+                <Styled.TitleButton onClick={addSubtransaction} className='d-flex align-items-center px-1'>
                     <IoReturnDownForwardOutline/>
-                </Styled__Title.Button>
+                </Styled.TitleButton>
             </div>
 
         </div>

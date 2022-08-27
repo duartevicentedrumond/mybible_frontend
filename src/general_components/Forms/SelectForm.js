@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Styled__Input } from "../../design/style";
+import { Styled, Styled__Input } from "../../design/style";
 
 export default function SelectForm(data) {
 
@@ -14,9 +14,9 @@ export default function SelectForm(data) {
         const id = data.id;
 
     return (
-        <Styled__Input.Main className="d-flex flex-row align-items-baseline py-1">
-            <Styled__Input.Label>{label}</Styled__Input.Label>
-            <Styled__Input.Select
+        <div className="d-flex flex-row align-items-baseline py-1">
+            <Styled.FormLabel>{label}</Styled.FormLabel>
+            <Styled.FormSelect
                 name="category"
                 aria-label="category"
                 id={id}
@@ -28,8 +28,8 @@ export default function SelectForm(data) {
                         {element[arrayDescription]}
                     </option>
                 ))}
-            </Styled__Input.Select>
-        </Styled__Input.Main>
+            </Styled.FormSelect>
+        </div>
     );
 
 };

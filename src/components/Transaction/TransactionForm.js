@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
-import { Styled__Title } from "../../design/style";
+import { Styled } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 import { RiParentLine } from "react-icons/ri";
 
@@ -191,27 +191,27 @@ export default function TransactionForm() {
       <div className="d-inline-flex flex-row align-items-center">
 
         {/*If transaction exists sets transaction number to title*/}
-        <Styled__Title.MainTitle className='d-flex pe-1'>
+        <Styled.Title className='d-flex pe-1'>
           {transaction.customId ? 'Transaction #' + transaction.customId : 'New transaction'}
-        </Styled__Title.MainTitle>
+        </Styled.Title>
 
         {/*Change upload button icon wether the it's a new transaction or an existing transaction*/}
-        <Styled__Title.Button onClick={handleSubmit} className='d-flex'>
+        <Styled.TitleButton onClick={handleSubmit} className='d-flex'>
           {transaction.transactionId ? 
             <IoSync/> : 
             <IoAdd/>
           }
-        </Styled__Title.Button>
+        </Styled.TitleButton>
       </div>
 
       {/*transaction parent button for modal input form*/}
       <div className="d-inline-flex flex-row align-items-center py-0">
-        <Styled__Title.Button 
+        <Styled.TitleButton 
           onClick={handleShowTransactionParentModal} className='d-flex'
           style={{fontSize: "18px"}}
         >
           <RiParentLine/>
-        </Styled__Title.Button>
+        </Styled.TitleButton>
         #{transaction.transactionParent.customId}
       </div>
 

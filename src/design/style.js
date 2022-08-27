@@ -4,6 +4,8 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 import { FiBold } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const text = {
     normal: {
@@ -18,7 +20,7 @@ const text = {
     }
 };
 
-const titleText = {
+const highlightText = {
     normal: {
         color: text.normal.color,
         size: text.normal.size + 2,
@@ -31,33 +33,60 @@ const titleText = {
     }
 };
 
+const titleText = {
+    normal: {
+        color: text.normal.color,
+        size: text.normal.size + 20,
+        weight: text.normal.weight + 300
+    },
+    hover: {
+        color: text.hover.color,
+        size: text.hover.size + 20,
+        weight: text.hover.weight + 300
+    }
+};
+
 const linkText = {
     normal: {
         color: text.normal.color,
         size: text.normal.size,
         weight: text.normal.weight,
         decoration: 'none',
-        transition: '0.3s ease-in-out'
+        transition: '0.3s ease-in-out',
+        border: 'none',
+        backgroundColor: 'white'
     },
     hover: {
         color: text.hover.color,
         size: text.hover.size,
         weight: text.hover.weight,
         decoration: 'none',
-        transform: 'scale(1.2)'
+        transform: 'scale(1.2)',
+        border: 'none',
+        backgroundColor: 'white'
     }
 };
 
-const CustomedLink = styled(Link)`
-    text-decoration: ${linkText.normal.decoration};
-    color: ${linkText.normal.color};
-    transition: ${linkText.normal.transition};
-    
-    &:hover {
-        text-decoration: none;
-        color: ${linkText.hover.color};
+const titleLinkText = { 
+    normal: {
+        color: linkText.normal.color,
+        size: linkText.normal.size + 5,
+        weight: linkText.normal.weight + 300,
+        decoration: linkText.normal.decoration,
+        transition: linkText.normal.transition,
+        border: linkText.normal.border,
+        backgroundColor: linkText.normal.backgroundColor
+    },
+    hover: {
+        color: linkText.hover.color,
+        size: linkText.normal.size + 5,
+        weight: linkText.hover.weight + 300,
+        decoration: 'underline',
+        transform: linkText.hover.transform,
+        border: linkText.hover.border,
+        backgroundColor: linkText.hover.backgroundColor
     }
-`;
+};
 
 {/* table style */}
 
@@ -78,9 +107,9 @@ const TableRowLink = styled(Link)`
 `;
 
 const TableTitleColumn = styled.th`
-    color: ${titleText.normal.color};
-    font-size: ${titleText.normal.size}px;
-    font-weight: ${titleText.normal.weight};
+    color: ${highlightText.normal.color};
+    font-size: ${highlightText.normal.size}px;
+    font-weight: ${highlightText.normal.weight};
 `;
 
 const TablePaginate = styled(ReactPaginate).attrs(
@@ -182,6 +211,90 @@ const NavBarLinkHome = styled(FiBold)`
     }
 `;
 
+const SecondaryNavBarLink = styled(Link)`
+    color: ${titleLinkText.normal.color};
+    font-size: ${titleLinkText.normal.size}px;
+    font-weight: ${titleLinkText.normal.weight};
+    text-decoration: ${titleLinkText.normal.decoration};
+    transition: ${titleLinkText.normal.transition};
+
+    &:hover {
+        color: ${titleLinkText.hover.color};
+        font-size: ${titleLinkText.hover.size}px;
+        font-weight: ${titleLinkText.hover.weight};
+        text-decoration: ${titleLinkText.hover.decoration};
+    }
+`;
+
+const Title = styled.h2`
+    color: ${titleText.normal.color};
+    font-size: ${titleText.normal.size}px;
+    font-weight: ${titleText.normal.weight};
+`;
+
+const TitleButton = styled.button`
+    color: ${titleLinkText.normal.color};
+    font-size: ${titleLinkText.normal.size + 10}px;
+    font-weight: ${titleLinkText.normal.weight};
+    text-decoration: ${titleLinkText.normal.decoration};
+    transition: ${titleLinkText.normal.transition};
+    border: ${titleLinkText.normal.border};
+    background-color: ${titleLinkText.normal.backgroundColor};
+        
+    &:hover {
+        color: ${titleLinkText.hover.color};
+        font-size: ${titleLinkText.hover.size + 10}px;
+        font-weight: ${titleLinkText.hover.weight};
+        text-decoration: ${titleLinkText.hover.decoration};
+        transform: ${titleLinkText.hover.transform};
+        border: ${titleLinkText.hover.border};
+        background-color: ${titleLinkText.hover.backgroundColor};
+    }
+`;
+
+const FormLabel = styled.label`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size + 5}px;
+    font-weight: ${text.normal.weight + 300};
+    padding-right: 10px;
+`;
+
+const FormInput = styled.input`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size + 5}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+`;
+
+const FormDate = styled(DatePicker)`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size + 5}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+`;
+
+const FormSelect = styled.select`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size + 5}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+    appearance: none;
+`;
+
+const FormSearchBar = styled.input`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size + 5}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+    appearance: none;
+    border-radius: 25px;
+    background-color: "#F5F5F5";
+`;
+
 export const Styled = {
     TableRowLink,
     TableTitleColumn,
@@ -189,34 +302,19 @@ export const Styled = {
     NavBarLink,
     NavBarLinkTransactions,
     NavBarLinkItems,
-    NavBarLinkHome
+    NavBarLinkHome,
+    SecondaryNavBarLink,
+    Title,
+    TitleButton,
+    FormLabel,
+    FormInput,
+    FormDate,
+    FormSelect,
+    FormSearchBar
 };
-
-const NavTextSize = text.normal.size + 5;
-
-const TabLink = styled(CustomedLink)`
-    font-size: ${NavTextSize}px;
-    font-weight: 700;
-
-    &:hover {
-        text-decoration: underline;
-    }
-`;
-
-export const Styled__Nav = {
-    TabLink
-};
-
-const MainTitleSize = text.normal.size + 20;
-
-const MainTitle = styled.h2`
-    font-size: ${MainTitleSize}px;
-    font-weight: 700;
-    color: ${text.normal.color};
-`;
 
 const InfoTitle = styled.h2`
-    font-size: ${NavTextSize}px;
+    font-size: ${titleLinkText.normal.size}px;
     font-weight: 700;
     color: ${text.normal.color};
 `;
@@ -228,68 +326,9 @@ const InfoItem = styled.p`
     margin-bottom: 0px;
 `;
 
-const Button = styled.button`
-    font-size: ${MainTitleSize-10}px;
-    color: ${text.normal.color};
-    border: none;
-    background-color: white;
-    transition: .3s ease-in-out;
-
-    &:hover {
-        text-decoration: none;
-        font-size: ${MainTitleSize-5}px;
-    }
-`;
-
 export const Styled__Title = {
-    MainTitle,
-    Button,
     InfoTitle,
     InfoItem
-};
-
-const MainInputTextSize = text.normal.size;
-const SearchBarColor = "#F5F5F5";
-
-const Main = styled.div`
-    font-size: ${MainInputTextSize + 5}px;
-    color: ${text.normal.color};
-`;
-
-const Label = styled.label`
-    font-weight: 700;
-    margin-right: 10px;
-`;
-
-const Input = styled.input`
-    margin-right: 10px;
-    border: none;
-    outline: none;
-    color: ${text.normal.color};
-`;
-
-const Select = styled.select`
-    margin-right: 10px;
-    border: none;
-    outline: none;
-    color: ${text.normal.color};
-    appearance: none;
-`;
-
-const SearchBar = styled.input`
-    border: none;
-    border-radius: 25px;
-    outline: none;
-    color: ${text.normal.color};
-    background-color: ${SearchBarColor};
-`;
-
-export const Styled__Input = {
-    Main,
-    Label,
-    Input,
-    Select,
-    SearchBar
 };
 
 const ParentChild = styled(Link)`
@@ -305,7 +344,7 @@ const ParentChild = styled(Link)`
     &:hover {
         text-decoration: none;
         color: ${text.normal.color};
-        background-color: ${SearchBarColor};
+        background-color: "#F5F5F5";
     }
     
 `;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Styled, Styled__Input } from "./../../../design/style";
+import { Styled } from "./../../../design/style";
 
 export default function TransactionTable(data) {
 
@@ -40,7 +40,7 @@ export default function TransactionTable(data) {
 
         <div className="d-flex flex-column table-responsive py-2">
 
-            <Styled__Input.SearchBar
+            <Styled.FormSearchBar
                 className="d-flex flex-row align-items-baseline px-3 py-2"
                 onChange={handleInput}
                 type="text"

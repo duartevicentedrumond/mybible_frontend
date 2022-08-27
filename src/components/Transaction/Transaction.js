@@ -5,7 +5,7 @@ import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
 import TransactionRelated from "./TransactionRelated";
-import { Styled__Nav } from "../../design/style";
+import { Styled } from "../../design/style";
 
 function Transaction() {
   return (
@@ -17,14 +17,14 @@ function Transaction() {
 
           <ul className="nav nav-tabs">
             <li className="nav-item pe-3">
-              <Styled__Nav.TabLink to={'/transaction'}>
+              <Styled.SecondaryNavBarLink to={'/transaction'}>
                 Transactions
-              </Styled__Nav.TabLink>
+              </Styled.SecondaryNavBarLink>
             </li>
             <li className="nav-item pe-3">
-              <Styled__Nav.TabLink to={'/transaction/add'}>
+              <Styled.SecondaryNavBarLink to={'/transaction/add'}>
                 New
-              </Styled__Nav.TabLink>
+              </Styled.SecondaryNavBarLink>
             </li>
           </ul>
 
