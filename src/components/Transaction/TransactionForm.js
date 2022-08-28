@@ -202,7 +202,7 @@ export default function TransactionForm() {
 
         {/*Change upload button icon wether the it's a new transaction or an existing transaction*/}
         <Styled.TitleButton onClick={handleSubmit} className='d-flex'>
-          {transaction.transactionChildren ? 
+          {transaction.transactionId ? 
             <IoSync/> : 
             <IoAdd/>
           }

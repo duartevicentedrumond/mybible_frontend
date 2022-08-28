@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 
 import transactionReducer from "./TransactionReducer";
