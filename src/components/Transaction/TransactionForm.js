@@ -217,7 +217,9 @@ export default function TransactionForm() {
         >
           <RiParentLine/>
         </Styled.TitleButton>
-        {transaction.transactionParent.customId}
+        {transaction.transactionParent.transactionId ? 
+          <Styled.InfoText>#{transaction.transactionParent.customId}</Styled.InfoText> : <div></div>
+        }
         {transaction.transactionChildren[0] ? 
           <TiFlowChildren
             className='mx-2'
@@ -226,9 +228,11 @@ export default function TransactionForm() {
         }
         {transaction.transactionChildren.map(
           (child) => (
-            <div
+            <Styled.InfoText
               className='me-2'
-            >#{child.customId}</div>
+            >
+              #{child.customId}
+            </Styled.InfoText>
           )
         )}
       </div>

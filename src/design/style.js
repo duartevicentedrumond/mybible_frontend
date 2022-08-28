@@ -310,6 +310,14 @@ const InfoHashTagText = styled.div`
     background-color: ${backgroundColor};
 `;
 
+const InfoText = styled.div`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+`;
+
 export const Styled = {
     TableRowLink,
     TableTitleColumn,
@@ -326,6 +334,7 @@ export const Styled = {
     FormDate,
     FormSelect,
     FormSearchBar,
+    InfoText,
     InfoHashTagText
 };
 
