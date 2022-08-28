@@ -242,6 +242,7 @@ const TitleButton = styled.button`
     transition: ${titleLinkText.normal.transition};
     border: ${titleLinkText.normal.border};
     background-color: ${titleLinkText.normal.backgroundColor};
+    margin-right: 5px;
         
     &:hover {
         color: ${titleLinkText.hover.color};
@@ -251,6 +252,7 @@ const TitleButton = styled.button`
         transform: ${titleLinkText.hover.transform};
         border: ${titleLinkText.hover.border};
         background-color: ${titleLinkText.hover.backgroundColor};
+        margin-right: 5px;
     }
 `;
 
