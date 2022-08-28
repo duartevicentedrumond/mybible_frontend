@@ -187,7 +187,7 @@ export default function TransactionForm() {
       }
 
     }
-  , [params.id, transactions, getTypes]); //page first rendering depends on params.id and transactions
+  , [params.id, transactions]); //page first rendering depends on params.id and transactions
 
   return (
     <div className="d-flex flex-column text-start py-3 px-0">

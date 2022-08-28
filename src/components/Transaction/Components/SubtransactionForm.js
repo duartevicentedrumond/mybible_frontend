@@ -28,7 +28,7 @@ export default function SubtransactionsForm(data) {
         getPeople();
 
     }
-  , [getCategories, getPeople]); //depends on getCategories and getPeople
+  , []); //no dependencies
 
     //udpate transaction state when subtransaction amount input changes
     function handleAmountChange(e) {
