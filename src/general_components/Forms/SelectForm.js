@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Styled, Styled__Input } from "../../design/style";
+import { Styled } from "../../design/style";
 
 export default function SelectForm(data) {
 
@@ -14,7 +14,7 @@ export default function SelectForm(data) {
         const id = data.id;
 
     return (
-        <div className="d-flex flex-row align-items-baseline py-1">
+        <div className="d-flex flex-row align-items-baseline  ps-2">
             <Styled.FormLabel>{label}</Styled.FormLabel>
             <Styled.FormSelect
                 name="category"

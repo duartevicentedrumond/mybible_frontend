@@ -90,7 +90,7 @@ const titleLinkText = {
     }
 };
 
-{/* table style */}
+/* table style */
 
 const TableRowLink = styled(Link)`
     color: ${linkText.normal.color};
@@ -147,7 +147,7 @@ const TablePaginate = styled(ReactPaginate).attrs(
     }
 `;
 
-{/* navbar style */}
+/* navbar style */
 
 const NavBarLink = styled(Link)`
     color: ${linkText.normal.color};
@@ -213,6 +213,8 @@ const NavBarLinkHome = styled(FiBold)`
     }
 `;
 
+/* secondary navbar style */
+
 const SecondaryNavBarLink = styled(Link)`
     color: ${titleLinkText.normal.color};
     font-size: ${titleLinkText.normal.size}px;
@@ -227,6 +229,8 @@ const SecondaryNavBarLink = styled(Link)`
         text-decoration: ${titleLinkText.hover.decoration};
     }
 `;
+
+/* title style */
 
 const Title = styled.h2`
     color: ${titleText.normal.color};
@@ -255,6 +259,8 @@ const TitleButton = styled.button`
         margin-right: 5px;
     }
 `;
+
+/* form style */
 
 const FormLabel = styled.label`
     color: ${text.normal.color};
@@ -298,6 +304,8 @@ const FormSearchBar = styled.input`
     border-radius: 25px;
     background-color: ${backgroundColor};
 `;
+
+/* info text style */
 
 const InfoHashTagText = styled.div`
     color: ${text.normal.color};

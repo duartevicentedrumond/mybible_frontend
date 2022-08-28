@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Modal } from 'react-bootstrap';
 
 import { Styled } from "../../../design/style";
@@ -37,16 +37,6 @@ export default function TypesModal(data) {
           }));
           
         }
-    };
-
-    //set code to run on transaction list' rows click
-    function onRowClick(e){
-        
-        //prevent page refresh
-        e.preventDefault();
-
-        handleCloseModal();
-
     };
 
     return (

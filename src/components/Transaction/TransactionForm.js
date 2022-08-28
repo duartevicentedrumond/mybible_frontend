@@ -150,7 +150,7 @@ export default function TransactionForm() {
       getTypes();
 
       //get transaction (if it exists) from the url id
-      const transactionFound = transactions.find( (transaction) => transaction.transactionId == params.id);
+      const transactionFound = transactions.find( (transaction) => transaction.transactionId === parseFloat(params.id));
 
       // if transaction exists from url id
       if(transactionFound) {
@@ -187,7 +187,7 @@ export default function TransactionForm() {
       }
 
     }
-  , [params.id, transactions]); //page first rendering depends on params.id and transactions
+  , [params.id, transactions, getTypes]); //page first rendering depends on params.id and transactions
 
   return (
     <div className="d-flex flex-column text-start py-3 px-0">
