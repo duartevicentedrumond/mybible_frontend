@@ -64,7 +64,7 @@ export default function LineGraph(data) {
 
     return (
         
-        <div style={{ width: '100%', height: 300 }}>
+        <div style={{ width: '99.9%', height: 300 }}>
             <ResponsiveContainer>
                 <LineChart 
                     data={array}
