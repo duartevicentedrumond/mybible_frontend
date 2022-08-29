@@ -13,6 +13,7 @@ export default function TransactionTable(data) {
         transaction => {
             if (
                 String(transaction.transactionId).includes(searchText) || 
+                String(transaction.customId).includes(searchText) ||
                 transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
                 transaction.date.toLowerCase().includes(searchText.toLocaleLowerCase()) || 
                 String(transaction.totalAmount).includes(searchText)) {
@@ -128,8 +129,8 @@ export default function TransactionTable(data) {
                                 }
                             > 
                                 {
-                                    transaction.description.length > 75 ? 
-                                    transaction.description.substring(0,75) + "..." :
+                                    transaction.description.length > 70 ? 
+                                    transaction.description.substring(0,70) + "..." :
                                     transaction.description
                                 }
                             </Styled.TableRowLink>
