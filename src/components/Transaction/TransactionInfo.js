@@ -31,7 +31,9 @@ const TransactionInfo = () => {
             */}
 
             <Styled__Title.InfoTitle>
-                Info
+                Info ({
+                    categoriesSum.reduce((a, c) => { return a + c.sum}, 0)
+                }€)
             </Styled__Title.InfoTitle>
             {categoriesSum.map( (category) => (
                 <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
