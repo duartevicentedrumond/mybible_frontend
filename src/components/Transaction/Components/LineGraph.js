@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, CartesianAxis } from 'recharts';
 
-export default function BarGraph(data) {
+export default function LineGraph(data) {
 
     const array = data.dataArray;
 

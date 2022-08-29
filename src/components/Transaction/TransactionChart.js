@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import MonthSumContext from "../../context/Wallet/MonthSum/MonthSumContext";
 
-import BarGraph from "./Components/BarGraph";
+import LineGraph from "./Components/LineGraph";
 
 export default function TransactionChart() {
 
@@ -20,7 +20,7 @@ export default function TransactionChart() {
 
   return (
     <div className='d-flex flex-column table-responsive py-3'>
-      <BarGraph dataArray={monthsSum}/>
+      <LineGraph dataArray={monthsSum}/>
     </div>
   );
 

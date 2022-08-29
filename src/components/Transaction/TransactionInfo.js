@@ -30,10 +30,13 @@ const TransactionInfo = () => {
                         - px-4: column horizontal padding (left and right) with 4
             */}
 
-            <Styled__Title.InfoTitle>
-                Info ({
-                    categoriesSum.reduce((a, c) => { return a + c.sum}, 0)
-                }€)
+            <Styled__Title.InfoTitle className='pb-0 d-flex justify-content-between'>
+                <span>Total</span> 
+                <span>
+                    {
+                        categoriesSum.reduce((a, c) => { return a + c.sum}, 0)
+                    }€
+                </span>
             </Styled__Title.InfoTitle>
             {categoriesSum.map( (category) => (
                 <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
