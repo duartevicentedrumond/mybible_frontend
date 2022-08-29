@@ -8,6 +8,7 @@ import { TransactionContextProvider } from "./context/Wallet/Transaction/Transac
 import { CategoryContextProvider } from "./context/Wallet/Category/CategoryState";
 import { TypeContextProvider } from "./context/Wallet/Type/TypeState";
 import { CategorySumContextProvider } from "./context/Wallet/CategorySum/CategorySumState";
+import { MonthSumContextProvider } from "./context/Wallet/MonthSum/MonthSumState";
 import { PersonContextProvider } from "./context/Person/Person/PersonState";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <CategoryContextProvider>
       <TypeContextProvider>
       <CategorySumContextProvider>
+      <MonthSumContextProvider>
       <PersonContextProvider>
           <BrowserRouter>
             <Routes>
@@ -28,6 +30,7 @@ function App() {
             </Routes>
           </BrowserRouter>
       </PersonContextProvider>
+      </MonthSumContextProvider>
       </CategorySumContextProvider>
       </TypeContextProvider>
       </CategoryContextProvider>

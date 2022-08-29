@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
-import TransactionRelated from "./TransactionRelated";
+import TransactionChart from "./TransactionChart";
 import { Styled } from "../../design/style";
 
 function Transaction() {
@@ -26,20 +26,26 @@ function Transaction() {
                 New
               </Styled.SecondaryNavBarLink>
             </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/transaction/chart'}>
+                Charts
+              </Styled.SecondaryNavBarLink>
+            </li>
           </ul>
 
           <Routes>
             <Route path="/" element={<TransactionList/>} />
             <Route path="add" element={<TransactionForm/>} />
             <Route path="edit/:id" element={<TransactionForm/>} />
+            <Route path="chart" element={<TransactionChart/>} />
           </Routes> 
         </div>
           
         <div className="col text-start py-3">
           <Routes>
             <Route path="/" element={<TransactionInfo/>} />
-            {/*<Route path="/add" element={<TransactionRelated/>} />/*}
-            {/*<Route path="/edit/:id" element={<TransactionRelated/>} />*/}
+            <Route path="/add" element={<TransactionInfo/>} />
+            <Route path="/edit/:id" element={<TransactionInfo/>} />
           </Routes>
         </div>
 
