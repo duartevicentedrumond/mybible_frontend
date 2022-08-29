@@ -127,7 +127,11 @@ export default function TransactionTable(data) {
                                 data-customid={transaction.customId
                                 }
                             > 
-                                {transaction.description}
+                                {
+                                    transaction.description.length > 75 ? 
+                                    transaction.description.substring(0,75) + "..." :
+                                    transaction.description
+                                }
                             </Styled.TableRowLink>
                         </th>
                     </tr>
