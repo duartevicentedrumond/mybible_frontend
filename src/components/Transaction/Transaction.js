@@ -46,6 +46,7 @@ function Transaction() {
             <Route path="/" element={<TransactionInfo/>} />
             <Route path="/add" element={<TransactionInfo/>} />
             <Route path="/edit/:id" element={<TransactionInfo/>} />
+            <Route path="/chart" element={<TransactionInfo/>} />
           </Routes>
         </div>
 
