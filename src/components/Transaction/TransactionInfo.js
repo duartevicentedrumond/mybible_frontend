@@ -37,14 +37,14 @@ const TransactionInfo = () => {
                 <span>Total</span> 
                 <span>
                     {
-                        parseFloat(categoriesSum.reduce((a, c) => { return a + c.sum}, 0)).toFixed(2)
+                        (categoriesSum.reduce((a, c) => { return a + c.sum}, 0)).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })
                     }€
                 </span>
             </Styled__Title.InfoTitle>
             {categoriesSum.map( (category) => (
                 <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
                     <span>{category.category}</span>
-                    <span>{parseFloat(category.sum).toFixed(2)} €</span>
+                    <span>{(category.sum).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €</span>
                 </Styled__Title.InfoItem>
             ))}
 
@@ -54,9 +54,9 @@ const TransactionInfo = () => {
                         <span>Debt</span> 
                         <span>
                             {
-                                parseFloat(debtsSum.reduce((a, c) => { 
+                                (debtsSum.reduce((a, c) => { 
                                     return c.debt > 0 ? a + c.debt : a
-                                }, 0)).toFixed(2)
+                                }, 0)).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })
                             }€
                         </span>
                     </Styled__Title.InfoTitle>
@@ -65,7 +65,7 @@ const TransactionInfo = () => {
                             
                             <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={debt.person_id}>
                                 <span>{debt.nickname}</span>
-                                <span>{parseFloat(debt.debt).toFixed(2)} €</span>
+                                <span>{(debt.debt).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €</span>
                             </Styled__Title.InfoItem>
                         :
                         <span></span>
@@ -79,9 +79,9 @@ const TransactionInfo = () => {
                         <span>Credit</span> 
                         <span>
                             {
-                                parseFloat(debtsSum.reduce((a, c) => { 
+                                (debtsSum.reduce((a, c) => { 
                                     return c.debt < 0 ? a + c.debt : a
-                                }, 0)).toFixed(2)
+                                }, 0)).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })
                             }€
                         </span>
                     </Styled__Title.InfoTitle>
@@ -90,7 +90,7 @@ const TransactionInfo = () => {
                             
                             <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={debt.person_id}>
                                 <span>{debt.nickname}</span>
-                                <span>{parseFloat(debt.debt).toFixed(2)} €</span>
+                                <span>{(debt.debt).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €</span>
                             </Styled__Title.InfoItem>
                         :
                         <span></span>
