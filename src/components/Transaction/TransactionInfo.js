@@ -1,17 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 
 import CategorySumContext from "../../context/Wallet/CategorySum/CategorySumContext";
+import DebtSumContext from "../../context/Wallet/DebtSum/DebtSumContext";
 import { Styled__Title } from "../../design/style";
 
 const TransactionInfo = () => {
 
     //Get getTransactions function and transactions state object from TransactionState through TransactionContext
     const {categoriesSum, getCategoriesSum} = useContext(CategorySumContext);
+    const {debtsSum, getDebtsSum} = useContext(DebtSumContext);
 
     //Execute getTransactions function as soon as the page is rendered
     useEffect(
         () => {
             getCategoriesSum();
+            getDebtsSum();
         }
     , []);
 
@@ -34,7 +37,7 @@ const TransactionInfo = () => {
                 <span>Total</span> 
                 <span>
                     {
-                        categoriesSum.reduce((a, c) => { return a + c.sum}, 0)
+                        parseFloat(categoriesSum.reduce((a, c) => { return a + c.sum}, 0)).toFixed(2)
                     }€
                 </span>
             </Styled__Title.InfoTitle>
@@ -44,6 +47,56 @@ const TransactionInfo = () => {
                     <span>{parseFloat(category.sum).toFixed(2)} €</span>
                 </Styled__Title.InfoItem>
             ))}
+
+            {debtsSum.find((debt) => debt.debt > 0) ?
+                <div>
+                    <Styled__Title.InfoTitle className='pt-3 d-flex justify-content-between'>
+                        <span>Debt</span> 
+                        <span>
+                            {
+                                parseFloat(debtsSum.reduce((a, c) => { 
+                                    return c.debt > 0 ? a + c.debt : a
+                                }, 0)).toFixed(2)
+                            }€
+                        </span>
+                    </Styled__Title.InfoTitle>
+                    {debtsSum.map( (debt) => {
+                        return debt.debt > 0 ?
+                            
+                            <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={debt.person_id}>
+                                <span>{debt.nickname}</span>
+                                <span>{parseFloat(debt.debt).toFixed(2)} €</span>
+                            </Styled__Title.InfoItem>
+                        :
+                        <span></span>
+                    })}
+                </div>
+            : <div></div> }
+
+            {debtsSum.find((debt) => debt.debt < 0) ?
+                <div>
+                    <Styled__Title.InfoTitle className='pt-3 d-flex justify-content-between'>
+                        <span>Credit</span> 
+                        <span>
+                            {
+                                parseFloat(debtsSum.reduce((a, c) => { 
+                                    return c.debt < 0 ? a + c.debt : a
+                                }, 0)).toFixed(2)
+                            }€
+                        </span>
+                    </Styled__Title.InfoTitle>
+                    {debtsSum.map( (debt) => {
+                        return debt.debt < 0 ?
+                            
+                            <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={debt.person_id}>
+                                <span>{debt.nickname}</span>
+                                <span>{parseFloat(debt.debt).toFixed(2)} €</span>
+                            </Styled__Title.InfoItem>
+                        :
+                        <span></span>
+                    })}
+                </div>
+            : <div></div> }
 
         </div>
     )
