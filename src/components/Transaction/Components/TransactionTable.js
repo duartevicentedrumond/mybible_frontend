@@ -116,7 +116,7 @@ export default function TransactionTable(data) {
                                 data-customid={transaction.customId
                                 }
                             > 
-                                {parseFloat(transaction.totalAmount).toFixed(2)} €
+                                {(transaction.totalAmount).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €
                             </Styled.TableRowLink>
                         </th>
                         <th scope="col" className="text-start px-4 align-middle">
