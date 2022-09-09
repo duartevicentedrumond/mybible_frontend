@@ -7,6 +7,7 @@ import { Styled } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 import { RiParentLine, RiHashtag } from "react-icons/ri";
 import { TiFlowChildren } from "react-icons/ti";
+import { FiTrash2 } from "react-icons/fi";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import DateForm from "../../general_components/Forms/DateForm";
@@ -19,7 +20,7 @@ export default function TransactionForm() {
   //define initial variables
 
     //get context for addTransaction and updateTransaction functions and transactions object
-    const { addTransaction, transactions, updateTransaction, getTransactions } = useContext(TransactionContext);
+    const { addTransaction, transactions, updateTransaction, deleteTransaction, getTransactions } = useContext(TransactionContext);
 
     //get context for getTypes function and types object
     const { types, getTypes } = useContext(TypeContext);
@@ -142,6 +143,20 @@ export default function TransactionForm() {
     history("/transaction");
   };
 
+  //deletes transaction and redirects to transactions list page
+  function handleDelete(e) {
+
+    e.preventDefault();
+
+    deleteTransaction(transaction.transactionId);
+
+    //get transactions
+    getTransactions();
+
+    //redirects to transactions list page
+    history("/transaction");
+  };
+
   //run on the first render and anytime any dependency value changes
   useEffect(
     () => {
@@ -207,6 +222,15 @@ export default function TransactionForm() {
             <IoAdd/>
           }
         </Styled.TitleButton>
+
+        {/*Show delte button icon if it's an existing transaction*/}
+        <Styled.TitleButton onClick={handleDelete} className='d-flex'>
+          {transaction.transactionId ? 
+            <FiTrash2/> : 
+            <div></div>
+          }
+        </Styled.TitleButton>
+
       </div>
 
       {/*transaction parent button for modal input form*/}

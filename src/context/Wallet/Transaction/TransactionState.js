@@ -75,11 +75,16 @@ export const TransactionContextProvider = ({ children }) => {
         });
     };
 
-    const deleteTransaction = (id) => {
-        
+    const deleteTransaction = async (transactionId) => {
+
+        const response = await axios.delete(
+            'http://localhost:8080/transaction/delete/' + transactionId);
+
+        console.log(response)
+
         dispatch({
             type: DELETE_TRANSACTION,
-            payload: id,
+            payload: transactionId,
         });
 
     };
