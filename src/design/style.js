@@ -147,6 +147,32 @@ const TablePaginate = styled(ReactPaginate).attrs(
     }
 `;
 
+const TableRow = styled.th`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size}px;
+    font-weight: ${text.normal.weight};
+    text-decoration: ${text.normal.decoration};
+    transition: ${text.normal.transition};
+    background-color: red
+
+    &:hover {
+        color: ${text.normal.color};
+        font-size: ${text.normal.size}px;
+        font-weight: ${text.normal.weight};
+        text-decoration: ${text.normal.decoration};
+        transform: ${text.normal.transform};
+    }
+`;
+
+const TableFormInput = styled.input`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size}px;
+    font-weight: ${text.normal.weight};
+    border: none;
+    outline: none;
+    background-color: white;
+`;
+
 /* navbar style */
 
 const NavBarLink = styled(Link)`
@@ -326,10 +352,29 @@ const InfoText = styled.div`
     outline: none;
 `;
 
+/* settings style */
+
+const SettingsLink = styled(Link)`
+    color: ${titleLinkText.normal.color};
+    font-size: ${titleLinkText.normal.size}px;
+    font-weight: ${titleLinkText.normal.weight};
+    text-decoration: ${titleLinkText.normal.decoration};
+    transition: ${titleLinkText.normal.transition};
+
+    &:hover {
+        color: ${titleLinkText.hover.color};
+        font-size: ${titleLinkText.hover.size}px;
+        font-weight: ${titleLinkText.hover.weight};
+        text-decoration: ${titleLinkText.hover.decoration};
+    }
+`;
+
 export const Styled = {
     TableRowLink,
+    TableRow,
     TableTitleColumn,
     TablePaginate,
+    TableFormInput,
     NavBarLink,
     NavBarLinkTransactions,
     NavBarLinkItems,
@@ -343,7 +388,8 @@ export const Styled = {
     FormSelect,
     FormSearchBar,
     InfoText,
-    InfoHashTagText
+    InfoHashTagText,
+    SettingsLink
 };
 
 const InfoTitle = styled.h2`

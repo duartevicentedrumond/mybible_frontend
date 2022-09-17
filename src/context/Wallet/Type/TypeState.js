@@ -23,6 +23,16 @@ export const TypeContextProvider = ({ children }) => {
         });
     };
 
+    const getActiveTypes = async () => {
+        const response = await axios.get(
+            'http://localhost:8080/type/getAllActive');
+
+        dispatch({
+            type: GET_TYPES,
+            payload: response.data,
+        });
+    };
+
     const getType = async (id) => {
         const response = await axios.get('http://localhost:8080/type/' + id);
         console.log(response)
@@ -68,7 +78,7 @@ export const TypeContextProvider = ({ children }) => {
     };
 
     return (
-        <TypeContext.Provider value={{ ...state, getTypes, getType, addType, deleteType, updateType }}>
+        <TypeContext.Provider value={{ ...state, getTypes, getActiveTypes, getType, addType, deleteType, updateType }}>
             {children}
         </TypeContext.Provider>
     )

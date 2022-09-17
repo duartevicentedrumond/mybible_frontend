@@ -5,6 +5,7 @@ import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
 import TransactionChart from "./TransactionChart";
+import TransactionSettings from "./TransactionSettings";
 import { Styled } from "../../design/style";
 
 function Transaction() {
@@ -31,6 +32,11 @@ function Transaction() {
                 Charts
               </Styled.SecondaryNavBarLink>
             </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/transaction/settings'}>
+                Settings
+              </Styled.SecondaryNavBarLink>
+            </li>
           </ul>
 
           <Routes>
@@ -38,6 +44,7 @@ function Transaction() {
             <Route path="add" element={<TransactionForm/>} />
             <Route path="edit/:id" element={<TransactionForm/>} />
             <Route path="chart" element={<TransactionChart/>} />
+            <Route path="settings" element={<TransactionSettings/>} />
           </Routes> 
         </div>
           
@@ -47,6 +54,7 @@ function Transaction() {
             <Route path="/add" element={<TransactionInfo/>} />
             <Route path="/edit/:id" element={<TransactionInfo/>} />
             <Route path="/chart" element={<TransactionInfo/>} />
+            <Route path="/settings" element={<TransactionInfo/>} />
           </Routes>
         </div>
 
