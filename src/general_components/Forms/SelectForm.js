@@ -23,11 +23,17 @@ export default function SelectForm(data) {
                 value={value}
                 onChange={onChangeField}
             >
-                {arrayList.map( (element) => (
-                    <option value={element[arrayValue]}>
-                        {element[arrayDescription]}
-                    </option>
-                ))}
+                {arrayList.map( (element) => {
+
+                    if (element['active']) { //only renders category if it is still active
+                        return (
+                            <option value={element[arrayValue]}>
+                                {element[arrayDescription]}
+                            </option>
+                        )
+                    }
+                    
+                })}
             </Styled.FormSelect>
         </div>
     );
