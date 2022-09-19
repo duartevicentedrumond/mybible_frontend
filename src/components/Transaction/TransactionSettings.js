@@ -6,18 +6,31 @@ import { TiFlowChildren } from "react-icons/ti";
 import { FiTrash2 } from "react-icons/fi";
 
 import SettingsTypesModal from "./Components/SettingsTypesModal";
+import SettingsCategoriesModal from "./Components/SettingsCategoriesModal";
 import TypeContext from "../../context/Wallet/Type/TypeContext";
+import CategoryContext from "../../context/Wallet/Category/CategoryContext";
 
 export default function TransactionSettings() {
 
-  //get context for getTypes function and types object
+  //get context for getTypes and updateType functions and types object
   const { types, getTypes, updateType } = useContext(TypeContext);
+
+  //get context for getCategories and updateCategories functions and categories object
+  const { categories, getCategories, updateCategory } = useContext(CategoryContext);
 
   const [settingsTypes, setSettingsTypes] = useState([
     {
       typeId: null,
       description: null,
-      status: true
+      active: true
+    }
+  ]);
+
+  const [settingsCategories, setSettingsCategories] = useState([
+    {
+      categoryId: null,
+      description: null,
+      active: true
     }
   ]);
 
@@ -25,8 +38,11 @@ export default function TransactionSettings() {
   useEffect(
     () => {
 
-      //get all existing types for dropdown input
+      //get all existing types
       getTypes();
+
+      //get all existing categories
+      getCategories();
 
     }
   , []); //page first rendering depends on 
@@ -55,6 +71,30 @@ export default function TransactionSettings() {
 
     };
 
+  //define states and variables for categories modal form
+
+    //set state for showTypesModal
+    const [showCategoriesModal, setShowCategoriesModal] = useState(false);
+
+    //set functions to handle state change
+    function handleShowCategoriesModal(e) {
+
+      e.preventDefault();
+      setSettingsCategories(categories);
+
+      setShowCategoriesModal(true);
+
+    };
+
+    function handleCloseCategoriesModal() {
+      setShowCategoriesModal(false);
+
+      settingsCategories.map( (category) => {
+        updateCategory(category)
+      } );
+
+    };
+
   return (
     <div class="container text-center py-3 px-0">
 
@@ -66,9 +106,13 @@ export default function TransactionSettings() {
         >
           Types
         </Styled.SettingsLink>
-        <div class="col">
-          Category
-        </div>
+        <Styled.SettingsLink 
+          class="col"
+          to={`#`}
+          onClick={handleShowCategoriesModal}
+        >
+          Categories
+        </Styled.SettingsLink>
       </div>
 
       <SettingsTypesModal
@@ -76,6 +120,13 @@ export default function TransactionSettings() {
         handleCloseModal={handleCloseTypesModal}
         types={types}
         state={[settingsTypes, setSettingsTypes]}
+      />
+
+      <SettingsCategoriesModal
+        showModal={showCategoriesModal}
+        handleCloseModal={handleCloseCategoriesModal}
+        categories={categories}
+        state={[settingsCategories, setSettingsCategories]}
       />
 
     </div>
