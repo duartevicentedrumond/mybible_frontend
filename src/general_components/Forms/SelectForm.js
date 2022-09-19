@@ -25,7 +25,14 @@ export default function SelectForm(data) {
             >
                 {arrayList.map( (element) => {
 
-                    if (element['active']) { //only renders category if it is still active
+                    if (element['active'] && element['active'] !== undefined) { //only renders category if it is still active
+
+                        return (
+                            <option value={element[arrayValue]}>
+                                {element[arrayDescription]}
+                            </option>
+                        )
+                    } else if (element['active'] === undefined) {
                         return (
                             <option value={element[arrayValue]}>
                                 {element[arrayDescription]}
