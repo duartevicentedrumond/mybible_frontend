@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
-import { FiBook } from "react-icons/fi";
+import { FiBook, FiUser } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -223,6 +223,22 @@ const NavBarLinkItems = styled(BsBoxSeam)`
     }
 `;
 
+const NavBarLinkPeople = styled(FiUser)`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size + 10}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+        
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size + 10}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform}
+    }
+`;
+
 const NavBarLinkHome = styled(FiBook)`
     color: ${linkText.normal.color};
     font-size: ${linkText.normal.size + 10}px;
@@ -378,6 +394,7 @@ export const Styled = {
     NavBarLink,
     NavBarLinkTransactions,
     NavBarLinkItems,
+    NavBarLinkPeople,
     NavBarLinkHome,
     SecondaryNavBarLink,
     Title,
