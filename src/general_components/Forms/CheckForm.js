@@ -10,6 +10,7 @@ export default function CheckForm(data) {
         const id = data.id;
         const description = data.description;
         const fieldChecked = data.fieldChecked;
+        const disable = data.disable;
 
     return (
         <div className="form-check">
@@ -21,6 +22,7 @@ export default function CheckForm(data) {
                 checked={fieldChecked}
                 value={value}
                 onChange={onChangeField}
+                disabled={!disable}
             />
             <label className="form-check-label">
                 {description}

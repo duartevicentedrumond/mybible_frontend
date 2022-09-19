@@ -23,7 +23,7 @@ export default function TransactionForm() {
     const { addTransaction, transactions, updateTransaction, deleteTransaction, getTransactions } = useContext(TransactionContext);
 
     //get context for getTypes function and types object
-    const { types, getActiveTypes } = useContext(TypeContext);
+    const { types, getTypes } = useContext(TypeContext);
 
     //get frontend directory
     const history = useNavigate();
@@ -39,7 +39,8 @@ export default function TransactionForm() {
       types: [
         {
           typeId: null,
-          description: null
+          description: null,
+          active: true
         }
       ],
       subtransactions: [
@@ -162,7 +163,7 @@ export default function TransactionForm() {
     () => {
 
       //get all existing types for dropdown input
-      getActiveTypes();
+      getTypes();
 
       //get transaction (if it exists) from the url id
       const transactionFound = transactions.find( (transaction) => transaction.transactionId === parseFloat(params.id));

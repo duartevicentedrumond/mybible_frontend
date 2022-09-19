@@ -65,6 +65,7 @@ export default function TypesModal(data) {
                             }
                             id={i}
                             description={type.description}
+                            disable={type.active}
                         />
 
                     )
