@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
-import { FiBold } from "react-icons/fi";
+import { FiBook } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -223,7 +223,7 @@ const NavBarLinkItems = styled(BsBoxSeam)`
     }
 `;
 
-const NavBarLinkHome = styled(FiBold)`
+const NavBarLinkHome = styled(FiBook)`
     color: ${linkText.normal.color};
     font-size: ${linkText.normal.size + 10}px;
     font-weight: ${linkText.normal.weight};
