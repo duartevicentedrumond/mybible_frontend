@@ -107,13 +107,25 @@ export default function SettingsTypesModal(data) {
 
                         <thead>
                             <tr>
-                                <Styled.TableTitleColumn scope="col" className="text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                                <Styled.TableTitleColumn 
+                                    scope="col" 
+                                    className="col-1 text-end px-4" 
+                                    style={{'whiteSpace': 'nowrap'}}
+                                >
                                     #
                                 </Styled.TableTitleColumn>
-                                <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
+                                <Styled.TableTitleColumn 
+                                    scope="col" 
+                                    className="col-1 text-start px-4"
+                                    style={{'whiteSpace': 'nowrap'}}
+                                >
                                     Status
                                 </Styled.TableTitleColumn>
-                                <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
+                                <Styled.TableTitleColumn 
+                                    scope="col" 
+                                    className="text-start px-4"
+                                    style={{'whiteSpace': 'nowrap'}}
+                                >
                                     Description
                                 </Styled.TableTitleColumn>
                             </tr>
@@ -123,7 +135,10 @@ export default function SettingsTypesModal(data) {
                             {displayTypes.map( (type, index) => ( 
                                 
                                 <tr key={type.typeId}>
-                                    <Styled.TableRow scope="col" className="text-end align-middle px-4">
+                                    <Styled.TableRow 
+                                        scope="col" 
+                                        className="text-end align-middle px-4"
+                                    >
                                         {type.typeId}
                                     </Styled.TableRow>
                                     <Styled.TableRow

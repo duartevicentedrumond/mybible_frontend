@@ -81,6 +81,13 @@ export default function PersonTable(data) {
                             className="col-1 text-start px-4" 
                             style={{'whiteSpace': 'nowrap'}}
                         >
+                            Age
+                        </Styled.TableTitleColumn>
+                        <Styled.TableTitleColumn 
+                            scope="col" 
+                            className="col-1 text-start px-4" 
+                            style={{'whiteSpace': 'nowrap'}}
+                        >
                             Birthday
                         </Styled.TableTitleColumn>
                     </tr>
@@ -116,6 +123,19 @@ export default function PersonTable(data) {
                                             data-personid={person.personId}
                                         >
                                             {person.fullName}
+                                        </Styled.TableRowLink>
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="text-start px-4 align-middle"
+                                    >
+                                        <Styled.TableRowLink 
+                                            style={{'whiteSpace': 'nowrap'}}
+                                            to={`/person/edit/${person.personId}`}
+                                            onClick={onRowClick}
+                                            data-personid={person.personId}
+                                        > 
+                                            {person.age}
                                         </Styled.TableRowLink>
                                     </th>
                                     <th
