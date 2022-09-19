@@ -41,12 +41,17 @@ const TransactionInfo = () => {
                     }€
                 </span>
             </Styled__Title.InfoTitle>
-            {categoriesSum.map( (category) => (
-                <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
-                    <span>{category.category}</span>
-                    <span>{(category.sum).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €</span>
-                </Styled__Title.InfoItem>
-            ))}
+            {categoriesSum.map( (category) => {
+
+                if (category.active) {
+                    return(
+                        <Styled__Title.InfoItem className='pb-0 d-flex justify-content-between' key={category.category}>
+                            <span>{category.category}</span>
+                            <span>{(category.sum).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €</span>
+                        </Styled__Title.InfoItem>
+                    );
+                }
+            })}
 
             {debtsSum.find((debt) => debt.debt > 0) ?
                 <div>
