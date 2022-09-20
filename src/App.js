@@ -11,6 +11,13 @@ import { CategorySumContextProvider } from "./context/Wallet/CategorySum/Categor
 import { MonthSumContextProvider } from "./context/Wallet/MonthSum/MonthSumState";
 import { PersonContextProvider } from "./context/Person/Person/PersonState";
 import { DebtSumContextProvider } from "./context/Wallet/DebtSum/DebtSumState";
+import { ItemsContextProvider } from "./context/Item/Item/ItemState";
+import { AllJoinedContextProvider } from "./context/Item/AllJoined/AllJoinedState";
+import { BoxesContextProvider } from "./context/Item/Box/BoxState";
+import { SectionsContextProvider } from "./context/Item/Section/SectionState";
+import { FurnituresContextProvider } from "./context/Item/Furniture/FurnitureState";
+import { RoomsContextProvider } from "./context/Item/Room/RoomState";
+import { BuildingsContextProvider } from "./context/Item/Building/BuildingState";
 
 function App() {
   return (
@@ -21,6 +28,13 @@ function App() {
       <TypeContextProvider>
       <CategorySumContextProvider>
       <MonthSumContextProvider>
+      <BuildingsContextProvider>
+      <RoomsContextProvider>
+      <FurnituresContextProvider>
+      <SectionsContextProvider>
+      <BoxesContextProvider>
+      <ItemsContextProvider>
+      <AllJoinedContextProvider>
       <PersonContextProvider>
       <DebtSumContextProvider>
           <BrowserRouter>
@@ -33,6 +47,13 @@ function App() {
           </BrowserRouter>
       </DebtSumContextProvider>
       </PersonContextProvider>
+      </AllJoinedContextProvider>
+      </ItemsContextProvider>
+      </BoxesContextProvider>
+      </SectionsContextProvider>
+      </FurnituresContextProvider>
+      </RoomsContextProvider>
+      </BuildingsContextProvider>
       </MonthSumContextProvider>
       </CategorySumContextProvider>
       </TypeContextProvider>

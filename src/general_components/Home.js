@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import Transaction from "../components/Transaction/Transaction";
-import Person from "../components/Person/Person";     
+import Person from "../components/Person/Person";
+import Item from "../components/Item/Item";   
 
 const Home = () => {
   return (
@@ -20,6 +21,9 @@ const Home = () => {
 
               {/* Route for 'person' page which has subpages*/}
               <Route path="people/*" element={<Person/>} />
+
+              {/* Route for 'item' page which has subpages*/}
+              <Route path="item/*" element={<Item/>} />
 
           </Routes>
         </div>

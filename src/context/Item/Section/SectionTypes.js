@@ -1,0 +1,4 @@
+export const GET_SECTIONS = "GET_SECTIONS";
+export const ADD_SECTION = "ADD_SECTION";
+export const UPDATE_SECTION = "UPDATE_SECTION";
+export const DELETE_SECTION = "DELETE_SECTION";

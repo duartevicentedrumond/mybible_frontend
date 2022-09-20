@@ -1,0 +1,1 @@
+export const GET_ALL_JOINED = "GET_ALL_JOINED";
