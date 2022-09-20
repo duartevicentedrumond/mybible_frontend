@@ -14,7 +14,8 @@ export default function AllJoinedTable(data) {
                 String(element.id).includes(searchText) ||
                 String(element.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
                 String(element.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(element.until).includes(searchText)
+                String(element.until).includes(searchText) ||
+                String(element.type).includes(searchText)
             ) {
                 return element;
             }
@@ -41,7 +42,7 @@ export default function AllJoinedTable(data) {
         <div className="d-flex flex-column table-responsive py-2">
 
             <Styled.FormSearchBar
-                className="d-flex flex-row align-items-baseline px-3 py-2"
+                className="d-flex flex-row align-allJoined-baseline px-3 py-2"
                 onChange={handleInput}
                 type="text"
                 value={searchText}
@@ -176,7 +177,7 @@ export default function AllJoinedTable(data) {
             </table>
 
             {pageCount <= 1 ? true : <Styled.TablePaginate
-                className="d-flex justify-content-start px-0 align-items-start"
+                className="d-flex justify-content-start px-0 align-allJoined-start"
                 previousLabel={"<"}
                 nextLabel={">"}
                 pageCount={pageCount}

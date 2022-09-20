@@ -33,7 +33,7 @@ export default function Item() {
 
           <Routes>
             <Route path="/" element={<AllJoinedList/>} />
-            <Route path="item" element={<ItemList/>} />
+            <Route path="/item" element={<ItemList/>} />
           </Routes> 
         </div>
           
