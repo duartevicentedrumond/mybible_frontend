@@ -224,7 +224,7 @@ export default function TransactionForm() {
           }
         </Styled.TitleButton>
 
-        {/*Show delte button icon if it's an existing transaction*/}
+        {/*Show delete button icon if it's an existing transaction*/}
         <Styled.TitleButton onClick={handleDelete} className='d-flex'>
           {transaction.transactionId ? 
             <FiTrash2/> : 

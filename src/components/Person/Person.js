@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 //import TransactionForm from "./TransactionForm";
 import PersonList from "./PersonList";
+import PersonForm from "./PersonForm";
 import { Styled } from "../../design/style";
 
 export default function Person() {
@@ -28,6 +29,8 @@ export default function Person() {
 
           <Routes>
             <Route path="/" element={<PersonList/>} />
+            <Route path="/add" element={<PersonForm/>} />
+            <Route path="/edit/:id" element={<PersonForm/>} />
           </Routes> 
         </div>
           

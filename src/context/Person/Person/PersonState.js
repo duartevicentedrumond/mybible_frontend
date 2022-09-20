@@ -53,11 +53,15 @@ export const PersonContextProvider = ({ children }) => {
         });
     };
 
-    const deletePerson = (id) => {
+    const deletePerson = async (personId) => {
+
+        const response = await axios.delete('http://localhost:8080/person/delete/' + personId);
+
+        console.log(response)
         
         dispatch({
             type: DELETE_PERSON,
-            payload: id,
+            payload: personId,
         });
 
     };

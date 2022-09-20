@@ -105,7 +105,7 @@ export default function PersonTable(data) {
                                     >
                                         <Styled.TableRowLink 
                                             style={{'whiteSpace': 'nowrap'}}
-                                            to={`/person/edit/${person.personId}`}
+                                            to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
                                             data-personid={person.personId}
                                         >
@@ -118,7 +118,7 @@ export default function PersonTable(data) {
                                     >
                                         <Styled.TableRowLink 
                                             style={{'whiteSpace': 'nowrap'}}
-                                            to={`/person/edit/${person.personId}`}
+                                            to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
                                             data-personid={person.personId}
                                         >
@@ -131,7 +131,7 @@ export default function PersonTable(data) {
                                     >
                                         <Styled.TableRowLink 
                                             style={{'whiteSpace': 'nowrap'}}
-                                            to={`/person/edit/${person.personId}`}
+                                            to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
                                             data-personid={person.personId}
                                         > 
@@ -144,7 +144,7 @@ export default function PersonTable(data) {
                                     >
                                         <Styled.TableRowLink 
                                             style={{'whiteSpace': 'nowrap'}}
-                                            to={`/person/edit/${person.personId}`}
+                                            to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
                                             data-personid={person.personId}
                                         > 
