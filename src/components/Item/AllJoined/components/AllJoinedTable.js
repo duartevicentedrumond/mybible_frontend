@@ -15,7 +15,7 @@ export default function AllJoinedTable(data) {
             String(element.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
             String(element.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
             String(element.until).includes(searchText) ||
-            String(element.type).includes(searchText)
+            String(element.type).toLowerCase().includes(searchText)
         ) {
             return element;
         }
@@ -35,6 +35,7 @@ export default function AllJoinedTable(data) {
     const pageCount = Math.ceil(filteredAllJoined.length / allJoinedPerPage);
     const changePage = ({ selected }) => {
         setPageNumber(selected);
+        console.log(displayAllJoined)
     };
 
     return (
@@ -104,7 +105,7 @@ export default function AllJoinedTable(data) {
                 <tbody style={{ borderTop: '0px' }}>
                     {displayAllJoined.map((element) => (
 
-                        <tr key={element.id}>
+                        <tr key={element.id + element.type}>
                             <th
                                 scope="col"
                                 className="text-start align-middle px-4"
