@@ -117,7 +117,7 @@ export default function ItemTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/edit/${item.itemId}`}
+                                    to={`/item/item/view/${item.itemId}`}
                                     onClick={onRowClick}
                                     data-itemid={item.itemId}
                                 >
@@ -130,7 +130,7 @@ export default function ItemTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/edit/${item.itemId}`}
+                                    to={`/item/item/view/${item.itemId}`}
                                     onClick={onRowClick}
                                     data-itemid={item.itemId}
                                 >
@@ -143,7 +143,7 @@ export default function ItemTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/edit/${item.itemId}`}
+                                    to={`/item/item/view/${item.itemId}`}
                                     onClick={onRowClick}
                                     data-itemid={item.itemId}
                                 >
@@ -156,7 +156,7 @@ export default function ItemTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/edit/${item.itemId}`}
+                                    to={`/item/item/view/${item.itemId}`}
                                     onClick={onRowClick}
                                     data-itemid={item.itemId}
                                 >

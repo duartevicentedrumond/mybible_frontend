@@ -112,7 +112,7 @@ export default function AllJoinedTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/${element.type}/edit/${element.id}`}
+                                    to={`/item/${element.type}/view/${element.id}`}
                                     onClick={onRowClick}
                                     data-itemid={element.id}
                                 >
@@ -125,7 +125,7 @@ export default function AllJoinedTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/${element.type}/edit/${element.id}`}
+                                    to={`/item/${element.type}/view/${element.id}`}
                                     onClick={onRowClick}
                                     data-itemid={element.id}
                                 >
@@ -138,7 +138,7 @@ export default function AllJoinedTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/${element.type}/edit/${element.id}`}
+                                    to={`/item/${element.type}/view/${element.id}`}
                                     onClick={onRowClick}
                                     data-itemid={element.id}
                                 >
@@ -151,7 +151,7 @@ export default function AllJoinedTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/${element.type}/edit/${element.id}`}
+                                    to={`/item/${element.type}/view/${element.id}`}
                                     onClick={onRowClick}
                                     data-itemid={element.id}
                                 >
@@ -164,7 +164,7 @@ export default function AllJoinedTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/${element.type}/edit/${element.id}`}
+                                    to={`/item/${element.type}/view/${element.id}`}
                                     onClick={onRowClick}
                                     data-itemid={element.id}
                                 >

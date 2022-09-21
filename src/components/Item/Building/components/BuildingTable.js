@@ -23,16 +23,16 @@ export default function BuildingTable(data) {
     }
 
     const [searchText, setSearchText] = useState("");
-    const filteredBuildings = buildings.filter( building => {
-            if (
-                String(building.buildingId).includes(searchText) ||
-                String(building.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(building.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(building.until).includes(searchText)
-            ) {
-                return building;
-            }
+    const filteredBuildings = buildings.filter(building => {
+        if (
+            String(building.buildingId).includes(searchText) ||
+            String(building.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(building.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(building.until).includes(searchText)
+        ) {
+            return building;
         }
+    }
     );
 
     function handleInput(e) {
@@ -117,7 +117,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/building/edit/${building.buildingId}`}
+                                    to={`/item/building/view/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -130,7 +130,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/building/edit/${building.buildingId}`}
+                                    to={`/item/building/view/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -143,7 +143,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/building/edit/${building.buildingId}`}
+                                    to={`/item/building/view/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -156,7 +156,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/building/edit/${building.buildingId}`}
+                                    to={`/item/building/view/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >

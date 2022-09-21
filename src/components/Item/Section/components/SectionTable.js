@@ -23,16 +23,16 @@ export default function SectionTable(data) {
     }
 
     const [searchText, setSearchText] = useState("");
-    const filteredSections = sections.filter( section => {
-            if (
-                String(section.sectionId).includes(searchText) ||
-                String(section.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(section.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(section.until).includes(searchText)
-            ) {
-                return section;
-            }
+    const filteredSections = sections.filter(section => {
+        if (
+            String(section.sectionId).includes(searchText) ||
+            String(section.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(section.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(section.until).includes(searchText)
+        ) {
+            return section;
         }
+    }
     );
 
     function handleInput(e) {
@@ -117,7 +117,7 @@ export default function SectionTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/section/edit/${section.sectionId}`}
+                                    to={`/item/section/view/${section.sectionId}`}
                                     onClick={onRowClick}
                                     data-sectionid={section.sectionId}
                                 >
@@ -130,7 +130,7 @@ export default function SectionTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/section/edit/${section.sectionId}`}
+                                    to={`/item/section/view/${section.sectionId}`}
                                     onClick={onRowClick}
                                     data-sectionid={section.sectionId}
                                 >
@@ -143,7 +143,7 @@ export default function SectionTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/section/edit/${section.sectionId}`}
+                                    to={`/item/section/view/${section.sectionId}`}
                                     onClick={onRowClick}
                                     data-sectionid={section.sectionId}
                                 >
@@ -156,7 +156,7 @@ export default function SectionTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/section/edit/${section.sectionId}`}
+                                    to={`/item/section/view/${section.sectionId}`}
                                     onClick={onRowClick}
                                     data-sectionid={section.sectionId}
                                 >

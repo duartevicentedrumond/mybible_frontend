@@ -23,16 +23,16 @@ export default function RoomTable(data) {
     }
 
     const [searchText, setSearchText] = useState("");
-    const filteredRooms = rooms.filter( room => {
-            if (
-                String(room.roomId).includes(searchText) ||
-                String(room.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(room.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(room.until).includes(searchText)
-            ) {
-                return room;
-            }
+    const filteredRooms = rooms.filter(room => {
+        if (
+            String(room.roomId).includes(searchText) ||
+            String(room.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(room.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(room.until).includes(searchText)
+        ) {
+            return room;
         }
+    }
     );
 
     function handleInput(e) {
@@ -117,7 +117,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/room/edit/${room.roomId}`}
+                                    to={`/item/room/view/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -130,7 +130,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/room/edit/${room.roomId}`}
+                                    to={`/item/room/view/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -143,7 +143,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/room/edit/${room.roomId}`}
+                                    to={`/item/room/view/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -156,7 +156,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/room/edit/${room.roomId}`}
+                                    to={`/item/room/view/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
