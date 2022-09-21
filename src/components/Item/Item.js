@@ -1,10 +1,34 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import ItemList from "./Item/ItemList";
 import AllJoinedList from "./AllJoined/AllJoinedList";
+import BoxList from "./Box/BoxList";
+import SectionList from "./Section/SectionList";
+import FurnitureList from "./Furniture/FurnitureList";
+import RoomList from "./Room/RoomList";
+import BuildingList from "./Building/BuildingList";
+import AddItemModal from "./AddItemModal";
+
 import { Styled } from "../../design/style";
 
 export default function Item() {
+
+    //define states and variables for types modal form
+
+    //set state for showNewModal
+    const [showNewModal, setShowNewModal] = useState(false);
+
+    //set functions to handle state change
+    function handleShowNewModal(e) {
+
+      e.preventDefault();
+
+      setShowNewModal(true);
+    };
+
+    function handleCloseNewModal() {
+      setShowNewModal(false);
+    };
 
   return (
     <div className="container-fluid">
@@ -14,8 +38,8 @@ export default function Item() {
         <div className="col-10 text-start py-3">
 
           <ul className="nav nav-tabs">
-          <li className="nav-item pe-3">
-              <Styled.SecondaryNavBarLink to={'/item'}>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/item/allItems'}>
                 All
               </Styled.SecondaryNavBarLink>
             </li>
@@ -25,15 +49,48 @@ export default function Item() {
               </Styled.SecondaryNavBarLink>
             </li>
             <li className="nav-item pe-3">
-              <Styled.SecondaryNavBarLink to={'/item/add'}>
+              <Styled.SecondaryNavBarLink to={'/item/box'}>
+                Boxes
+              </Styled.SecondaryNavBarLink>
+            </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/item/section'}>
+                Sections
+              </Styled.SecondaryNavBarLink>
+            </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/item/furniture'}>
+                Furnitures
+              </Styled.SecondaryNavBarLink>
+            </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/item/room'}>
+                Rooms
+              </Styled.SecondaryNavBarLink>
+            </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink to={'/item/building'}>
+                Buildings
+              </Styled.SecondaryNavBarLink>
+            </li>
+            <li className="nav-item pe-3">
+              <Styled.SecondaryNavBarLink 
+                to='#'
+                onClick={handleShowNewModal}
+              >
                 New
               </Styled.SecondaryNavBarLink>
             </li>
           </ul>
 
           <Routes>
-            <Route path="/" element={<AllJoinedList/>} />
+            <Route path="/allItems" element={<AllJoinedList/>} />
             <Route path="/item" element={<ItemList/>} />
+            <Route path="/box" element={<BoxList/>} />
+            <Route path="/section" element={<SectionList/>} />
+            <Route path="/furniture" element={<FurnitureList/>} />
+            <Route path="/room" element={<RoomList/>} />
+            <Route path="/building" element={<BuildingList/>} />
           </Routes> 
         </div>
           
@@ -41,6 +98,12 @@ export default function Item() {
           <Routes>
           </Routes>
         </div>
+
+        {/*new item/box/section/furniture/room/building modal input form*/}
+        <AddItemModal
+          showModal={showNewModal}
+          handleCloseModal={handleCloseNewModal}
+        />
 
       </div>
     </div>

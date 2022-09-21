@@ -20,7 +20,7 @@ const NavBar = () => {
             <Styled.NavBarLink to="/people" className="px-1 px-sm-2" >
                 <Styled.NavBarLinkPeople/>
             </Styled.NavBarLink>
-            <Styled.NavBarLink to="/item" className="px-1 px-sm-2">
+            <Styled.NavBarLink to="/item/AllItems" className="px-1 px-sm-2">
                 <Styled.NavBarLinkItems/>
             </Styled.NavBarLink>
         </nav>

@@ -63,7 +63,7 @@ const linkText = {
         size: text.hover.size,
         weight: text.hover.weight,
         decoration: 'none',
-        transform: 'scale(1.2)',
+        transform: 'scale(1.5)',
         border: 'none',
         backgroundColor: 'white'
     }
@@ -319,6 +319,18 @@ const FormInput = styled.input`
     outline: none;
 `;
 
+const FormSwitch = styled.input`
+
+    &:checked {
+        border-color: ${text.normal.color};
+        background-color: ${text.normal.color};
+    }
+
+    &:focus {
+        border-color: ${text.normal.color};
+    }
+`;
+
 const FormDate = styled(DatePicker)`
     color: ${text.normal.color};
     font-size: ${text.normal.size + 5}px;
@@ -401,6 +413,7 @@ export const Styled = {
     TitleButton,
     FormLabel,
     FormInput,
+    FormSwitch,
     FormDate,
     FormSelect,
     FormSearchBar,
