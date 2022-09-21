@@ -9,10 +9,7 @@ import { Styled } from "../design/style";
 
 export default function ItemLocationBar(data) {
 
-    const [buildings, rooms, furnitures, sections, boxes, items] = data.items;
-    const elementId = data.elementId;
-    const type = data.type;
-    const [location, setLocation] = data.location;
+    const location = data.location;
 
     return (
         <div className="d-flex flex-row align-items-baseline ps-2">

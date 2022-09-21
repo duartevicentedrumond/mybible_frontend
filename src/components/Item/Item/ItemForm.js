@@ -200,10 +200,7 @@ export default function ItemForm(data) {
     <div className="d-flex flex-column text-start pb-3 px-0">
 
       <ItemLocationBar
-        items={[buildings, rooms, furnitures, sections, boxes, items]}
-        elementId={info.id}
-        type={info.type}
-        location={[location, setLocation]}
+        location={location}
       />
 
       <ItemSelectionBar
