@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { MdOutlineHouse, MdOutlineMeetingRoom } from "react-icons/md";
-import { BiBed, BiLayout, BiFootball } from "react-icons/bi";
-import { BsBoxSeam } from "react-icons/bs";
-
-import { getLocation } from "./../general_components/ItemFunctions";
+import React from 'react';
 
 import { Styled } from "../design/style";
 
