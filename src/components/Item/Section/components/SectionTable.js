@@ -6,7 +6,21 @@ export default function SectionTable(data) {
 
     //define initial variables
     const sections = data.sections;
-    const onRowClick = data.onRowClick;
+    const onSectionClick = data.onSectionClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a section
+        if (onSectionClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onSectionClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredSections = sections.filter( section => {
@@ -105,7 +119,7 @@ export default function SectionTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/section/edit/${section.sectionId}`}
                                     onClick={onRowClick}
-                                    data-itemid={section.sectionId}
+                                    data-sectionid={section.sectionId}
                                 >
                                     {section.sectionId}
                                 </Styled.TableRowLink>
@@ -118,7 +132,7 @@ export default function SectionTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/section/edit/${section.sectionId}`}
                                     onClick={onRowClick}
-                                    data-itemid={section.sectionId}
+                                    data-sectionid={section.sectionId}
                                 >
                                     {section.name}
                                 </Styled.TableRowLink>
@@ -131,7 +145,7 @@ export default function SectionTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/section/edit/${section.sectionId}`}
                                     onClick={onRowClick}
-                                    data-itemid={section.sectionId}
+                                    data-sectionid={section.sectionId}
                                 >
                                     {section.since}
                                 </Styled.TableRowLink>
@@ -144,7 +158,7 @@ export default function SectionTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/section/edit/${section.sectionId}`}
                                     onClick={onRowClick}
-                                    data-itemid={section.sectionId}
+                                    data-sectionid={section.sectionId}
                                 >
                                     {section.until}
                                 </Styled.TableRowLink>

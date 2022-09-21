@@ -200,7 +200,7 @@ const NavBarLinkTransactions = styled(MdOutlineAttachMoney)`
         
     &:hover {
         color: ${linkText.hover.color};
-        font-size: ${linkText.hover.size + 10}px;
+        font-size: ${linkText.normal.size + 10}px;
         font-weight: ${linkText.hover.weight};
         text-decoration: ${linkText.hover.decoration};
         transform: ${linkText.hover.transform}
@@ -216,7 +216,7 @@ const NavBarLinkItems = styled(BsBoxSeam)`
         
     &:hover {
         color: ${linkText.hover.color};
-        font-size: ${linkText.hover.size + 10}px;
+        font-size: ${linkText.normal.size + 10}px;
         font-weight: ${linkText.hover.weight};
         text-decoration: ${linkText.hover.decoration};
         transform: ${linkText.hover.transform}
@@ -232,7 +232,7 @@ const NavBarLinkPeople = styled(FiUser)`
         
     &:hover {
         color: ${linkText.hover.color};
-        font-size: ${linkText.hover.size + 10}px;
+        font-size: ${linkText.normal.size + 10}px;
         font-weight: ${linkText.hover.weight};
         text-decoration: ${linkText.hover.decoration};
         transform: ${linkText.hover.transform}
@@ -248,7 +248,7 @@ const NavBarLinkHome = styled(FiBook)`
         
     &:hover {
         color: ${linkText.hover.color};
-        font-size: ${linkText.hover.size + 10}px;
+        font-size: ${linkText.normal.size + 10}px;
         font-weight: ${linkText.hover.weight};
         text-decoration: ${linkText.hover.decoration};
         transform: ${linkText.hover.transform}
@@ -328,6 +328,30 @@ const FormSwitch = styled.input`
 
     &:focus {
         border-color: ${text.normal.color};
+    }
+`;
+
+const FormButton = styled.a`
+    color: ${linkText.normal.color};
+    font-size: ${linkText.normal.size + 10}px;
+    font-weight: ${linkText.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+    border: ${linkText.normal.border};
+    background-color: ${linkText.normal.backgroundColor};
+    margin-right: 10px;
+    margin-top: 2px;
+        
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.normal.size + 10}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform};
+        border: ${linkText.hover.border};
+        background-color: ${linkText.hover.backgroundColor};
+        margin-right: 10px;
+        margin-top: 2px;
     }
 `;
 
@@ -412,6 +436,7 @@ export const Styled = {
     Title,
     TitleButton,
     FormLabel,
+    FormButton,
     FormInput,
     FormSwitch,
     FormDate,

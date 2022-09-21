@@ -1,16 +1,4 @@
-//function to convert date object to string
-export function dateToString(date) {
-
-    if (date !== null) {
-        const year = date.getFullYear();
-        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-        const day = ('0' + date.getDate()).slice(-2);
-        date = year + "-" + month + "-" + day;
-    }
-
-    return date;
-
-};
+import { dateToString } from "./Functions";
 
 //function to get location
 export function getLocation(
@@ -49,6 +37,10 @@ export function getLocation(
 
             setLocation(existingLocation => ({
                 ...existingLocation,
+                building: {
+                    buildingId: null,
+                    name: null
+                },
                 room: {
                     roomId: filteredRoom.roomId,
                     name: filteredRoom.name
@@ -76,6 +68,14 @@ export function getLocation(
 
             setLocation(existingLocation => ({
                 ...existingLocation,
+                building: {
+                    buildingId: null,
+                    name: null
+                },
+                room: {
+                    roomId: null,
+                    name: null
+                },
                 furniture: {
                     furnitureId: filteredFurniture.furnitureId,
                     name: filteredFurniture.name
@@ -110,6 +110,18 @@ export function getLocation(
 
             setLocation(existingLocation => ({
                 ...existingLocation,
+                building: {
+                    buildingId: null,
+                    name: null
+                },
+                room: {
+                    roomId: null,
+                    name: null
+                },
+                furniture: {
+                    furnitureId: null,
+                    name: null
+                },
                 section: {
                     sectionId: filteredSection.sectionId,
                     name: filteredSection.name
@@ -151,6 +163,22 @@ export function getLocation(
 
             setLocation(existingLocation => ({
                 ...existingLocation,
+                building: {
+                    buildingId: null,
+                    name: null
+                },
+                room: {
+                    roomId: null,
+                    name: null
+                },
+                furniture: {
+                    furnitureId: null,
+                    name: null
+                },
+                section: {
+                    sectionId: null,
+                    name: null
+                },
                 box: {
                     boxId: filteredBox.boxId,
                     name: filteredBox.name
@@ -199,6 +227,26 @@ export function getLocation(
 
             setLocation(existingLocation => ({
                 ...existingLocation,
+                building: {
+                    buildingId: null,
+                    name: null
+                },
+                room: {
+                    roomId: null,
+                    name: null
+                },
+                furniture: {
+                    furnitureId: null,
+                    name: null
+                },
+                section: {
+                    sectionId: null,
+                    name: null
+                },
+                box: {
+                    boxId: null,
+                    name: null
+                },
                 item: {
                     itemId: filteredItem.itemId,
                     name: filteredItem.name
@@ -247,4 +295,89 @@ export function getLocation(
         default:
             break;
     }
-}; 
+};
+
+//udpate state when name input changes
+export function handleNameChange(e, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        name: e.target.value
+    }));
+};
+
+//udpate state when name input changes
+export function handleActiveChange(e, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        active: e.target.checked
+    }));
+
+    if (e.target.checked) {
+        handleUntilChange(null, setElement);
+    } else {
+        handleUntilChange(new Date(), setElement);
+    }
+
+};
+
+//udpate item state when since input changes
+export function handleSinceChange(date, setElement) {
+
+    const dateString = dateToString(date);
+
+    setElement(existingElement => ({
+        ...existingElement,
+        since: dateString
+    }));
+};
+
+//udpate item state when until input changes
+export function handleUntilChange(date, setElement) {
+
+    const dateString = dateToString(date);
+
+    setElement(existingElement => ({
+        ...existingElement,
+        until: dateString
+    }));
+};
+
+//udpate item state when building input changes
+export function handleBuildingChange(buildingId, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        building: { buildingId: buildingId }
+    }));
+};
+
+//udpate item state when room input changes
+export function handleRoomChange(roomId, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        room: { roomId: roomId }
+    }));
+};
+
+//udpate item state when furniture input changes
+export function handleFurnitureChange(furnitureId, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        furniture: { furnitureId: furnitureId }
+    }));
+};
+
+//udpate item state when section input changes
+export function handleSectionChange(sectionId, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        section: { sectionId: sectionId }
+    }));
+};
+
+//udpate item state when box input changes
+export function handleBoxChange(boxId, setElement) {
+    setElement(existingElement => ({
+        ...existingElement,
+        box: { boxId: boxId }
+    }));
+};

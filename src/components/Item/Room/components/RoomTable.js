@@ -6,7 +6,21 @@ export default function RoomTable(data) {
 
     //define initial variables
     const rooms = data.rooms;
-    const onRowClick = data.onRowClick;
+    const onRoomClick = data.onRoomClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a room
+        if (onRoomClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onRoomClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredRooms = rooms.filter( room => {
@@ -105,7 +119,7 @@ export default function RoomTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
-                                    data-itemid={room.roomId}
+                                    data-roomid={room.roomId}
                                 >
                                     {room.roomId}
                                 </Styled.TableRowLink>
@@ -118,7 +132,7 @@ export default function RoomTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
-                                    data-itemid={room.roomId}
+                                    data-roomid={room.roomId}
                                 >
                                     {room.name}
                                 </Styled.TableRowLink>
@@ -131,7 +145,7 @@ export default function RoomTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
-                                    data-itemid={room.roomId}
+                                    data-roomid={room.roomId}
                                 >
                                     {room.since}
                                 </Styled.TableRowLink>
@@ -144,7 +158,7 @@ export default function RoomTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
-                                    data-itemid={room.roomId}
+                                    data-roomid={room.roomId}
                                 >
                                     {room.until}
                                 </Styled.TableRowLink>

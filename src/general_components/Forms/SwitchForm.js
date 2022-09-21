@@ -20,7 +20,7 @@ export default function SwitchForm(data) {
                 type="checkbox"
                 role="switch"
                 onChange={onChangeField}
-                value={value}
+                checked={value}
                 id={id}
             />
         </div>

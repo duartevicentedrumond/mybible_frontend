@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 
 import { Styled } from "../../design/style";
 import ItemForm from "./Item/ItemForm";
+import ItemContex from "./../../context/Item/Item/ItemContext";
 import BoxContext from "./../../context/Item/Box/BoxContext";
 import SectionContext from "./../../context/Item/Section/SectionContext";
 import FurnitureContext from "./../../context/Item/Furniture/FurnitureContext";
@@ -14,6 +15,13 @@ import { RiParentLine } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function AddItemModal(data) {
+
+    //define initial given variables
+    const showModal = data.showModal;
+    const handleCloseModal = data.handleCloseModal;
+
+    //get context for item
+    const { items, getItems, addItem, updateItem } = useContext(ItemContex);
 
     //get context for box
     const { boxes, getBoxes } = useContext(BoxContext);
@@ -32,10 +40,6 @@ export default function AddItemModal(data) {
 
     //set state for modal title
     const [itemType, setItemType] = useState("Item");
-
-    //define initial given variables
-    const showModal = data.showModal;
-    const handleCloseModal = data.handleCloseModal;
 
     //set state for showAddItem
     const [showAddItem, setShowAddItem] = useState(true);
@@ -142,7 +146,8 @@ export default function AddItemModal(data) {
     //run on the first render and anytime any dependency value changes
     useEffect( () => {
 
-      //get all existing boxes, sections, furniture, rooms and buildings
+      //get all existing items, sections, furniture, rooms and buildings
+      getItems();
       getBoxes();
       getSections();
       getFurnitures();
@@ -224,11 +229,7 @@ export default function AddItemModal(data) {
 
                     { showAddItem ? 
                         <ItemForm 
-                            boxes={boxes}
-                            sections={sections}
-                            furnitures={furnitures}
-                            rooms={rooms}
-                            buildings={buildings}
+                            items={[items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings]}
                         /> 
                         : null
                     }

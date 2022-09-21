@@ -6,7 +6,21 @@ export default function BuildingTable(data) {
 
     //define initial variables
     const buildings = data.buildings;
-    const onRowClick = data.onRowClick;
+    const onBuildingClick = data.onBuildingClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a building
+        if (onBuildingClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onBuildingClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredBuildings = buildings.filter( building => {
@@ -105,7 +119,7 @@ export default function BuildingTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
-                                    data-itemid={building.buildingId}
+                                    data-buildingid={building.buildingId}
                                 >
                                     {building.buildingId}
                                 </Styled.TableRowLink>
@@ -118,7 +132,7 @@ export default function BuildingTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
-                                    data-itemid={building.buildingId}
+                                    data-buildingid={building.buildingId}
                                 >
                                     {building.name}
                                 </Styled.TableRowLink>
@@ -131,7 +145,7 @@ export default function BuildingTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
-                                    data-itemid={building.buildingId}
+                                    data-buildingid={building.buildingId}
                                 >
                                     {building.since}
                                 </Styled.TableRowLink>
@@ -144,7 +158,7 @@ export default function BuildingTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
-                                    data-itemid={building.buildingId}
+                                    data-buildingid={building.buildingId}
                                 >
                                     {building.until}
                                 </Styled.TableRowLink>

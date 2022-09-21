@@ -6,7 +6,21 @@ export default function FurnitureTable(data) {
 
     //define initial variables
     const furnitures = data.furnitures;
-    const onRowClick = data.onRowClick;
+    const onFurnitureClick = data.onFurnitureClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a room
+        if (onFurnitureClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onFurnitureClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredFurnitures = furnitures.filter( furniture => {
@@ -105,7 +119,7 @@ export default function FurnitureTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
-                                    data-itemid={furniture.furnitureId}
+                                    data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.furnitureId}
                                 </Styled.TableRowLink>
@@ -118,7 +132,7 @@ export default function FurnitureTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
-                                    data-itemid={furniture.furnitureId}
+                                    data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.name}
                                 </Styled.TableRowLink>
@@ -131,7 +145,7 @@ export default function FurnitureTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
-                                    data-itemid={furniture.furnitureId}
+                                    data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.since}
                                 </Styled.TableRowLink>
@@ -144,7 +158,7 @@ export default function FurnitureTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
-                                    data-itemid={furniture.furnitureId}
+                                    data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.until}
                                 </Styled.TableRowLink>

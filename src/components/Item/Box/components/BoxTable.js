@@ -6,7 +6,21 @@ export default function BoxTable(data) {
 
     //define initial variables
     const boxes = data.boxes;
-    const onRowClick = data.onRowClick;
+    const onBoxClick = data.onBoxClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a room
+        if (onBoxClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onBoxClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredBoxes = boxes.filter( box => {
@@ -105,7 +119,7 @@ export default function BoxTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/box/edit/${box.boxId}`}
                                     onClick={onRowClick}
-                                    data-itemid={box.boxId}
+                                    data-boxid={box.boxId}
                                 >
                                     {box.boxId}
                                 </Styled.TableRowLink>
@@ -118,7 +132,7 @@ export default function BoxTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/box/edit/${box.boxId}`}
                                     onClick={onRowClick}
-                                    data-itemid={box.boxId}
+                                    data-boxid={box.boxId}
                                 >
                                     {box.name}
                                 </Styled.TableRowLink>
@@ -131,7 +145,7 @@ export default function BoxTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/box/edit/${box.boxId}`}
                                     onClick={onRowClick}
-                                    data-itemid={box.boxId}
+                                    data-boxid={box.boxId}
                                 >
                                     {box.since}
                                 </Styled.TableRowLink>
@@ -144,7 +158,7 @@ export default function BoxTable(data) {
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/box/edit/${box.boxId}`}
                                     onClick={onRowClick}
-                                    data-itemid={box.boxId}
+                                    data-boxid={box.boxId}
                                 >
                                     {box.until}
                                 </Styled.TableRowLink>

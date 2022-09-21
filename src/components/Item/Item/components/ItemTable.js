@@ -6,7 +6,21 @@ export default function ItemTable(data) {
 
     //define initial variables
     const items = data.items;
-    const onRowClick = data.onRowClick;
+    const onItemClick = data.onItemClick;
+    const handleCloseModal = data.handleCloseModal;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a item
+        if (onItemClick !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onItemClick(e);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredItems = items.filter( item => {
