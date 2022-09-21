@@ -6,7 +6,9 @@ import { Styled } from "../../design/style";
 import ItemForm from "./Item/ItemForm";
 import BoxForm from "./Box/BoxForm";
 import SectionForm from "./Section/SectionForm";
+import RoomForm from "./Room/RoomForm";
 import FurnitureForm from "./Furniture/FurnitureForm";
+import BuildingForm from "./Building/BuildingForm";
 import ItemContex from "./../../context/Item/Item/ItemContext";
 import BoxContext from "./../../context/Item/Box/BoxContext";
 import SectionContext from "./../../context/Item/Section/SectionContext";
@@ -36,10 +38,10 @@ export default function AddItemModal(data) {
     const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
 
     //get context for room
-    const { rooms, getRooms } = useContext(RoomContext);
+    const { rooms, getRooms, addRoom, updateRoom } = useContext(RoomContext);
 
     //get context for building
-    const { buildings, getBuildings } = useContext(BuildingContext);
+    const { buildings, getBuildings, addBuilding, updateBuilding } = useContext(BuildingContext);
 
     //set state for modal title
     const [itemType, setItemType] = useState("Item");
@@ -256,8 +258,18 @@ export default function AddItemModal(data) {
                             handleCloseModal={handleCloseModal}
                         />
                     : null}
-                    { showAddRoom ? <div>Room</div> : null}
-                    { showAddBuilding ? <div>Building</div> : null}
+                    { showAddRoom ? 
+                        <RoomForm 
+                            items={[items, boxes, sections, furnitures, rooms, addRoom, updateRoom, buildings]}
+                            handleCloseModal={handleCloseModal}
+                        />
+                        : null}
+                    { showAddBuilding ? 
+                        <BuildingForm 
+                            items={[items, boxes, sections, furnitures, rooms, buildings, addBuilding, updateBuilding]}
+                            handleCloseModal={handleCloseModal}
+                        /> 
+                        : null}
 
                 </div>
             </Modal.Body>
