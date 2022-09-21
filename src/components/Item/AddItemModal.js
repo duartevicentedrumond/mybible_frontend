@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 
 import { Styled } from "../../design/style";
 import ItemForm from "./Item/ItemForm";
+import BoxForm from "./Box/BoxForm";
 import ItemContex from "./../../context/Item/Item/ItemContext";
 import BoxContext from "./../../context/Item/Box/BoxContext";
 import SectionContext from "./../../context/Item/Section/SectionContext";
@@ -24,7 +25,7 @@ export default function AddItemModal(data) {
     const { items, getItems, addItem, updateItem } = useContext(ItemContex);
 
     //get context for box
-    const { boxes, getBoxes } = useContext(BoxContext);
+    const { boxes, getBoxes, addBox, updateBox } = useContext(BoxContext);
 
     //get context for section
     const { sections, getSections } = useContext(SectionContext);
@@ -234,7 +235,12 @@ export default function AddItemModal(data) {
                         /> 
                         : null
                     }
-                    { showAddBox ? <div>Box</div> : null}
+                    { showAddBox ? <BoxForm 
+                            items={[items, boxes, addBox, updateBox, sections, furnitures, rooms, buildings]}
+                            handleCloseModal={handleCloseModal}
+                        /> 
+                        : null
+                    }
                     { showAddSection ? <div>Section</div> : null}
                     { showAddFurniture ? <div>Furniture</div> : null}
                     { showAddRoom ? <div>Room</div> : null}
