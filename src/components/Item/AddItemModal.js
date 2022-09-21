@@ -230,6 +230,7 @@ export default function AddItemModal(data) {
                     { showAddItem ? 
                         <ItemForm 
                             items={[items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings]}
+                            handleCloseModal={handleCloseModal}
                         /> 
                         : null
                     }

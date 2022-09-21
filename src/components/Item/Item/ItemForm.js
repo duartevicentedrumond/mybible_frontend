@@ -22,6 +22,8 @@ export default function ItemForm(data) {
   //get items, boxes, sections, furniture, rooms and buildings
   const [items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings] = data.items;
 
+  const handleCloseModal = data.handleCloseModal;
+
   //get frontend directory
   const history = useNavigate();
 
@@ -31,11 +33,11 @@ export default function ItemForm(data) {
     active: true,
     since: dateToString(new Date()),
     until: null,
-    building: { buildingId: null },
-    room: { roomId: null },
-    furniture: { furnitureId: null },
-    section: { sectionId: null },
-    box: { boxId: null }
+    building: null,
+    room: null,
+    furniture: null,
+    section: null,
+    box: null
   });
 
   const newLocation = {
@@ -136,8 +138,10 @@ export default function ItemForm(data) {
       addItem(item);
     }
 
+    handleCloseModal();
+
     //redirects to transactions list page
-    history("/item");
+    history("/item/AllItems");
   };
 
   return (
