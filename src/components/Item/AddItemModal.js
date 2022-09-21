@@ -6,6 +6,7 @@ import { Styled } from "../../design/style";
 import ItemForm from "./Item/ItemForm";
 import BoxForm from "./Box/BoxForm";
 import SectionForm from "./Section/SectionForm";
+import FurnitureForm from "./Furniture/FurnitureForm";
 import ItemContex from "./../../context/Item/Item/ItemContext";
 import BoxContext from "./../../context/Item/Box/BoxContext";
 import SectionContext from "./../../context/Item/Section/SectionContext";
@@ -32,7 +33,7 @@ export default function AddItemModal(data) {
     const { sections, getSections, addSection, updateSection } = useContext(SectionContext);
 
     //get context for furniture
-    const { furnitures, getFurnitures } = useContext(FurnitureContext);
+    const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
 
     //get context for room
     const { rooms, getRooms } = useContext(RoomContext);
@@ -249,7 +250,12 @@ export default function AddItemModal(data) {
                             handleCloseModal={handleCloseModal}
                         />
                         : null}
-                    { showAddFurniture ? <div>Furniture</div> : null}
+                    { showAddFurniture ? 
+                        <FurnitureForm 
+                            items={[items, boxes, sections, furnitures, addFurniture, updateFurniture, rooms, buildings]}
+                            handleCloseModal={handleCloseModal}
+                        />
+                    : null}
                     { showAddRoom ? <div>Room</div> : null}
                     { showAddBuilding ? <div>Building</div> : null}
 
