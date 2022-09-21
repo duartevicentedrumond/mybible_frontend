@@ -73,54 +73,6 @@ export default function RoomForm(data) {
     getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], buildingId, 'building');
   };
 
-  //udpate item state when room input changes
-  function onRoomClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const roomId = e.target.dataset.roomid;
-    handleRoomChange(roomId, setRoom);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], roomId, 'room');
-  };
-
-  //udpate item state when furniture input changes
-  function onFurnitureClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const furnitureId = e.target.dataset.furnitureid;
-    handleFurnitureChange(furnitureId, setRoom);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], furnitureId, 'furniture');
-  };
-
-  //udpate item state when room input changes
-  function onSectionClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const roomId = e.target.dataset.roomid;
-    handleSectionChange(roomId, setRoom);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], roomId, 'room');
-  };
-
-  //udpate item state when box input changes
-  function onBoxClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const boxId = e.target.dataset.boxid;
-    handleBoxChange(boxId, setRoom);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], boxId, 'box');
-  };
-
   //saves item and redirects to items list page
   function handleSubmit(e) {
 

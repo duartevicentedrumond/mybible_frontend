@@ -112,18 +112,6 @@ export default function BoxForm(data) {
     getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], sectionId, 'section');
   };
 
-  //udpate item state when box input changes
-  function onBoxClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const boxId = e.target.dataset.boxid;
-    handleBoxChange(boxId, setBox);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], boxId, 'box');
-  };
-
   //saves item and redirects to items list page
   function handleSubmit(e) {
 

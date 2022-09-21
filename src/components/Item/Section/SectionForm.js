@@ -99,30 +99,6 @@ export default function SectionForm(data) {
     getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], furnitureId, 'furniture');
   };
 
-  //udpate item state when section input changes
-  function onSectionClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const sectionId = e.target.dataset.sectionid;
-    handleSectionChange(sectionId, setSection);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], sectionId, 'section');
-  };
-
-  //udpate item state when box input changes
-  function onBoxClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const boxId = e.target.dataset.boxid;
-    handleBoxChange(boxId, setSection);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], boxId, 'box');
-  };
-
   //saves item and redirects to items list page
   function handleSubmit(e) {
 
