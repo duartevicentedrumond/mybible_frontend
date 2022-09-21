@@ -16,6 +16,7 @@ import InputForm from "../../../general_components/Forms/InputForm";
 import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
 import ItemSelectionBar from "../../../general_components/ItemSelectionBar";
+import ItemLocationBar from "../../../general_components/ItemLocationBar";
 
 export default function ItemForm(data) {
 
@@ -23,21 +24,33 @@ export default function ItemForm(data) {
   const [items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings] = data.items;
 
   const handleCloseModal = data.handleCloseModal;
+  let itemData;
+
+  if (data.item === undefined) {
+    itemData = {
+      name: null,
+      active: true,
+      since: dateToString(new Date()),
+      until: null,
+      building: null,
+      room: null,
+      furniture: null,
+      section: null,
+      box: null
+    }
+  } else {
+    itemData = data.item;
+  }
 
   //get frontend directory
   const history = useNavigate();
 
   //set item state
-  const [item, setItem] = useState({
-    name: null,
-    active: true,
-    since: dateToString(new Date()),
-    until: null,
-    building: null,
-    room: null,
-    furniture: null,
-    section: null,
-    box: null
+  const [item, setItem] = useState(itemData);
+
+  const [info, setInfo] = useState({
+    id: null,
+    type: null
   });
 
   const newLocation = {
@@ -74,7 +87,13 @@ export default function ItemForm(data) {
     const buildingId = e.target.dataset.buildingid;
     handleBuildingChange(buildingId, setItem);
     setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], buildingId, 'building');
+    getLocation(
+      [location, setLocation],
+      [buildings, rooms, furnitures, sections, boxes, items],
+      buildingId,
+      'building'
+    );
+
   };
 
   //udpate item state when room input changes
@@ -86,7 +105,12 @@ export default function ItemForm(data) {
     const roomId = e.target.dataset.roomid;
     handleRoomChange(roomId, setItem);
     setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], roomId, 'room');
+    getLocation(
+      [location, setLocation],
+      [buildings, rooms, furnitures, sections, boxes, items],
+      roomId,
+      'room'
+    );
   };
 
   //udpate item state when furniture input changes
@@ -98,7 +122,12 @@ export default function ItemForm(data) {
     const furnitureId = e.target.dataset.furnitureid;
     handleFurnitureChange(furnitureId, setItem);
     setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], furnitureId, 'furniture');
+    getLocation(
+      [location, setLocation],
+      [buildings, rooms, furnitures, sections, boxes, items],
+      furnitureId,
+      'furniture'
+    );
   };
 
   //udpate item state when section input changes
@@ -110,7 +139,12 @@ export default function ItemForm(data) {
     const sectionId = e.target.dataset.sectionid;
     handleSectionChange(sectionId, setItem);
     setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], sectionId, 'section');
+    getLocation(
+      [location, setLocation],
+      [buildings, rooms, furnitures, sections, boxes, items],
+      sectionId,
+      'section'
+    );
   };
 
   //udpate item state when box input changes
@@ -122,7 +156,12 @@ export default function ItemForm(data) {
     const boxId = e.target.dataset.boxid;
     handleBoxChange(boxId, setItem);
     setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], boxId, 'box');
+    getLocation(
+      [location, setLocation],
+      [buildings, rooms, furnitures, sections, boxes, items],
+      boxId,
+      'box'
+    );
   };
 
   //saves item and redirects to items list page
@@ -136,9 +175,8 @@ export default function ItemForm(data) {
     }
     else { //if item doesn't exist adds new
       addItem(item);
+      handleCloseModal();
     }
-
-    handleCloseModal();
 
     //redirects to transactions list page
     history("/item/AllItems");
@@ -146,6 +184,13 @@ export default function ItemForm(data) {
 
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
+
+      <ItemLocationBar
+        items={[buildings, rooms, furnitures, sections, boxes, items]}
+        elementId={info.id}
+        type={info.type}
+        location={[location, setLocation]}
+      />
 
       <ItemSelectionBar
         Building={[false, BuildingTable, buildings, onBuildingClick]}
@@ -186,56 +231,6 @@ export default function ItemForm(data) {
           onChangeField={(date) => handleUntilChange(date, setItem)}
           placeholder="until..."
           label="until"
-        />
-        : null
-      }
-
-      {/*item building input form to show only when exists*/}
-      {location.building.buildingId !== null ?
-        <InputForm
-          value={location.building.name}
-          placeholder="building..."
-          label="building"
-        />
-        : null
-      }
-
-      {/*item room input form to show only when exists*/}
-      {location.room.roomId !== null ?
-        <InputForm
-          value={location.room.name}
-          placeholder="room..."
-          label="room"
-        />
-        : null
-      }
-
-      {/*item furniture input form to show only when exists*/}
-      {location.furniture.furnitureId !== null ?
-        <InputForm
-          value={location.furniture.name}
-          placeholder="furniture..."
-          label="furniture"
-        />
-        : null
-      }
-
-      {/*item section input form to show only when exists*/}
-      {location.section.sectionId !== null ?
-        <InputForm
-          value={location.section.name}
-          placeholder="section..."
-          label="section"
-        />
-        : null
-      }
-
-      {/*item box input form to show only when exists*/}
-      {location.box.boxId !== null ?
-        <InputForm
-          value={location.box.name}
-          placeholder="box..."
-          label="box"
         />
         : null
       }

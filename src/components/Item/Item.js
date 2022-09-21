@@ -8,6 +8,7 @@ import FurnitureList from "./Furniture/FurnitureList";
 import RoomList from "./Room/RoomList";
 import BuildingList from "./Building/BuildingList";
 import AddItemModal from "./AddItemModal";
+import ItemView from "./Item/ItemView";
 
 import { Styled } from "../../design/style";
 
@@ -91,6 +92,7 @@ export default function Item() {
             <Route path="/furniture" element={<FurnitureList/>} />
             <Route path="/room" element={<RoomList/>} />
             <Route path="/building" element={<BuildingList/>} />
+            <Route path="/item/edit/:id" element={<ItemView/>} />
           </Routes> 
         </div>
           
