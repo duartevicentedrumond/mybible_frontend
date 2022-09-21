@@ -182,6 +182,20 @@ export default function ItemForm(data) {
     history("/item/AllItems");
   };
 
+  //run on the first render and anytime any dependency value changes
+  useEffect(() => {
+
+    if (item.itemId !== null ) {
+      getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        item.itemId,
+        'item'
+      );
+    }
+
+  }, [items]); //page first rendering depends on params.id and transactions
+
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
 
