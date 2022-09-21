@@ -23,16 +23,16 @@ export default function ItemTable(data) {
     }
 
     const [searchText, setSearchText] = useState("");
-    const filteredItems = items.filter( item => {
-            if (
-                String(item.itemId).includes(searchText) ||
-                String(item.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(item.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(item.until).includes(searchText)
-            ) {
-                return item;
-            }
+    const filteredItems = items.filter(item => {
+        if (
+            String(item.itemId).includes(searchText) ||
+            String(item.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(item.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(item.until).includes(searchText)
+        ) {
+            return item;
         }
+    }
     );
 
     function handleInput(e) {

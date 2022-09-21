@@ -9,17 +9,17 @@ export default function AllJoinedTable(data) {
     const onRowClick = data.onRowClick;
 
     const [searchText, setSearchText] = useState("");
-    const filteredAllJoined = allJoined.filter( element => {
-            if (
-                String(element.id).includes(searchText) ||
-                String(element.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(element.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                String(element.until).includes(searchText) ||
-                String(element.type).includes(searchText)
-            ) {
-                return element;
-            }
+    const filteredAllJoined = allJoined.filter(element => {
+        if (
+            String(element.id).includes(searchText) ||
+            String(element.name).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(element.since).toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+            String(element.until).includes(searchText) ||
+            String(element.type).includes(searchText)
+        ) {
+            return element;
         }
+    }
     );
 
     function handleInput(e) {
