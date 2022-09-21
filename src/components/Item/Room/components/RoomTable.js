@@ -117,7 +117,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/room/view/${room.roomId}`}
+                                    to={`/item/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -130,7 +130,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/room/view/${room.roomId}`}
+                                    to={`/item/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -143,7 +143,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/room/view/${room.roomId}`}
+                                    to={`/item/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >
@@ -156,7 +156,7 @@ export default function RoomTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/room/view/${room.roomId}`}
+                                    to={`/item/room/edit/${room.roomId}`}
                                     onClick={onRowClick}
                                     data-roomid={room.roomId}
                                 >

@@ -117,7 +117,7 @@ export default function FurnitureTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/furniture/view/${furniture.furnitureId}`}
+                                    to={`/item/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
                                     data-furnitureid={furniture.furnitureId}
                                 >
@@ -130,7 +130,7 @@ export default function FurnitureTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/furniture/view/${furniture.furnitureId}`}
+                                    to={`/item/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
                                     data-furnitureid={furniture.furnitureId}
                                 >
@@ -143,7 +143,7 @@ export default function FurnitureTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/furniture/view/${furniture.furnitureId}`}
+                                    to={`/item/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
                                     data-furnitureid={furniture.furnitureId}
                                 >
@@ -156,7 +156,7 @@ export default function FurnitureTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/furniture/view/${furniture.furnitureId}`}
+                                    to={`/item/furniture/edit/${furniture.furnitureId}`}
                                     onClick={onRowClick}
                                     data-furnitureid={furniture.furnitureId}
                                 >

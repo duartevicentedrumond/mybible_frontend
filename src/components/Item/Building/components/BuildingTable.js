@@ -117,7 +117,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/building/view/${building.buildingId}`}
+                                    to={`/item/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -130,7 +130,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/building/view/${building.buildingId}`}
+                                    to={`/item/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -143,7 +143,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/building/view/${building.buildingId}`}
+                                    to={`/item/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
@@ -156,7 +156,7 @@ export default function BuildingTable(data) {
                             >
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
-                                    to={`/item/building/view/${building.buildingId}`}
+                                    to={`/item/building/edit/${building.buildingId}`}
                                     onClick={onRowClick}
                                     data-buildingid={building.buildingId}
                                 >
