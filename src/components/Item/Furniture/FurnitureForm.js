@@ -109,6 +109,7 @@ export default function FurnitureForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={'furniture'}
       />
 
       <ItemSelectionBar

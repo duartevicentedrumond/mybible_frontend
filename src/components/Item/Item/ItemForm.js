@@ -111,6 +111,7 @@ export default function ItemForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={"item"}
       />
 
       <ItemSelectionBar

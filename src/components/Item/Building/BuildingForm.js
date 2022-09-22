@@ -92,6 +92,7 @@ export default function BuildingForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={'building'}
       />
 
       <ItemSelectionBar

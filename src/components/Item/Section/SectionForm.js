@@ -110,6 +110,7 @@ export default function SectionForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={'section'}
       />
 
       <ItemSelectionBar

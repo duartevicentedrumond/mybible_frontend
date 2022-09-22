@@ -8,10 +8,12 @@ export function getLocation(
     type
 ) {
 
+    let filteredElement = [];
+
     switch (type) {
         case 'building':
 
-            const filteredBuilding = buildings.filter(building => {
+            filteredElement = buildings.filter(building => {
                 if (String(building.buildingId) === String(elementId)) {
                     return building;
                 }
@@ -20,8 +22,8 @@ export function getLocation(
             setLocation(existingLocation => ({
                 ...existingLocation,
                 building: {
-                    buildingId: filteredBuilding.buildingId,
-                    name: filteredBuilding.name
+                    buildingId: filteredElement.buildingId,
+                    name: filteredElement.name
                 }
             }));
 
@@ -29,7 +31,7 @@ export function getLocation(
 
         case 'room':
 
-            const filteredRoom = rooms.filter(room => {
+            filteredElement = rooms.filter(room => {
                 if (String(room.roomId) === String(elementId)) {
                     return room;
                 }
@@ -42,25 +44,16 @@ export function getLocation(
                     name: null
                 },
                 room: {
-                    roomId: filteredRoom.roomId,
-                    name: filteredRoom.name
+                    roomId: filteredElement.roomId,
+                    name: filteredElement.name
                 }
             }));
-
-            if (filteredRoom.building !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredRoom.building.buildingId,
-                    "building"
-                )
-            };
 
             break;
 
         case 'furniture':
 
-            const filteredFurniture = furnitures.filter(furniture => {
+            filteredElement = furnitures.filter(furniture => {
                 if (String(furniture.furnitureId) === String(elementId)) {
                     return furniture;
                 }
@@ -77,32 +70,16 @@ export function getLocation(
                     name: null
                 },
                 furniture: {
-                    furnitureId: filteredFurniture.furnitureId,
-                    name: filteredFurniture.name
+                    furnitureId: filteredElement.furnitureId,
+                    name: filteredElement.name
                 }
             }));
-
-            if (filteredFurniture.room !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredFurniture.room.roomId,
-                    "room"
-                )
-            } else if (filteredFurniture.building !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredFurniture.building.buildingId,
-                    "building"
-                )
-            };
 
             break;
 
         case 'section':
 
-            const filteredSection = sections.filter(section => {
+            filteredElement = sections.filter(section => {
                 if (String(section.sectionId) === String(elementId)) {
                     return section;
                 }
@@ -123,39 +100,16 @@ export function getLocation(
                     name: null
                 },
                 section: {
-                    sectionId: filteredSection.sectionId,
-                    name: filteredSection.name
+                    sectionId: filteredElement.sectionId,
+                    name: filteredElement.name
                 }
             }));
-
-            if (filteredSection.furniture !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredSection.furniture.furnitureId,
-                    "furniture"
-                )
-            } else if (filteredSection.room !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredSection.room.roomId,
-                    "room"
-                )
-            } else if (filteredSection.building !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredSection.building.buildingId,
-                    "building"
-                )
-            };
 
             break;
 
         case 'box':
 
-            const filteredBox = boxes.filter(box => {
+            filteredElement = boxes.filter(box => {
                 if (String(box.boxId) === String(elementId)) {
                     return box;
                 }
@@ -180,46 +134,16 @@ export function getLocation(
                     name: null
                 },
                 box: {
-                    boxId: filteredBox.boxId,
-                    name: filteredBox.name
+                    boxId: filteredElement.boxId,
+                    name: filteredElement.name
                 }
             }));
-
-            if (filteredBox.section !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredBox.section.sectionId,
-                    "section"
-                )
-            } else if (filteredBox.furniture !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredBox.furniture.furnitureId,
-                    "furniture"
-                )
-            } else if (filteredBox.room !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredBox.room.roomId,
-                    "room"
-                )
-            } else if (filteredBox.building !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredBox.building.buildingId,
-                    "building"
-                )
-            };
 
             break;
 
         case 'item':
 
-            const filteredItem = items.filter(item => {
+            filteredElement = items.filter(item => {
                 if (String(item.itemId) === String(elementId)) {
                     return item;
                 }
@@ -248,53 +172,54 @@ export function getLocation(
                     name: null
                 },
                 item: {
-                    itemId: filteredItem.itemId,
-                    name: filteredItem.name
+                    itemId: filteredElement.itemId,
+                    name: filteredElement.name
                 }
             }));
 
-            if (filteredItem.box !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredItem.box.boxId,
-                    "box"
-                )
-            } else if (filteredItem.section !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredItem.section.sectionId,
-                    "section"
-                )
-            } else if (filteredItem.furniture !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredItem.furniture.furnitureId,
-                    "furniture"
-                )
-            } else if (filteredItem.room !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredItem.room.roomId,
-                    "room"
-                )
-            } else if (filteredItem.building !== null) {
-                getLocation(
-                    [location, setLocation],
-                    [buildings, rooms, furnitures, sections, boxes, items],
-                    filteredItem.building.buildingId,
-                    "building"
-                )
-            };
-
-            break;
-
         default:
             break;
-    }
+    };
+
+    if (filteredElement.box !== null && filteredElement.box !== undefined) {
+        console.log(filteredElement)        
+        getLocation(
+            [location, setLocation],
+            [buildings, rooms, furnitures, sections, boxes, items],
+            filteredElement.box.boxId,
+            "box"
+        )
+    } else if (filteredElement.section !== null && filteredElement.section !== undefined) {
+        console.log(filteredElement)
+        getLocation(
+            [location, setLocation],
+            [buildings, rooms, furnitures, sections, boxes, items],
+            filteredElement.section.sectionId,
+            "section"
+        )
+    } else if (filteredElement.furniture !== null && filteredElement.furniture !== undefined) {
+        getLocation(
+            [location, setLocation],
+            [buildings, rooms, furnitures, sections, boxes, items],
+            filteredElement.furniture.furnitureId,
+            "furniture"
+        )
+    } else if (filteredElement.room !== null && filteredElement.room !== undefined) {
+        getLocation(
+            [location, setLocation],
+            [buildings, rooms, furnitures, sections, boxes, items],
+            filteredElement.room.roomId,
+            "room"
+        )
+    } else if (filteredElement.building !== null && filteredElement.building !== undefined) {
+        getLocation(
+            [location, setLocation],
+            [buildings, rooms, furnitures, sections, boxes, items],
+            filteredElement.building.buildingId,
+            "building"
+        )
+    };
+
 };
 
 //udpate state when name input changes
@@ -320,7 +245,7 @@ export function handleActiveChange(e, setElement) {
 
 };
 
-//udpate item state when since input changes
+//udpate state when since input changes
 export function handleSinceChange(date, setElement) {
 
     const dateString = dateToString(date);
@@ -331,7 +256,7 @@ export function handleSinceChange(date, setElement) {
     }));
 };
 
-//udpate item state when until input changes
+//udpate state when until input changes
 export function handleUntilChange(date, setElement) {
 
     const dateString = dateToString(date);
@@ -342,7 +267,7 @@ export function handleUntilChange(date, setElement) {
     }));
 };
 
-//udpate item state when building input changes
+//udpate state when building input changes
 export function handleBuildingChange(buildingId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
@@ -354,7 +279,7 @@ export function handleBuildingChange(buildingId, setElement) {
     }));
 };
 
-//udpate item state when room input changes
+//udpate state when room input changes
 export function handleRoomChange(roomId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
@@ -366,7 +291,7 @@ export function handleRoomChange(roomId, setElement) {
     }));
 };
 
-//udpate item state when furniture input changes
+//udpate state when furniture input changes
 export function handleFurnitureChange(furnitureId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
@@ -378,7 +303,7 @@ export function handleFurnitureChange(furnitureId, setElement) {
     }));
 };
 
-//udpate item state when section input changes
+//udpate state when section input changes
 export function handleSectionChange(sectionId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
@@ -390,7 +315,7 @@ export function handleSectionChange(sectionId, setElement) {
     }));
 };
 
-//udpate item state when box input changes
+//udpate state when box input changes
 export function handleBoxChange(boxId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
@@ -402,7 +327,7 @@ export function handleBoxChange(boxId, setElement) {
     }));
 };
 
-//udpate item state when until input changes
+//udpate state when until input changes
 export function onBuildingClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
 
     //prevent page refresh
@@ -420,7 +345,7 @@ export function onBuildingClick(e, setItem, [newLocation, location, setLocation]
 
 };
 
-//udpate item state when room input changes
+//udpate state when room input changes
 export function onRoomClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
 
     //prevent page refresh
@@ -437,7 +362,7 @@ export function onRoomClick(e, setItem, [newLocation, location, setLocation], [b
     );
 };
 
-//udpate item state when furniture input changes
+//udpate state when furniture input changes
 export function onFurnitureClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
 
     //prevent page refresh
@@ -454,7 +379,7 @@ export function onFurnitureClick(e, setItem, [newLocation, location, setLocation
     );
 };
 
-//udpate item state when section input changes
+//udpate state when section input changes
 export function onSectionClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
 
     //prevent page refresh
@@ -471,7 +396,7 @@ export function onSectionClick(e, setItem, [newLocation, location, setLocation],
     );
 };
 
-//udpate item state when box input changes
+//udpate state when box input changes
 export function onBoxClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
 
     //prevent page refresh

@@ -108,6 +108,7 @@ export default function RoomForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={'room'}
       />
 
       <ItemSelectionBar

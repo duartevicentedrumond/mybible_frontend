@@ -110,6 +110,7 @@ export default function BoxForm(data) {
 
       <ItemLocationBar
         location={location}
+        type={'box'}
       />
 
       <ItemSelectionBar
