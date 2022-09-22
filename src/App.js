@@ -18,46 +18,49 @@ import { SectionsContextProvider } from "./context/Item/Section/SectionState";
 import { FurnituresContextProvider } from "./context/Item/Furniture/FurnitureState";
 import { RoomsContextProvider } from "./context/Item/Room/RoomState";
 import { BuildingsContextProvider } from "./context/Item/Building/BuildingState";
+import { GiftContextProvider } from "./context/Gift/Gift/GiftState";
 
 function App() {
   return (
     <div className="App">
 
       <TransactionContextProvider>
-      <CategoryContextProvider>
-      <TypeContextProvider>
-      <CategorySumContextProvider>
-      <MonthSumContextProvider>
-      <BuildingsContextProvider>
-      <RoomsContextProvider>
-      <FurnituresContextProvider>
-      <SectionsContextProvider>
-      <BoxesContextProvider>
-      <ItemsContextProvider>
-      <AllJoinedContextProvider>
-      <PersonContextProvider>
-      <DebtSumContextProvider>
-          <BrowserRouter>
-            <Routes>
-              
-              {/* Route for home page which has subpages*/}
-              <Route path="/*" element={<Home/>} />
+        <CategoryContextProvider>
+          <TypeContextProvider>
+            <CategorySumContextProvider>
+              <MonthSumContextProvider>
+                <BuildingsContextProvider>
+                  <RoomsContextProvider>
+                    <FurnituresContextProvider>
+                      <SectionsContextProvider>
+                        <BoxesContextProvider>
+                          <ItemsContextProvider>
+                            <AllJoinedContextProvider>
+                              <PersonContextProvider>
+                                <DebtSumContextProvider>
+                                  <GiftContextProvider>
+                                    <BrowserRouter>
+                                      <Routes>
 
-            </Routes>
-          </BrowserRouter>
-      </DebtSumContextProvider>
-      </PersonContextProvider>
-      </AllJoinedContextProvider>
-      </ItemsContextProvider>
-      </BoxesContextProvider>
-      </SectionsContextProvider>
-      </FurnituresContextProvider>
-      </RoomsContextProvider>
-      </BuildingsContextProvider>
-      </MonthSumContextProvider>
-      </CategorySumContextProvider>
-      </TypeContextProvider>
-      </CategoryContextProvider>
+                                        {/* Route for home page which has subpages*/}
+                                        <Route path="/*" element={<Home />} />
+
+                                      </Routes>
+                                    </BrowserRouter>
+                                  </GiftContextProvider>
+                                </DebtSumContextProvider>
+                              </PersonContextProvider>
+                            </AllJoinedContextProvider>
+                          </ItemsContextProvider>
+                        </BoxesContextProvider>
+                      </SectionsContextProvider>
+                    </FurnituresContextProvider>
+                  </RoomsContextProvider>
+                </BuildingsContextProvider>
+              </MonthSumContextProvider>
+            </CategorySumContextProvider>
+          </TypeContextProvider>
+        </CategoryContextProvider>
       </TransactionContextProvider>
 
     </div>
