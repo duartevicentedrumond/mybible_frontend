@@ -346,7 +346,11 @@ export function handleUntilChange(date, setElement) {
 export function handleBuildingChange(buildingId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
-        building: { buildingId: buildingId }
+        building: { buildingId: buildingId },
+        room: null,
+        furniture: null,
+        section: null,
+        box: null
     }));
 };
 
@@ -354,7 +358,11 @@ export function handleBuildingChange(buildingId, setElement) {
 export function handleRoomChange(roomId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
-        room: { roomId: roomId }
+        building: null,
+        room: { roomId: roomId },
+        furniture: null,
+        section: null,
+        box: null
     }));
 };
 
@@ -362,7 +370,11 @@ export function handleRoomChange(roomId, setElement) {
 export function handleFurnitureChange(furnitureId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
-        furniture: { furnitureId: furnitureId }
+        building: null,
+        room: null,
+        furniture: { furnitureId: furnitureId },
+        section: null,
+        box: null
     }));
 };
 
@@ -370,7 +382,11 @@ export function handleFurnitureChange(furnitureId, setElement) {
 export function handleSectionChange(sectionId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
-        section: { sectionId: sectionId }
+        building: null,
+        room: null,
+        furniture: null,
+        section: { sectionId: sectionId },
+        box: null
     }));
 };
 
@@ -378,6 +394,10 @@ export function handleSectionChange(sectionId, setElement) {
 export function handleBoxChange(boxId, setElement) {
     setElement(existingElement => ({
         ...existingElement,
+        building: null,
+        room: null,
+        furniture: null,
+        section: null,
         box: { boxId: boxId }
     }));
 };

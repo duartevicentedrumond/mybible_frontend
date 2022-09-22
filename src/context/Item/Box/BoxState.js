@@ -38,14 +38,26 @@ export const BoxesContextProvider = ({ children }) => {
 
     const updateBox = async (box) => {
 
+        const updatedBox = {
+            boxId: box.boxId,
+            name: box.name,
+            active: box.active,
+            since: box.since,
+            until: box.until,
+            building: box.building,
+            room: box.room,
+            furniture: box.furniture,
+            section: box.section,
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/box/update/' + box.boxId, box);
+            'http://localhost:8080/box/update/' + box.boxId, updatedBox);
         
         console.log(response.data);
 
         dispatch({
             type: UPDATE_BOX, 
-            payload: box
+            payload: updatedBox
         });
     };
 
