@@ -113,7 +113,7 @@ export default function ItemSelectionBar(data) {
     };
 
     return (
-        <div className="d-flex flex-row align-items-baseline ps-2">
+        <div className="d-flex flex-row align-items-baseline ps-2 mt-1">
             { !buildingHidden ?
                 <Styled.FormButton
                     onClick={handleShowBuildingModal}

@@ -14,35 +14,37 @@ import { Styled } from "../../../design/style";
 import InputForm from "../../../general_components/Forms/InputForm";
 import SelectForm from "../../../general_components/Forms/SelectForm";
 import ItemSelectionBar from "../../../general_components/ItemSelectionBar";
+import SubtransactionDetailBar from "../../../general_components/SubtransactionDetailBar";
 
 import BuildingTable from "../../Item/Building/components/BuildingTable";
 import RoomTable from "../../Item/Room/components/RoomTable";
 import FurnitureTable from "../../Item/Furniture/components/FurnitureTable";
 import SectionTable from "../../Item/Section/components/SectionTable";
 import BoxTable from "../../Item/Box/components/BoxTable";
+import ItemTable from "../../Item/Item/components/ItemTable";
 
 export default function SubtransactionsForm(data) {
 
     //define initial variables
-        const transaction = data.transaction;
-        const setTransaction = data.setTransaction;
+    const transaction = data.transaction;
+    const setTransaction = data.setTransaction;
 
-        //get context for category, people, building, room, furniture, section, box and item
-        const { categories, getCategories } = useContext(CategoryContext);
+    //get context for category, people, building, room, furniture, section, box and item
+    const { categories, getCategories } = useContext(CategoryContext);
 
-        const { people, getPeople } = useContext(PersonContext);
+    const { people, getPeople } = useContext(PersonContext);
 
-        const { buildings, getBuildings } = useContext(BuildingContext);
+    const { buildings, getBuildings } = useContext(BuildingContext);
 
-        const { rooms, getRooms } = useContext(RoomContext);
+    const { rooms, getRooms } = useContext(RoomContext);
 
-        const { furnitures, getFurnitures } = useContext(FurnitureContext);
+    const { furnitures, getFurnitures } = useContext(FurnitureContext);
 
-        const { sections, getSections } = useContext(SectionContext);
+    const { sections, getSections } = useContext(SectionContext);
 
-        const { boxes, getBoxes } = useContext(BoxContext);
+    const { boxes, getBoxes } = useContext(BoxContext);
 
-        const { items, getItems } = useContext(ItemContext);
+    const { items, getItems } = useContext(ItemContext);
 
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
@@ -58,53 +60,53 @@ export default function SubtransactionsForm(data) {
         getItems();
 
     }
-  , []); //no dependencies
+        , []); //no dependencies
 
     //udpate transaction state when subtransaction amount input changes
     function handleAmountChange(e) {
 
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(e.target.id)) {
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(e.target.id)) {
                 subtransaction.amount = e.target.value;
             }
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
     };
 
     //udpate transaction state when subtransaction category input changes
     function handleCategoryChange(e) {
 
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(e.target.id)) {
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(e.target.id)) {
                 subtransaction.category.categoryId = e.target.value;
             }
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
     };
 
     //udpate transaction state when subtransaction person input changes
     function handlePersonChange(e) {
 
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(e.target.id)) {
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(e.target.id)) {
                 subtransaction.person.personId = e.target.value;
             }
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
     };
 
@@ -112,108 +114,139 @@ export default function SubtransactionsForm(data) {
 
         //prevent page refresh
         e.preventDefault();
-    
+
         const buildingId = e.target.dataset.buildingid;
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(index)) {
-                subtransaction.building.buildingId = buildingId;
-            }
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    building: { buildingId: buildingId }
+                });
+            };
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
-    
+
     };
 
     function onRoomClick(e, index) {
 
         //prevent page refresh
         e.preventDefault();
-    
+
         const roomId = e.target.dataset.roomid;
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(index)) {
-                subtransaction.room.roomId = roomId;
-            }
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    room: { roomId: roomId }
+                });
+            };
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
-    
+
     };
 
     function onFurnitureClick(e, index) {
 
         //prevent page refresh
         e.preventDefault();
-    
+
         const furnitureId = e.target.dataset.furnitureid;
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(index)) {
-                subtransaction.furniture.furnitureId = furnitureId;
-            }
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    furniture: { furnitureId: furnitureId }
+                });
+            };
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
-    
+
     };
 
     function onSectionClick(e, index) {
 
         //prevent page refresh
         e.preventDefault();
-    
+
         const sectionId = e.target.dataset.sectionid;
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
-            if(i === parseFloat(index)) {
-                subtransaction.section.sectionId = sectionId;
-            }
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    section: { sectionId: sectionId }
+                });
+            };
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
-    
+
     };
 
     function onBoxClick(e, index) {
 
         //prevent page refresh
         e.preventDefault();
-    
-        const boxId = e.target.dataset.boxid;
-        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
 
-            if(i === parseFloat(index)) {
-                subtransaction.box.boxId = boxId;
-            }
+        const boxId = e.target.dataset.boxid;
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    box: { boxId: boxId }
+                });
+            };
             return subtransaction;
         });
 
         setTransaction(existingTransaction => ({
-          ...existingTransaction,
-          subtransactions: updatedSubtransactions
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
         }));
 
-        console.log(transaction)
-    
+    };
+
+    function onItemClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+
+        const itemId = e.target.dataset.itemid;
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    item: { itemId: itemId }
+                });
+            };
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
+        }));
+
     };
 
     //update transaction state with new subtransaction
     function addSubtransaction(e) {
-        
+
         //prevents page refresh on click
         e.preventDefault();
 
@@ -221,14 +254,14 @@ export default function SubtransactionsForm(data) {
             ...existingTransaction,
             subtransactions: [
                 ...existingTransaction.subtransactions,
-                { 
+                {
                     amount: null,
                     category: { categoryId: '1' },
                     person: { personId: '0' }
                 }
             ]
         }));
-        
+
     };
 
     //update transaction state by deleting existing subtransaction
@@ -244,7 +277,7 @@ export default function SubtransactionsForm(data) {
             subtransactions: existingTransaction.subtransactions.filter(
                 (subtransaction, index) => parseFloat(index) !== parseFloat(e.target.id)
             )
-        }));    
+        }));
     };
 
     return (
@@ -252,35 +285,40 @@ export default function SubtransactionsForm(data) {
         <div className='py-3 ps-2'>
 
             {/*transaction subtransactions input form*/}
-            {transaction.subtransactions.map( (subtransaction, index) => (
+            {transaction.subtransactions.map((subtransaction, index) => (
 
                 <div>
 
-                    <hr className="my-1"/>
-
-                    <ItemSelectionBar
-                        Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e, index)]}
-                        Room={[false, RoomTable, rooms, (e) => onRoomClick(e, index)]}
-                        Furniture={[false, FurnitureTable, furnitures, (e) => onFurnitureClick(e, index)]}
-                        Section={[false, SectionTable, sections, (e) => onSectionClick(e, index)]}
-                        Box={[false, BoxTable, boxes, (e) => onBoxClick(e, index)]}
-                        Item={[true, null, null, null]}
-                        index={index}
-                    />
+                    <hr className="my-1" />
 
                     <div className="row">
 
                         {/* delete subtransaction button */}
                         <div className="col-auto d-flex align-items-center px-1">
-                            <Styled.TitleButton 
+                            <Styled.TitleButton
                                 onClick={deleteSubtransaction}
-                                >
+                            >
                                 <IoCloseCircleOutline id={index} />
                             </Styled.TitleButton>
                         </div>
 
                         {/* subtransaction form */}
                         <div className="col px-1">
+
+                            <SubtransactionDetailBar
+                                subtransaction={subtransaction}
+                                items={[buildings, rooms, furnitures, sections, boxes, items]}
+                            />
+
+                            <ItemSelectionBar
+                                Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e, index)]}
+                                Room={[false, RoomTable, rooms, (e) => onRoomClick(e, index)]}
+                                Furniture={[false, FurnitureTable, furnitures, (e) => onFurnitureClick(e, index)]}
+                                Section={[false, SectionTable, sections, (e) => onSectionClick(e, index)]}
+                                Box={[false, BoxTable, boxes, (e) => onBoxClick(e, index)]}
+                                Item={[false, ItemTable, items, (e) => onItemClick(e, index)]}
+                                index={index}
+                            />
 
                             {/* subtransaction's amount input' */}
                             <InputForm
@@ -313,7 +351,7 @@ export default function SubtransactionsForm(data) {
                                 id={index}
                             />
 
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             ))}
@@ -322,10 +360,10 @@ export default function SubtransactionsForm(data) {
             <div className="row">
                 <div className="col-auto d-flex align-items-center px-0">
                     <Styled.TitleButton
-                        onClick={addSubtransaction} 
+                        onClick={addSubtransaction}
                         className='align-items-start px-1'
                     >
-                        <IoReturnDownForwardOutline/>
+                        <IoReturnDownForwardOutline />
                     </Styled.TitleButton>
                 </div>
             </div>

@@ -48,12 +48,12 @@ export default function TransactionForm() {
           amount: null,
           category: { categoryId: '1' },
           person: { personId: '0' },
-          building: { buildingId: null },
-          room: { roomId: null },
-          furniture: { furnitureId: null },
-          section: { sectionId: null },
-          box: { boxId: null },
-          item: { itemId: null }
+          building: null,
+          room: null,
+          furniture: null,
+          section: null,
+          box: null,
+          item: null
         },
       ],
       transactionParent: { 
