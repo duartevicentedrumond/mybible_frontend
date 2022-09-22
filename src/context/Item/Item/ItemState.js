@@ -38,14 +38,27 @@ export const ItemsContextProvider = ({ children }) => {
 
     const updateItem = async (item) => {
 
+        const updatedItem = {
+            itemId: item.itemId,
+            name: item.name,
+            active: item.active,
+            since: item.since,
+            until: item.until,
+            building: item.building,
+            room: item.room,
+            furniture: item.furniture,
+            section: item.section,
+            box: item.box,
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/item/update/' + item.itemId, item);
+            'http://localhost:8080/item/update/' + item.itemId, updatedItem);
         
         console.log(response.data);
 
         dispatch({
             type: UPDATE_ITEM, 
-            payload: item
+            payload: updatedItem
         });
     };
 

@@ -38,14 +38,25 @@ export const SectionsContextProvider = ({ children }) => {
 
     const updateSection = async (section) => {
 
+        const updatedSection = {
+            sectionId: section.sectionId,
+            name: section.name,
+            active: section.active,
+            since: section.since,
+            until: section.until,
+            building: section.building,
+            room: section.room,
+            furniture: section.furniture
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/section/update/' + section.sectionId, section);
+            'http://localhost:8080/section/update/' + section.sectionId, updatedSection);
         
         console.log(response.data);
 
         dispatch({
             type: UPDATE_SECTION, 
-            payload: section
+            payload: updatedSection
         });
     };
 

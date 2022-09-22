@@ -38,14 +38,24 @@ export const FurnituresContextProvider = ({ children }) => {
 
     const updateFurniture = async (furniture) => {
 
+        const updatedFurniture = {
+            furnitureId: furniture.furnitureId,
+            name: furniture.name,
+            active: furniture.active,
+            since: furniture.since,
+            until: furniture.until,
+            building: furniture.building,
+            room: furniture.room
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/furniture/update/' + furniture.furnitureId, furniture);
+            'http://localhost:8080/furniture/update/' + furniture.furnitureId, updatedFurniture);
         
         console.log(response.data);
 
         dispatch({
             type: UPDATE_FURNITURE, 
-            payload: furniture
+            payload: updatedFurniture
         });
     };
 

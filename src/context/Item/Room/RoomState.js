@@ -27,25 +27,34 @@ export const RoomsContextProvider = ({ children }) => {
 
         const response = await axios.post(
             'http://localhost:8080/room/add', room);
-        
+
         console.log(response.data);
 
         dispatch({
-            type: ADD_ROOM, 
+            type: ADD_ROOM,
             payload: room
         });
     };
 
     const updateRoom = async (room) => {
 
+        const updatedRoom = {
+            roomId: room.roomId,
+            name: room.name,
+            active: room.active,
+            since: room.since,
+            until: room.until,
+            building: room.building
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/room/update/' + room.roomId, room);
-        
+            'http://localhost:8080/room/update/' + room.roomId, updatedRoom);
+
         console.log(response.data);
 
         dispatch({
-            type: UPDATE_ROOM, 
-            payload: room
+            type: UPDATE_ROOM,
+            payload: updatedRoom
         });
     };
 
@@ -54,7 +63,7 @@ export const RoomsContextProvider = ({ children }) => {
         const response = await axios.delete('http://localhost:8080/room/delete/' + roomId);
 
         console.log(response);
-        
+
         dispatch({
             type: DELETE_ROOM,
             payload: roomId,

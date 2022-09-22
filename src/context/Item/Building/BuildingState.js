@@ -38,14 +38,22 @@ export const BuildingsContextProvider = ({ children }) => {
 
     const updateBuilding = async (building) => {
 
+        const updatedBuilding = {
+            buildingId: building.buildingId,
+            name: building.name,
+            active: building.active,
+            since: building.since,
+            until: building.until
+        }
+
         const response = await axios.put(
-            'http://localhost:8080/building/update/' + building.buildingId, building);
+            'http://localhost:8080/building/update/' + building.buildingId, updatedBuilding);
         
         console.log(response.data);
 
         dispatch({
             type: UPDATE_BUILDING, 
-            payload: building
+            payload: updatedBuilding
         });
     };
 
