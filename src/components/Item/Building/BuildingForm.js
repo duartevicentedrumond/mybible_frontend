@@ -17,6 +17,8 @@ import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
 import ItemSelectionBar from "../../../general_components/ItemSelectionBar";
 
+import ItemLocationBar from "../../../general_components/ItemLocationBar";
+
 export default function BuildingForm(data) {
 
   //get items, boxes, sections, furniture, rooms and buildings
@@ -78,9 +80,8 @@ export default function BuildingForm(data) {
     }
     else { //if item doesn't exist adds new
       addBuilding(building);
+      handleCloseModal();
     }
-
-    handleCloseModal();
 
     //redirects to transactions list page
     history("/item/AllItems");
@@ -88,6 +89,10 @@ export default function BuildingForm(data) {
 
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
+
+      <ItemLocationBar
+        location={location}
+      />
 
       <ItemSelectionBar
         Building={[true, null, null, null]}
@@ -128,56 +133,6 @@ export default function BuildingForm(data) {
           onChangeField={(date) => handleUntilChange(date, setBuilding)}
           placeholder="until..."
           label="until"
-        />
-        : null
-      }
-
-      {/*building building input form to show only when exists*/}
-      {location.building.buildingId !== null ?
-        <InputForm
-          value={location.building.name}
-          placeholder="building..."
-          label="building"
-        />
-        : null
-      }
-
-      {/*building room input form to show only when exists*/}
-      {location.room.buildingId !== null ?
-        <InputForm
-          value={location.room.name}
-          placeholder="room..."
-          label="room"
-        />
-        : null
-      }
-
-      {/*building furniture input form to show only when exists*/}
-      {location.furniture.furnitureId !== null ?
-        <InputForm
-          value={location.furniture.name}
-          placeholder="furniture..."
-          label="furniture"
-        />
-        : null
-      }
-
-      {/*building section input form to show only when exists*/}
-      {location.section.sectionId !== null ?
-        <InputForm
-          value={location.section.name}
-          placeholder="section..."
-          label="section"
-        />
-        : null
-      }
-
-      {/*building box input form to show only when exists*/}
-      {location.box.boxId !== null ?
-        <InputForm
-          value={location.box.name}
-          placeholder="box..."
-          label="box"
         />
         : null
       }

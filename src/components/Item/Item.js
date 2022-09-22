@@ -13,6 +13,7 @@ import BoxView from "./Box/BoxView";
 import SectionView from "./Section/SectionView";
 import FurnitureView from "./Furniture/FurnitureView";
 import RoomView from "./Room/RoomView";
+import BuildingView from "./Building/BuildingView";
 
 import { Styled } from "../../design/style";
 
@@ -101,6 +102,7 @@ export default function Item() {
             <Route path="/section/edit/:id" element={<SectionView/>} />
             <Route path="/furniture/edit/:id" element={<FurnitureView/>} />
             <Route path="/room/edit/:id" element={<RoomView/>} />
+            <Route path="/building/edit/:id" element={<BuildingView/>} />
           </Routes> 
         </div>
           
