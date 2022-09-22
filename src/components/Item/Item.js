@@ -10,6 +10,7 @@ import BuildingList from "./Building/BuildingList";
 import AddItemModal from "./AddItemModal";
 import ItemView from "./Item/ItemView";
 import BoxView from "./Box/BoxView";
+import SectionView from "./Section/SectionView";
 
 import { Styled } from "../../design/style";
 
@@ -95,6 +96,7 @@ export default function Item() {
             <Route path="/building" element={<BuildingList/>} />
             <Route path="/item/edit/:id" element={<ItemView/>} />
             <Route path="/box/edit/:id" element={<BoxView/>} />
+            <Route path="/section/edit/:id" element={<SectionView/>} />
           </Routes> 
         </div>
           
