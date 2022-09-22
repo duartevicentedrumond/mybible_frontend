@@ -11,7 +11,7 @@ import SectionTable from "../Section/components/SectionTable";
 import BoxTable from "../Box/components/BoxTable";
 
 import { dateToString } from "../../../general_components/Functions";
-import { getLocation, handleNameChange, handleActiveChange, handleSinceChange, handleUntilChange, handleBuildingChange, handleRoomChange, handleFurnitureChange, handleSectionChange, handleBoxChange } from "../../../general_components/ItemFunctions";
+import { getLocation, handleNameChange, handleActiveChange, handleSinceChange, handleUntilChange, onBuildingClick, onRoomClick, onFurnitureClick, onSectionClick, onBoxClick } from "./../../../general_components/ItemFunctions";
 import InputForm from "../../../general_components/Forms/InputForm";
 import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
@@ -23,19 +23,26 @@ export default function FurnitureForm(data) {
   const [items, boxes, sections, furnitures, addFurniture, updateFurniture, rooms, buildings] = data.items;
 
   const handleCloseModal = data.handleCloseModal;
+  let furnitureData;
+
+  if (data.furniture === undefined) {
+    furnitureData = {
+      name: null,
+      active: true,
+      since: dateToString(new Date()),
+      until: null,
+      building: null,
+      room: null
+    }
+  } else {
+    furnitureData = data.item;
+  }
 
   //get frontend directory
   const history = useNavigate();
 
   //set furniture state
-  const [furniture, setFurniture] = useState({
-    name: null,
-    active: true,
-    since: dateToString(new Date()),
-    until: null,
-    building: null,
-    room: null
-  });
+  const [furniture, setFurniture] = useState(furnitureData);
 
   const newLocation = {
     building: {
@@ -62,30 +69,6 @@ export default function FurnitureForm(data) {
 
   const [location, setLocation] = useState(newLocation);
 
-  //udpate furniture state when until input changes
-  function onBuildingClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const buildingId = e.target.dataset.buildingid;
-    handleBuildingChange(buildingId, setFurniture);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], buildingId, 'building');
-  };
-
-  //udpate furniture state when room input changes
-  function onRoomClick(e) {
-
-    //prevent page refresh
-    e.preventDefault();
-
-    const roomId = e.target.dataset.roomid;
-    handleRoomChange(roomId, setFurniture);
-    setLocation(newLocation);
-    getLocation([location, setLocation], [buildings, rooms, furnitures, sections, boxes, items], roomId, 'room');
-  };
-
   //saves furniture and redirects to furnitures list page
   function handleSubmit(e) {
 
@@ -105,12 +88,27 @@ export default function FurnitureForm(data) {
     history("/item/AllItems");
   };
 
+  //run on the first render and anytime any dependency value changes
+  useEffect(() => {
+
+    if (furniture.furnitureId !== undefined) {
+
+      getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        furniture.furnitureId,
+        'furniture'
+      );
+    }
+
+  }, [furnitures]); //page first rendering dependency
+
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
 
       <ItemSelectionBar
-        Building={[false, BuildingTable, buildings, onBuildingClick]}
-        Room={[false, RoomTable, rooms, onRoomClick]}
+        Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e, setFurniture, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
+        Room={[false, RoomTable, rooms, (e) => onRoomClick(e, setFurniture, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
         Furniture={[true, null, null, null]}
         Section={[true, null, null, null]}
         Box={[true, null, null, null]}

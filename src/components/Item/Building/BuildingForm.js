@@ -11,7 +11,7 @@ import SectionTable from "../Section/components/SectionTable";
 import BoxTable from "../Box/components/BoxTable";
 
 import { dateToString } from "../../../general_components/Functions";
-import { getLocation, handleNameChange, handleActiveChange, handleSinceChange, handleUntilChange, handleBuildingChange, handleRoomChange, handleFurnitureChange, handleSectionChange, handleBoxChange } from "../../../general_components/ItemFunctions";
+import { handleNameChange, handleActiveChange, handleSinceChange, handleUntilChange } from "../../../general_components/ItemFunctions";
 import InputForm from "../../../general_components/Forms/InputForm";
 import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
@@ -23,17 +23,24 @@ export default function BuildingForm(data) {
   const [items, boxes, sections, furnitures, rooms, buildings, addBuilding, updateBuilding] = data.items;
 
   const handleCloseModal = data.handleCloseModal;
+  let buildingData;
+
+  if (data.building === undefined) {
+    buildingData = {
+      name: null,
+      active: true,
+      since: dateToString(new Date()),
+      until: null
+    }
+  } else {
+    buildingData = data.building;
+  }
 
   //get frontend directory
   const history = useNavigate();
 
   //set building state
-  const [building, setBuilding] = useState({
-    name: null,
-    active: true,
-    since: dateToString(new Date()),
-    until: null
-  });
+  const [building, setBuilding] = useState(buildingData);
 
   const newLocation = {
     building: {

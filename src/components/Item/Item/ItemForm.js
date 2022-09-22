@@ -94,7 +94,7 @@ export default function ItemForm(data) {
   //run on the first render and anytime any dependency value changes
   useEffect(() => {
 
-    if (item.itemId !== undefined ) {
+    if (item.itemId !== undefined) {
 
       getLocation(
         [location, setLocation],
@@ -104,7 +104,7 @@ export default function ItemForm(data) {
       );
     }
 
-  }, [items]); //page first rendering depends on params.id and transactions
+  }, [items]); //page first rendering dependency
 
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
