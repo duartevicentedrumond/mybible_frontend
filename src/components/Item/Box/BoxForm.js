@@ -120,6 +120,7 @@ export default function BoxForm(data) {
         Section={[false, SectionTable, sections, (e) => onSectionClick(e, setBox, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
         Box={[true, null, null, null]}
         Item={[true, null, null, null]}
+        remove={[true, null]}
       />
 
       {/*box name input form*/}

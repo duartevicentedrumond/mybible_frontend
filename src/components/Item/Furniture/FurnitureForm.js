@@ -119,6 +119,7 @@ export default function FurnitureForm(data) {
         Section={[true, null, null, null]}
         Box={[true, null, null, null]}
         Item={[true, null, null, null]}
+        remove={[true, null]}
       />
 
       {/*furniture name input form*/}

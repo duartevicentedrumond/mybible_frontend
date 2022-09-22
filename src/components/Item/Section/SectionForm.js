@@ -120,6 +120,7 @@ export default function SectionForm(data) {
         Section={[true, null, null, null]}
         Box={[true, null, null, null]}
         Item={[true, null, null, null]}
+        remove={[true, null]}
       />
 
       {/*section name input form*/}

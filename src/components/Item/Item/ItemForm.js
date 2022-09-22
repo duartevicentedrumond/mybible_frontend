@@ -121,6 +121,7 @@ export default function ItemForm(data) {
         Section={[false, SectionTable, sections, (e) => onSectionClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
         Box={[false, BoxTable, boxes, (e) => onBoxClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
         Item={[true, null, null, null]}
+        remove={[true, null]}
       />
 
       {/*item name input form*/}

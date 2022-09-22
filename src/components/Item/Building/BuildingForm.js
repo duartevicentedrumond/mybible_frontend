@@ -102,6 +102,7 @@ export default function BuildingForm(data) {
         Section={[true, null, null, null]}
         Box={[true, null, null, null]}
         Item={[true, null, null, null]}
+        remove={[true, null]}
       />
 
       {/*building name input form*/}

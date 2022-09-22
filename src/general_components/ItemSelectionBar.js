@@ -9,12 +9,14 @@ import SelectFurnitureModal from "../components/Item/Furniture/components/Select
 import SelectSectionModal from "../components/Item/Section/components/SelectSectionModal";
 import SelectBoxModal from "../components/Item/Box/components/SelectBoxModal";
 import SelectItemModal from "../components/Item/Item/components/SelectItemModal";
+import { FiX } from "react-icons/fi";
 
 import { Styled } from "../design/style";
 
 export default function ItemSelectionBar(data) {
 
     const index = data.index;
+    const [remove, handleRemove] = data.remove;
 
     //split input data through different objects for building
     const [buildingHidden, BuildingTable, buildings, onBuildingClick] = data.Building;
@@ -159,6 +161,14 @@ export default function ItemSelectionBar(data) {
                 onClick={handleShowItemModal}
             >
                 <BiFootball/>
+            </Styled.FormButton>
+                : null
+            }
+            { !remove ?
+            <Styled.FormButton
+                onClick={handleRemove}
+            >
+                <FiX/>
             </Styled.FormButton>
                 : null
             }

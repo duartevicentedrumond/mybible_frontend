@@ -244,6 +244,33 @@ export default function SubtransactionsForm(data) {
 
     };
 
+    function handleRemove(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+
+        const updatedSubtransactions = transaction.subtransactions.map((subtransaction, i) => {
+
+            if (i === parseFloat(index)) {
+                subtransaction = Object.assign(subtransaction, {
+                    item: null,
+                    box: null,
+                    section: null,
+                    furniture: null,
+                    room: null,
+                    building: null
+                });
+            };
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+            ...existingTransaction,
+            subtransactions: updatedSubtransactions
+        }));
+
+    };
+
     //update transaction state with new subtransaction
     function addSubtransaction(e) {
 
@@ -318,6 +345,7 @@ export default function SubtransactionsForm(data) {
                                 Box={[false, BoxTable, boxes, (e) => onBoxClick(e, index)]}
                                 Item={[false, ItemTable, items, (e) => onItemClick(e, index)]}
                                 index={index}
+                                remove={[false, (e) => handleRemove(e, index)]}
                             />
 
                             {/* subtransaction's amount input' */}
