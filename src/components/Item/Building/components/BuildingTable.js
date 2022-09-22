@@ -14,7 +14,7 @@ export default function BuildingTable(data) {
     function onRowClick(e) {
 
         //if used to select a room
-        if (onBoxClick !== undefined && index === undefined) {
+        if (onBuildingClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onBuildingClick(e);
