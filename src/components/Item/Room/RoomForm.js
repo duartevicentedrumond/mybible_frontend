@@ -17,6 +17,8 @@ import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
 import ItemSelectionBar from "../../../general_components/ItemSelectionBar";
 
+import ItemLocationBar from "../../../general_components/ItemLocationBar";
+
 export default function RoomForm(data) {
 
   //get items, boxes, sections, furniture, rooms and buildings
@@ -79,9 +81,8 @@ export default function RoomForm(data) {
     }
     else { //if item doesn't exist adds new
       addRoom(room);
+      handleCloseModal();
     }
-
-    handleCloseModal();
 
     //redirects to transactions list page
     history("/item/AllItems");
@@ -104,6 +105,10 @@ export default function RoomForm(data) {
 
   return (
     <div className="d-flex flex-column text-start pb-3 px-0">
+
+      <ItemLocationBar
+        location={location}
+      />
 
       <ItemSelectionBar
         Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e, setRoom, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items])]}
@@ -144,56 +149,6 @@ export default function RoomForm(data) {
           onChangeField={(date) => handleUntilChange(date, setRoom)}
           placeholder="until..."
           label="until"
-        />
-        : null
-      }
-
-      {/*room building input form to show only when exists*/}
-      {location.building.buildingId !== null ?
-        <InputForm
-          value={location.building.name}
-          placeholder="building..."
-          label="building"
-        />
-        : null
-      }
-
-      {/*room room input form to show only when exists*/}
-      {location.room.roomId !== null ?
-        <InputForm
-          value={location.room.name}
-          placeholder="room..."
-          label="room"
-        />
-        : null
-      }
-
-      {/*room furniture input form to show only when exists*/}
-      {location.furniture.furnitureId !== null ?
-        <InputForm
-          value={location.furniture.name}
-          placeholder="furniture..."
-          label="furniture"
-        />
-        : null
-      }
-
-      {/*room section input form to show only when exists*/}
-      {location.section.sectionId !== null ?
-        <InputForm
-          value={location.section.name}
-          placeholder="section..."
-          label="section"
-        />
-        : null
-      }
-
-      {/*room box input form to show only when exists*/}
-      {location.box.boxId !== null ?
-        <InputForm
-          value={location.box.name}
-          placeholder="box..."
-          label="box"
         />
         : null
       }
