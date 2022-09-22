@@ -118,7 +118,7 @@ export default function RoomTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/room/edit/${room.roomId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-roomid={room.roomId}
                                 >
                                     {room.roomId}
@@ -131,7 +131,7 @@ export default function RoomTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/room/edit/${room.roomId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-roomid={room.roomId}
                                 >
                                     {room.name}
@@ -144,7 +144,7 @@ export default function RoomTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/room/edit/${room.roomId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-roomid={room.roomId}
                                 >
                                     {room.since}
@@ -157,7 +157,7 @@ export default function RoomTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/room/edit/${room.roomId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-roomid={room.roomId}
                                 >
                                     {room.until}

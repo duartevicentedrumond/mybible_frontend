@@ -381,3 +381,89 @@ export function handleBoxChange(boxId, setElement) {
         box: { boxId: boxId }
     }));
 };
+
+//udpate item state when until input changes
+export function onBuildingClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
+
+    //prevent page refresh
+    e.preventDefault();
+
+    const buildingId = e.target.dataset.buildingid;
+    handleBuildingChange(buildingId, setItem);
+    setLocation(newLocation);
+    getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        buildingId,
+        'building'
+    );
+
+};
+
+//udpate item state when room input changes
+export function onRoomClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
+
+    //prevent page refresh
+    e.preventDefault();
+
+    const roomId = e.target.dataset.roomid;
+    handleRoomChange(roomId, setItem);
+    setLocation(newLocation);
+    getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        roomId,
+        'room'
+    );
+};
+
+//udpate item state when furniture input changes
+export function onFurnitureClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
+
+    //prevent page refresh
+    e.preventDefault();
+
+    const furnitureId = e.target.dataset.furnitureid;
+    handleFurnitureChange(furnitureId, setItem);
+    setLocation(newLocation);
+    getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        furnitureId,
+        'furniture'
+    );
+};
+
+//udpate item state when section input changes
+export function onSectionClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
+
+    //prevent page refresh
+    e.preventDefault();
+
+    const sectionId = e.target.dataset.sectionid;
+    handleSectionChange(sectionId, setItem);
+    setLocation(newLocation);
+    getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        sectionId,
+        'section'
+    );
+};
+
+//udpate item state when box input changes
+export function onBoxClick(e, setItem, [newLocation, location, setLocation], [buildings, rooms, furnitures, sections, boxes, items]) {
+
+    //prevent page refresh
+    e.preventDefault();
+
+    const boxId = e.target.dataset.boxid;
+    handleBoxChange(boxId, setItem);
+    setLocation(newLocation);
+    getLocation(
+        [location, setLocation],
+        [buildings, rooms, furnitures, sections, boxes, items],
+        boxId,
+        'box'
+    );
+};

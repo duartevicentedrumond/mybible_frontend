@@ -118,7 +118,7 @@ export default function BuildingTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/building/edit/${building.buildingId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-buildingid={building.buildingId}
                                 >
                                     {building.buildingId}
@@ -131,7 +131,7 @@ export default function BuildingTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/building/edit/${building.buildingId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-buildingid={building.buildingId}
                                 >
                                     {building.name}
@@ -144,7 +144,7 @@ export default function BuildingTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/building/edit/${building.buildingId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-buildingid={building.buildingId}
                                 >
                                     {building.since}
@@ -157,7 +157,7 @@ export default function BuildingTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/building/edit/${building.buildingId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-buildingid={building.buildingId}
                                 >
                                     {building.until}

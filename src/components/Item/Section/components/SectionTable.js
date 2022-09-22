@@ -118,7 +118,7 @@ export default function SectionTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/section/edit/${section.sectionId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-sectionid={section.sectionId}
                                 >
                                     {section.sectionId}
@@ -131,7 +131,7 @@ export default function SectionTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/section/edit/${section.sectionId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-sectionid={section.sectionId}
                                 >
                                     {section.name}
@@ -144,7 +144,7 @@ export default function SectionTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/section/edit/${section.sectionId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-sectionid={section.sectionId}
                                 >
                                     {section.since}
@@ -157,7 +157,7 @@ export default function SectionTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/section/edit/${section.sectionId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-sectionid={section.sectionId}
                                 >
                                     {section.until}

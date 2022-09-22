@@ -118,7 +118,7 @@ export default function BoxTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/box/edit/${box.boxId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-boxid={box.boxId}
                                 >
                                     {box.boxId}
@@ -131,7 +131,7 @@ export default function BoxTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/box/edit/${box.boxId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-boxid={box.boxId}
                                 >
                                     {box.name}
@@ -144,7 +144,7 @@ export default function BoxTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/box/edit/${box.boxId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-boxid={box.boxId}
                                 >
                                     {box.since}
@@ -157,7 +157,7 @@ export default function BoxTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/box/edit/${box.boxId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-boxid={box.boxId}
                                 >
                                     {box.until}

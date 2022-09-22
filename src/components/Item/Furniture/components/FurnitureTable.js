@@ -118,7 +118,7 @@ export default function FurnitureTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/furniture/edit/${furniture.furnitureId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.furnitureId}
@@ -131,7 +131,7 @@ export default function FurnitureTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/furniture/edit/${furniture.furnitureId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.name}
@@ -144,7 +144,7 @@ export default function FurnitureTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/furniture/edit/${furniture.furnitureId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.since}
@@ -157,7 +157,7 @@ export default function FurnitureTable(data) {
                                 <Styled.TableRowLink
                                     style={{ 'whiteSpace': 'nowrap' }}
                                     to={`/item/furniture/edit/${furniture.furnitureId}`}
-                                    onClick={onRowClick}
+                                    onClick={(e) => onRowClick(e)}
                                     data-furnitureid={furniture.furnitureId}
                                 >
                                     {furniture.until}
