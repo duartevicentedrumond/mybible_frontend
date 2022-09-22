@@ -11,6 +11,7 @@ import AddItemModal from "./AddItemModal";
 import ItemView from "./Item/ItemView";
 import BoxView from "./Box/BoxView";
 import SectionView from "./Section/SectionView";
+import FurnitureView from "./Furniture/FurnitureView";
 
 import { Styled } from "../../design/style";
 
@@ -97,6 +98,7 @@ export default function Item() {
             <Route path="/item/edit/:id" element={<ItemView/>} />
             <Route path="/box/edit/:id" element={<BoxView/>} />
             <Route path="/section/edit/:id" element={<SectionView/>} />
+            <Route path="/furniture/edit/:id" element={<FurnitureView/>} />
           </Routes> 
         </div>
           
