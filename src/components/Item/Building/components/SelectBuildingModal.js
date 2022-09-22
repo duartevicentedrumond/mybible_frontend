@@ -15,6 +15,7 @@ export default function SelectBuildingModal(data) {
         const BuildingTable = data.BuildingTable;
         const buildings = data.buildings;
         const onBuildingClick = data.onBuildingClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectBuildingModal(data) {
                     buildings={buildings}
                     onBuildingClick={onBuildingClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

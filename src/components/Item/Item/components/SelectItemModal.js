@@ -15,6 +15,7 @@ export default function SelectItemModal(data) {
         const ItemTable = data.ItemTable;
         const items = data.items;
         const onItemClick = data.onItemClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectItemModal(data) {
                     items={items}
                     onItemClick={onItemClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

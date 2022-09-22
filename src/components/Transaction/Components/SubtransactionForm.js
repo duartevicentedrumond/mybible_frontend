@@ -3,10 +3,23 @@ import { IoCloseCircleOutline, IoReturnDownForwardOutline } from "react-icons/io
 
 import CategoryContext from "../../../context/Wallet/Category/CategoryContext";
 import PersonContext from "../../../context/Person/Person/PersonContext";
+import BuildingContext from "../../../context/Item/Building/BuildingContext";
+import RoomContext from "../../../context/Item/Room/RoomContext";
+import FurnitureContext from "../../../context/Item/Furniture/FurnitureContext";
+import SectionContext from "../../../context/Item/Section/SectionContext";
+import BoxContext from "../../../context/Item/Box/BoxContext";
+import ItemContext from "../../../context/Item/Item/ItemContext";
 
 import { Styled } from "../../../design/style";
 import InputForm from "../../../general_components/Forms/InputForm";
 import SelectForm from "../../../general_components/Forms/SelectForm";
+import ItemSelectionBar from "../../../general_components/ItemSelectionBar";
+
+import BuildingTable from "../../Item/Building/components/BuildingTable";
+import RoomTable from "../../Item/Room/components/RoomTable";
+import FurnitureTable from "../../Item/Furniture/components/FurnitureTable";
+import SectionTable from "../../Item/Section/components/SectionTable";
+import BoxTable from "../../Item/Box/components/BoxTable";
 
 export default function SubtransactionsForm(data) {
 
@@ -14,11 +27,22 @@ export default function SubtransactionsForm(data) {
         const transaction = data.transaction;
         const setTransaction = data.setTransaction;
 
-        //get context for getCategories function and categories object
+        //get context for category, people, building, room, furniture, section, box and item
         const { categories, getCategories } = useContext(CategoryContext);
 
-        //get context for getPeople function and people object
         const { people, getPeople } = useContext(PersonContext);
+
+        const { buildings, getBuildings } = useContext(BuildingContext);
+
+        const { rooms, getRooms } = useContext(RoomContext);
+
+        const { furnitures, getFurnitures } = useContext(FurnitureContext);
+
+        const { sections, getSections } = useContext(SectionContext);
+
+        const { boxes, getBoxes } = useContext(BoxContext);
+
+        const { items, getItems } = useContext(ItemContext);
 
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
@@ -26,6 +50,12 @@ export default function SubtransactionsForm(data) {
         //retrieve existing subtransaction categories and people
         getCategories();
         getPeople();
+        getBuildings();
+        getRooms();
+        getFurnitures();
+        getSections();
+        getBoxes();
+        getItems();
 
     }
   , []); //no dependencies
@@ -78,6 +108,109 @@ export default function SubtransactionsForm(data) {
         }));
     };
 
+    function onBuildingClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+    
+        const buildingId = e.target.dataset.buildingid;
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(index)) {
+                subtransaction.building.buildingId = buildingId;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    
+    };
+
+    function onRoomClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+    
+        const roomId = e.target.dataset.roomid;
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(index)) {
+                subtransaction.room.roomId = roomId;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    
+    };
+
+    function onFurnitureClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+    
+        const furnitureId = e.target.dataset.furnitureid;
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(index)) {
+                subtransaction.furniture.furnitureId = furnitureId;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    
+    };
+
+    function onSectionClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+    
+        const sectionId = e.target.dataset.sectionid;
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+            if(i === parseFloat(index)) {
+                subtransaction.section.sectionId = sectionId;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+    
+    };
+
+    function onBoxClick(e, index) {
+
+        //prevent page refresh
+        e.preventDefault();
+    
+        const boxId = e.target.dataset.boxid;
+        const updatedSubtransactions = transaction.subtransactions.map( (subtransaction, i) => {
+
+            if(i === parseFloat(index)) {
+                subtransaction.box.boxId = boxId;
+            }
+            return subtransaction;
+        });
+
+        setTransaction(existingTransaction => ({
+          ...existingTransaction,
+          subtransactions: updatedSubtransactions
+        }));
+
+        console.log(transaction)
+    
+    };
+
     //update transaction state with new subtransaction
     function addSubtransaction(e) {
         
@@ -124,6 +257,16 @@ export default function SubtransactionsForm(data) {
                 <div>
 
                     <hr className="my-1"/>
+
+                    <ItemSelectionBar
+                        Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e, index)]}
+                        Room={[false, RoomTable, rooms, (e) => onRoomClick(e, index)]}
+                        Furniture={[false, FurnitureTable, furnitures, (e) => onFurnitureClick(e, index)]}
+                        Section={[false, SectionTable, sections, (e) => onSectionClick(e, index)]}
+                        Box={[false, BoxTable, boxes, (e) => onBoxClick(e, index)]}
+                        Item={[true, null, null, null]}
+                        index={index}
+                    />
 
                     <div className="row">
 

@@ -15,6 +15,7 @@ export default function SelectBoxModal(data) {
         const BoxTable = data.BoxTable;
         const boxes = data.boxes;
         const onBoxClick = data.onBoxClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectBoxModal(data) {
                     boxes={boxes}
                     onBoxClick={onBoxClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

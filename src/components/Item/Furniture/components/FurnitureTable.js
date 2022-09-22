@@ -8,15 +8,21 @@ export default function FurnitureTable(data) {
     const furnitures = data.furnitures;
     const onFurnitureClick = data.onFurnitureClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
         //if used to select a room
-        if (onFurnitureClick !== undefined) {
+        if (onFurnitureClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onFurnitureClick(e);
+            handleCloseModal();
+        } else if (onFurnitureClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onFurnitureClick(e, index);
             handleCloseModal();
         }
 

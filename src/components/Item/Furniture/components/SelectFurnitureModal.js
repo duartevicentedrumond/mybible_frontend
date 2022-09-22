@@ -15,6 +15,7 @@ export default function SelectFurnitureModal(data) {
         const FurnitureTable = data.FurnitureTable;
         const furnitures = data.furnitures;
         const onFurnitureClick = data.onFurnitureClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectFurnitureModal(data) {
                     furnitures={furnitures}
                     onFurnitureClick={onFurnitureClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

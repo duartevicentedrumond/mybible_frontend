@@ -8,15 +8,21 @@ export default function RoomTable(data) {
     const rooms = data.rooms;
     const onRoomClick = data.onRoomClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
         //if used to select a room
-        if (onRoomClick !== undefined) {
+        if (onRoomClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onRoomClick(e);
+            handleCloseModal();
+        } else if (onRoomClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onRoomClick(e, index);
             handleCloseModal();
         }
 

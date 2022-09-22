@@ -8,15 +8,21 @@ export default function BuildingTable(data) {
     const buildings = data.buildings;
     const onBuildingClick = data.onBuildingClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
-        //if used to select a building
-        if (onBuildingClick !== undefined) {
+        //if used to select a room
+        if (onBoxClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onBuildingClick(e);
+            handleCloseModal();
+        } else if (onBuildingClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onBuildingClick(e, index);
             handleCloseModal();
         }
 

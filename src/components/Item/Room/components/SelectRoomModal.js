@@ -15,6 +15,7 @@ export default function SelectRoomModal(data) {
         const RoomTable = data.RoomTable;
         const rooms = data.rooms;
         const onRoomClick = data.onRoomClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectRoomModal(data) {
                     rooms={rooms}
                     onRoomClick={onRoomClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

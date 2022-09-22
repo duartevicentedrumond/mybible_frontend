@@ -14,6 +14,8 @@ import { Styled } from "../design/style";
 
 export default function ItemSelectionBar(data) {
 
+    const index = data.index;
+
     //split input data through different objects for building
     const [buildingHidden, BuildingTable, buildings, onBuildingClick] = data.Building;
 
@@ -167,6 +169,7 @@ export default function ItemSelectionBar(data) {
                 buildings={buildings}
                 BuildingTable={BuildingTable}
                 onBuildingClick={onBuildingClick}
+                index={index}
             />
 
             <SelectRoomModal
@@ -175,6 +178,7 @@ export default function ItemSelectionBar(data) {
                 rooms={rooms}
                 RoomTable={RoomTable}
                 onRoomClick={onRoomClick}
+                index={index}
             />
 
             <SelectFurnitureModal
@@ -183,6 +187,7 @@ export default function ItemSelectionBar(data) {
                 furnitures={furnitures}
                 FurnitureTable={FurnitureTable}
                 onFurnitureClick={onFurnitureClick}
+                index={index}
             />
 
             <SelectSectionModal
@@ -191,6 +196,7 @@ export default function ItemSelectionBar(data) {
                 sections={sections}
                 SectionTable={SectionTable}
                 onSectionClick={onSectionClick}
+                index={index}
             />
 
             <SelectBoxModal
@@ -199,6 +205,7 @@ export default function ItemSelectionBar(data) {
                 boxes={boxes}
                 BoxTable={BoxTable}
                 onBoxClick={onBoxClick}
+                index={index}
             />
 
             <SelectItemModal
@@ -207,6 +214,7 @@ export default function ItemSelectionBar(data) {
                 items={items}
                 ItemTable={ItemTable}
                 onItemClick={onItemClick}
+                index={index}
             />
         </div>
     );

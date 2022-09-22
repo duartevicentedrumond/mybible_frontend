@@ -8,15 +8,21 @@ export default function ItemTable(data) {
     const items = data.items;
     const onItemClick = data.onItemClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
-        //if used to select a item
-        if (onItemClick !== undefined) {
+        //if used to select a room
+        if (onItemClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onItemClick(e);
+            handleCloseModal();
+        } else if (onItemClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onItemClick(e, index);
             handleCloseModal();
         }
 

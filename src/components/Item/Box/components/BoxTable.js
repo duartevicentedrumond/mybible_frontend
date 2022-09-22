@@ -8,15 +8,21 @@ export default function BoxTable(data) {
     const boxes = data.boxes;
     const onBoxClick = data.onBoxClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
         //if used to select a room
-        if (onBoxClick !== undefined) {
+        if (onBoxClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onBoxClick(e);
+            handleCloseModal();
+        } else if (onBoxClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onBoxClick(e, index);
             handleCloseModal();
         }
 

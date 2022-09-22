@@ -15,6 +15,7 @@ export default function SelectSectionModal(data) {
         const SectionTable = data.SectionTable;
         const sections = data.sections;
         const onSectionClick = data.onSectionClick;
+        const index = data.index;
 
     return (
 
@@ -34,6 +35,7 @@ export default function SelectSectionModal(data) {
                     sections={sections}
                     onSectionClick={onSectionClick}
                     handleCloseModal={handleCloseModal}
+                    index={index}
                 />
             </Modal.Body>
             <Modal.Footer>

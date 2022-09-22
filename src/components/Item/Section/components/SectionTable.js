@@ -8,15 +8,21 @@ export default function SectionTable(data) {
     const sections = data.sections;
     const onSectionClick = data.onSectionClick;
     const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
 
     //execute this when a row is selected
     function onRowClick(e) {
 
-        //if used to select a section
-        if (onSectionClick !== undefined) {
+        //if used to select a room
+        if (onSectionClick !== undefined && index === undefined) {
             //prevent page refresh
             e.preventDefault();
             onSectionClick(e);
+            handleCloseModal();
+        } else if (onSectionClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onSectionClick(e, index);
             handleCloseModal();
         }
 
