@@ -20,6 +20,7 @@ import { RoomsContextProvider } from "./context/Item/Room/RoomState";
 import { BuildingsContextProvider } from "./context/Item/Building/BuildingState";
 import { GiftContextProvider } from "./context/Gift/Gift/GiftState";
 import { GifttypeContextProvider } from "./context/Gift/Gifttype/GifttypeState";
+import { GiftByPersonContextProvider } from "./context/Gift/GiftByPerson/GiftByPersonState";
 
 function App() {
   return (
@@ -41,14 +42,16 @@ function App() {
                                 <DebtSumContextProvider>
                                   <GiftContextProvider>
                                     <GifttypeContextProvider>
-                                      <BrowserRouter>
-                                        <Routes>
+                                      <GiftByPersonContextProvider>
+                                        <BrowserRouter>
+                                          <Routes>
 
-                                          {/* Route for home page which has subpages*/}
-                                          <Route path="/*" element={<Home />} />
+                                            {/* Route for home page which has subpages*/}
+                                            <Route path="/*" element={<Home />} />
 
-                                        </Routes>
-                                      </BrowserRouter>
+                                          </Routes>
+                                        </BrowserRouter>
+                                      </GiftByPersonContextProvider>
                                     </GifttypeContextProvider>
                                   </GiftContextProvider>
                                 </DebtSumContextProvider>

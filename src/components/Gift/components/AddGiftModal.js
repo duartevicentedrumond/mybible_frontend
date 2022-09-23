@@ -308,7 +308,7 @@ export default function AddGiftModal(data) {
         getBuildings();
         getTransactions();
         getGifttypes();
-    }, []); //page first rendering depends on params.id and transactions
+    }, []); //page first rendering dependency
 
     //saves gift
     function handleSubmit(e) {

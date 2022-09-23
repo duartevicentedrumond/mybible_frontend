@@ -9,7 +9,7 @@ const initialState = {
     giftsByPerson: []
 };
 
-export const GiftByPersonContext = ({ children }) => {
+export const GiftByPersonContextProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(giftsByPersonReducer, initialState);
 

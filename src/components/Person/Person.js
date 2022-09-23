@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Route, Routes } from "react-router-dom";
 
 //import TransactionForm from "./TransactionForm";
 import PersonList from "./PersonList";
 import PersonForm from "./PersonForm";
+import GiftInfo from "./components/GiftInfo";
+import GiftByPersonContext from "../../context/Gift/GiftByPerson/GiftByPersonContext";
 import { Styled } from "../../design/style";
 
 export default function Person() {
+
+  const { giftsByPerson, getGiftsByPerson } = useContext(GiftByPersonContext);
+
+  //run on the first render and anytime any dependency value changes
+  useEffect(() => {
+
+    getGiftsByPerson();
+
+  }, []); //page first rendering dependency
+
   return (
     <div className="container-fluid">
 
@@ -28,14 +40,15 @@ export default function Person() {
           </ul>
 
           <Routes>
-            <Route path="/" element={<PersonList/>} />
-            <Route path="/add" element={<PersonForm/>} />
-            <Route path="/edit/:id" element={<PersonForm/>} />
-          </Routes> 
+            <Route path="/" element={<PersonList />} />
+            <Route path="/add" element={<PersonForm />} />
+            <Route path="/edit/:id" element={<PersonForm />} />
+          </Routes>
         </div>
-          
+
         <div className="col text-start py-3">
           <Routes>
+            <Route path="/edit/:id" element={<GiftInfo GiftsByPerson={giftsByPerson} />} />
           </Routes>
         </div>
 
