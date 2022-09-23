@@ -333,7 +333,7 @@ export default function SubtransactionsForm(data) {
                         <div className="col px-1">
 
                             <SubtransactionDetailBar
-                                subtransaction={subtransaction}
+                                object={subtransaction}
                                 items={[buildings, rooms, furnitures, sections, boxes, items]}
                             />
 

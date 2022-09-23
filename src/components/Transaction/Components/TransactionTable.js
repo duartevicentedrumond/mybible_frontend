@@ -6,7 +6,27 @@ export default function TransactionTable(data) {
 
     //define initial variables
     const transactions = data.transactions;
-    const onRowClick = data.onRowClick;
+    const onTransactionClick = data.onTransactionClick;
+    const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a transaction
+        if (onTransactionClick !== undefined && index === undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onTransactionClick(e);
+            handleCloseModal();
+        } else if (onTransactionClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onTransactionClick(e, index);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(

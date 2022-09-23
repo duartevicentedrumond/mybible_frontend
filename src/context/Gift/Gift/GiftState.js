@@ -4,7 +4,6 @@ import axios from "axios";
 import giftReducer from "./GiftReducer";
 import GiftContext from "./GiftContext";
 import { GET_GIFTS, ADD_GIFT, UPDATE_GIFT, DELETE_GIFT } from "./GiftTypes";
-import giftReducer from "./GiftReducer";
 
 const initialState = {
     gifts: []

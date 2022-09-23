@@ -3,13 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import PersonContext from "../../context/Person/Person/PersonContext";
 import { Styled } from "../../design/style";
-import { IoAdd, IoSync } from "react-icons/io5";
-import { RiParentLine, RiHashtag } from "react-icons/ri";
-import { TiFlowChildren } from "react-icons/ti";
-import { FiTrash2 } from "react-icons/fi";
+import { IoAdd, IoSync, IoGiftOutline } from "react-icons/io5";
 
 import InputForm from "../../general_components/Forms/InputForm";
 import DateForm from "../../general_components/Forms/DateForm";
+import AddGiftModal from "../Gift/components/AddGiftModal";
 
 export default function PersonForm() {
 
@@ -102,6 +100,18 @@ export default function PersonForm() {
     history("/people");
   };
 
+  //gift modal
+    const [showAddNewGiftModal, setShowAddNewGiftModal] = useState(false);
+    function handleShowAddNewGiftModal(e) {
+
+      e.preventDefault();
+
+      setShowAddNewGiftModal(true);
+    };
+    function handleCloseAddNewGiftModal() {
+      setShowAddNewGiftModal(false);
+    };
+
   //run on the first render and anytime any dependency value changes
   useEffect(
     () => {
@@ -139,6 +149,17 @@ export default function PersonForm() {
           {person.personId ? 
             <IoSync/> : 
             <IoAdd/>
+          }
+        </Styled.TitleButton>
+
+        {/*Add gift button*/}
+        <Styled.TitleButton
+          className='d-flex'
+          onClick={handleShowAddNewGiftModal}
+        >
+          {person.personId ? 
+            <IoGiftOutline/> : 
+            null
           }
         </Styled.TitleButton>
 
@@ -190,6 +211,14 @@ export default function PersonForm() {
           </div>
 
         </div>
+
+        <AddGiftModal
+          showModal={showAddNewGiftModal}
+          handleCloseModal={handleCloseAddNewGiftModal}
+          personId={person.personId}
+          people={people}
+        />
+
     </div>
   )
 };

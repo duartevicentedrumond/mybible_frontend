@@ -6,7 +6,27 @@ export default function PersonTable(data) {
 
     //define initial variables
     const people = data.people;
-    const onRowClick = data.onRowClick;
+    const onPersonClick = data.onPersonClick;
+    const handleCloseModal = data.handleCloseModal;
+    const index = data.index;
+
+    //execute this when a row is selected
+    function onRowClick(e) {
+
+        //if used to select a person
+        if (onPersonClick !== undefined && index === undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onPersonClick(e);
+            handleCloseModal();
+        } else if (onPersonClick !== undefined && index !== undefined) {
+            //prevent page refresh
+            e.preventDefault();
+            onPersonClick(e, index);
+            handleCloseModal();
+        }
+
+    }
 
     const [searchText, setSearchText] = useState("");
     const filteredPeople = people.filter(
@@ -107,7 +127,8 @@ export default function PersonTable(data) {
                                             style={{'whiteSpace': 'nowrap'}}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId}
+                                            data-personid={person.personId} 
+                                            data-nickname={person.nickname} 
                                         >
                                             {person.nickname}
                                         </Styled.TableRowLink>
@@ -120,7 +141,8 @@ export default function PersonTable(data) {
                                             style={{'whiteSpace': 'nowrap'}}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId}
+                                            data-personid={person.personId} 
+                                            data-nickname={person.nickname}
                                         >
                                             {person.fullName}
                                         </Styled.TableRowLink>
@@ -133,7 +155,8 @@ export default function PersonTable(data) {
                                             style={{'whiteSpace': 'nowrap'}}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId}
+                                            data-personid={person.personId} 
+                                            data-nickname={person.nickname}
                                         > 
                                             {person.age}
                                         </Styled.TableRowLink>
@@ -146,7 +169,8 @@ export default function PersonTable(data) {
                                             style={{'whiteSpace': 'nowrap'}}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId}
+                                            data-personid={person.personId} 
+                                            data-nickname={person.nickname}
                                         > 
                                             {person.birthday}
                                         </Styled.TableRowLink>
