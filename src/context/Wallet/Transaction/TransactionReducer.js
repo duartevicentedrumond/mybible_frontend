@@ -1,4 +1,4 @@
-import { GET_TRANSACTIONS, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
+import { GET_TRANSACTIONS, GET_SUBTRANSACTION_BY_TRANSACTION, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
 
 export default function transactionReducer(state, action) {
 
@@ -52,6 +52,13 @@ export default function transactionReducer(state, action) {
                 transactions: state.transactions.filter(
                     (transaction) => transaction.transactionId !== action.payload
                 ),
+            };
+
+        case GET_SUBTRANSACTION_BY_TRANSACTION:
+
+            return {
+                ...state.subtransactionsByTransaction,
+                subtransactionsByTransaction: action.payload,
             };
     
         default:

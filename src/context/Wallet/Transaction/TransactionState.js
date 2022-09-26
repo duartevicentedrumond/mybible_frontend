@@ -3,10 +3,11 @@ import axios from "axios";
 
 import transactionReducer from "./TransactionReducer";
 import TransactionContext from "./TransactionContext";
-import { GET_TRANSACTIONS, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
+import { GET_TRANSACTIONS, GET_SUBTRANSACTION_BY_TRANSACTION, ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from "./TransactionTypes";
 
 const initialState = {
-    transactions: []
+    transactions: [],
+    subtransactionsByTransaction: []
 };
 
 export const TransactionContextProvider = ({ children }) => {
@@ -26,6 +27,22 @@ export const TransactionContextProvider = ({ children }) => {
             })
             .catch(function(error) {
                 console.log("Error getting all transactions from API", error);
+            });
+    };
+
+    const getSubtransactionsByTransaction = async () => {
+
+        fetch('http://localhost:8080/transaction/getSubtransactionByTransaction')
+            .then( response => response.json())
+            .then( data => {
+                dispatch({
+                    type: GET_SUBTRANSACTION_BY_TRANSACTION, 
+                    payload: data
+                });
+                console.log("SUBTRANSACTIONS BY TRANSACTION LIST (STATE)\n\n",data);
+            })
+            .catch(function(error) {
+                console.log("Error getting all subtransactions by transaction from API", error);
             });
     };
 
@@ -90,7 +107,7 @@ export const TransactionContextProvider = ({ children }) => {
     };
 
     return (
-        <TransactionContext.Provider value={{ ...state, getTransactions, addTransaction, deleteTransaction, updateTransaction }}>
+        <TransactionContext.Provider value={{ ...state, getTransactions, getSubtransactionsByTransaction, addTransaction, deleteTransaction, updateTransaction }}>
             {children}
         </TransactionContext.Provider>
     )

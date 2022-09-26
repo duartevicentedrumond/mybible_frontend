@@ -27,7 +27,7 @@ export default function Person() {
   const { furnitures, getFurnitures } = useContext(FurnitureContext);
   const { rooms, getRooms } = useContext(RoomContext);
   const { buildings, getBuildings } = useContext(BuildingContext);
-  const { transactions, getTransactions } = useContext(TransactionContext);
+  const { subtransactionsByTransaction, getSubtransactionsByTransaction } = useContext(TransactionContext);
   const { gifttypes, getGifttypes } = useContext(GifttypeContext);
   const { giftsByPerson, getGiftsByPerson } = useContext(GiftByPersonContext);
   const { addGift, updateGift } = useContext(GiftContext);
@@ -42,7 +42,7 @@ export default function Person() {
     getFurnitures();
     getRooms();
     getBuildings();
-    getTransactions();
+    getSubtransactionsByTransaction();
     getGifttypes();
     getGiftsByPerson();
 
@@ -82,7 +82,7 @@ export default function Person() {
                   Rooms={rooms}
                   Buildings={buildings}
                   Gifttypes={gifttypes}
-                  Transactions={transactions}
+                  Transactions={subtransactionsByTransaction}
                   Gifts={[addGift, updateGift]}
                 />
               }
@@ -99,7 +99,7 @@ export default function Person() {
                   Rooms={rooms}
                   Buildings={buildings}
                   Gifttypes={gifttypes}
-                  Transactions={transactions}
+                  Transactions={subtransactionsByTransaction}
                   Gifts={[addGift, updateGift]}
                 />
               }

@@ -18,8 +18,8 @@ import SwitchForm from "../../../general_components/Forms/SwitchForm";
 import DateForm from "../../../general_components/Forms/DateForm";
 import SelectForm from "../../../general_components/Forms/SelectForm";
 
-import SelectTransactionModal from "../../Transaction/Components/SelectTransactionModal";
-import TransactionTable from "../../Transaction/Components/TransactionTable";
+import SelectSubtransactionByTransactionModal from "../../Transaction/Components/SelectSubtransactionByTransactionModal";
+import SubtransactionsByTransactionTable from "../../Transaction/Components/SubtransactionsByTransactionTable";
 import SelectPersonModal from "../../Person/components/SelectPersonModal";
 import PersonTable from "../../Person/components/PersonTable";
 
@@ -43,7 +43,7 @@ export default function AddGiftModal(data) {
     const rooms = data.Rooms;
     const buildings = data.Buildings;
     const gifttypes = data.Gifttypes;
-    const transactions = data.Transactions;
+    const subtransactionsByTransaction = data.Transactions;
     const [addGift, updateGift] = data.Gifts;
 
     //set state for gift
@@ -60,7 +60,7 @@ export default function AddGiftModal(data) {
         section: null,
         box: null,
         item: null,
-        transaction: null
+        subtransaction: null
     });
 
     //people modal
@@ -224,17 +224,17 @@ export default function AddGiftModal(data) {
         }));
     };
 
-    function onTransactionClick(e) {
+    function onSubtransactionClick(e) {
 
         //prevent page refresh
         e.preventDefault();
 
-        const transactionId = e.target.dataset.transactionid;
+        const subtransactionId = e.target.dataset.subtransactionid;
         const customId = e.target.dataset.customid;
         setGift(existingGift => ({
             ...existingGift,
-            transaction: {
-                transactionId: transactionId,
+            subtransaction: {
+                subtransactionId: subtransactionId,
                 customId: customId
             }
         }));
@@ -297,16 +297,17 @@ export default function AddGiftModal(data) {
     useEffect(
         () => {
 
-            setGift(existingGift => ({
-                ...existingGift,
-                people: [
-                    ...existingGift.people,
-                    {
-                        personId: person.personId,
-                        nickname: person.nickname
-                    }
-                ]
-            }));
+            if(person) {
+                setGift(existingGift => ({
+                    ...existingGift,
+                    people: [
+                        {
+                            personId: person.personId,
+                            nickname: person.nickname
+                        }
+                    ]
+                }));
+            };
 
         }
     , [person]); //page first rendering depends on params.id and persons
@@ -327,7 +328,7 @@ export default function AddGiftModal(data) {
             <Modal.Body>
                 <div className="container-fluid">
 
-                    {/*add transaction modal*/}
+                    {/*add subtransaction modal*/}
                     <div className="d-inline-flex flex-row align-items-center py-0">
                         <Styled.TitleButton
                             onClick={handleShowAddTransaction} className='d-flex'
@@ -335,9 +336,9 @@ export default function AddGiftModal(data) {
                         >
                             <MdOutlineAttachMoney />
                         </Styled.TitleButton>
-                        {gift.transaction !== null ?
+                        {gift.subtransaction !== null ?
                             <Styled.InfoText>
-                                #{gift.transaction.customId}
+                                #{gift.subtransaction.subtransactionId}
                             </Styled.InfoText>
                             : null}
                     </div>
@@ -438,12 +439,12 @@ export default function AddGiftModal(data) {
                         </Styled.TitleButton>
                     </div>
 
-                    <SelectTransactionModal
+                    <SelectSubtransactionByTransactionModal
                         showModal={showAddTransaction}
                         handleCloseModal={handleHideAddTransaction}
-                        transactions={transactions}
-                        TransactionTable={TransactionTable}
-                        onTransactionClick={onTransactionClick}
+                        Transactions={subtransactionsByTransaction}
+                        SubtransactionsByTransactionTable={SubtransactionsByTransactionTable}
+                        OnSubtransactionClick={onSubtransactionClick}
                     />
 
                     <SelectPersonModal
