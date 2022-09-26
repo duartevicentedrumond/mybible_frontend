@@ -15,7 +15,7 @@ import TypesModal from "./Components/TypesModal";
 
 export default function TransactionForm(data) {
 
-    const [transactions, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum] = data.Transactions;
+    const [transactions, addTransaction, updateTransaction, deleteTransaction] = data.Transactions;
     const types = data.Types;
 
     //get frontend directory
@@ -135,10 +135,6 @@ export default function TransactionForm(data) {
     else{ //if transaction doesn't exist adds new
       addTransaction(transaction);
     }
-
-    getTransactions();
-    getCategoriesSum();
-    getDebtsSum();
 
     //redirects to transactions list page
     history("/transaction");

@@ -1,22 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import PersonContext from "../../context/Person/Person/PersonContext";
 import PersonTable from "./components/PersonTable";
 
-export default function PersonList() {
+export default function PersonList(data) {
 
-    //Get getPeople function and people state object from PersonState through PersonContext
-    const {people, getPeople} = useContext(PersonContext);
+    const [people, getPeople] = data.People;
+    const getGiftsByPerson = data.Gifts;
 
-    //Execute getTransactions function as soon as the page is rendered
-    useEffect(
-        () => {
-            getPeople();
-        }
-    , []);
+    //run on the first render and anytime any dependency value changes
+    useEffect(() => {
+
+        getPeople();
+        getGiftsByPerson();
+
+    }, []); //page first rendering dependency
 
     return (
-        
+
         <PersonTable
             people={people}
         />

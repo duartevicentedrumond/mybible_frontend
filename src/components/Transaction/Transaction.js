@@ -48,7 +48,7 @@ function Transaction(data) {
               path="/"
               element={
                 <TransactionList
-                  Transactions={transactions}
+                  Transactions={[transactions, getTransactions, getCategoriesSum, getDebtsSum]}
                 />
               }
             />
@@ -56,7 +56,7 @@ function Transaction(data) {
               path="add"
               element={
                 <TransactionForm
-                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum]}
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
                   Types={types}
                 />
               }
@@ -65,7 +65,7 @@ function Transaction(data) {
               path="edit/:id"
               element={
                 <TransactionForm
-                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum]}
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
                   Types={types}
                 />
               }

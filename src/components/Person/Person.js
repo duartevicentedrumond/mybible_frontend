@@ -10,7 +10,7 @@ import { Styled } from "../../design/style";
 
 export default function Person(data) {
 
-  const [people, addPerson, updatePerson, deletePerson] = data.People;
+  const [people, addPerson, updatePerson, deletePerson, getPeople] = data.People;
   const items = data.Items;
   const boxes = data.Boxes;
   const sections = data.Sections;
@@ -19,7 +19,15 @@ export default function Person(data) {
   const buildings = data.Buildings;
   const gifttypes = data.Gifttypes;
   const subtransactionsByTransaction = data.Transactions;
-  const [addGift, updateGift, giftsByPerson] = data.Gifts;
+  const [addGift, updateGift, giftsByPerson, getGiftsByPerson] = data.Gifts;
+
+  //Execute getTransactions function as soon as the page is rendered
+  useEffect(
+    () => {
+        getPeople();
+        getGiftsByPerson();
+    }
+  , []);
 
   return (
     <div className="container-fluid">
@@ -42,7 +50,23 @@ export default function Person(data) {
           </ul>
 
           <Routes>
-            <Route path="/" element={<PersonList />} />
+            <Route
+              path="/"
+              element={
+                <PersonList
+                  People={[people, getPeople]}
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                  Gifttypes={gifttypes}
+                  Transactions={subtransactionsByTransaction}
+                  Gifts={getGiftsByPerson}
+                />
+              }
+            />
             <Route
               path="/add"
               element={

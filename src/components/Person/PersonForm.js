@@ -19,7 +19,7 @@ export default function PersonForm(data) {
   const buildings = data.Buildings;
   const gifttypes = data.Gifttypes;
   const transactions = data.Transactions;
-  const [addGift, updateGift] = data.Gifts;
+  const [addGift, updateGift, getGiftsByPerson] = data.Gifts;
 
     //get frontend directory
     const history = useNavigate();
@@ -227,7 +227,7 @@ export default function PersonForm(data) {
           Buildings={buildings}
           Gifttypes={gifttypes}
           Transactions={transactions}
-          Gifts={[addGift, updateGift]}
+          Gifts={[addGift, updateGift, getGiftsByPerson]}
         />
 
     </div>

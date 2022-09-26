@@ -82,7 +82,7 @@ const Home = () => {
                 path="people/*"
                 element={
                   <Person
-                    People={[people, addPerson, updatePerson, deletePerson]}
+                    People={[people, addPerson, updatePerson, deletePerson, getPeople]}
                     Items={items}
                     Boxes={boxes}
                     Sections={sections}
@@ -91,7 +91,7 @@ const Home = () => {
                     Buildings={buildings}
                     Gifttypes={gifttypes}
                     Transactions={subtransactionsByTransaction}
-                    Gifts={[addGift, updateGift, giftsByPerson]}
+                    Gifts={[addGift, updateGift, giftsByPerson, getGiftsByPerson]}
                   />
                 }
               />
