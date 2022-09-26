@@ -34,7 +34,7 @@ const Home = () => {
   const { buildings, getBuildings, addBuilding, updateBuilding } = useContext(BuildingContext);
   const { gifttypes, getGifttypes } = useContext(GifttypeContext);
   const { giftsByPerson, getGiftsByPerson } = useContext(GiftByPersonContext);
-  const { addGift, updateGift } = useContext(GiftContext);
+  const { gifts, getGifts, addGift, updateGift } = useContext(GiftContext);
   const { allJoined, getAllJoined } = useContext(AllJoinedContext);
 
   //run on the first render and anytime any dependency value changes
@@ -55,6 +55,7 @@ const Home = () => {
     getBuildings();
     getGifttypes();
     getGiftsByPerson();
+    getGifts();
 
   }, []); //page first rendering dependency
 
@@ -91,7 +92,7 @@ const Home = () => {
                     Buildings={buildings}
                     Gifttypes={gifttypes}
                     Transactions={subtransactionsByTransaction}
-                    Gifts={[addGift, updateGift, giftsByPerson, getGiftsByPerson]}
+                    Gifts={[gifts, getGifts, addGift, updateGift, giftsByPerson, getGiftsByPerson]}
                   />
                 }
               />

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 
 //import TransactionForm from "./TransactionForm";
@@ -19,15 +19,7 @@ export default function Person(data) {
   const buildings = data.Buildings;
   const gifttypes = data.Gifttypes;
   const subtransactionsByTransaction = data.Transactions;
-  const [addGift, updateGift, giftsByPerson, getGiftsByPerson] = data.Gifts;
-
-  //Execute getTransactions function as soon as the page is rendered
-  useEffect(
-    () => {
-        getPeople();
-        getGiftsByPerson();
-    }
-  , []);
+  const [gifts, getGifts, addGift, updateGift, giftsByPerson, getGiftsByPerson] = data.Gifts;
 
   return (
     <div className="container-fluid">
@@ -63,7 +55,7 @@ export default function Person(data) {
                   Buildings={buildings}
                   Gifttypes={gifttypes}
                   Transactions={subtransactionsByTransaction}
-                  Gifts={getGiftsByPerson}
+                  Gifts={[getGifts, getGiftsByPerson]}
                 />
               }
             />
@@ -106,7 +98,22 @@ export default function Person(data) {
 
         <div className="col text-start py-3">
           <Routes>
-            <Route path="/edit/:id" element={<GiftInfo GiftsByPerson={giftsByPerson} />} />
+            <Route
+              path="/edit/:id"
+              element={
+                <GiftInfo 
+                  People={people}
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                  Gifttypes={gifttypes}
+                  Transactions={subtransactionsByTransaction}
+                  Gifts={[addGift, updateGift, giftsByPerson, gifts]}
+                />} 
+            />
           </Routes>
         </div>
 

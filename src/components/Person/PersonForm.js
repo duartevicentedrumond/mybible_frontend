@@ -227,7 +227,7 @@ export default function PersonForm(data) {
           Buildings={buildings}
           Gifttypes={gifttypes}
           Transactions={transactions}
-          Gifts={[addGift, updateGift, getGiftsByPerson]}
+          Gifts={[null, addGift, updateGift]}
         />
 
     </div>

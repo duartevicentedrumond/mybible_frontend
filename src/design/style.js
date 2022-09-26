@@ -404,6 +404,22 @@ const InfoText = styled.div`
     outline: none;
 `;
 
+const InfoLink = styled(Link)`
+    color: ${text.normal.color};
+    font-size: ${text.normal.size}px;
+    font-weight: ${text.normal.weight};
+    text-decoration: ${linkText.normal.decoration};
+    transition: ${linkText.normal.transition};
+
+    &:hover {
+        color: ${linkText.hover.color};
+        font-size: ${linkText.hover.size}px;
+        font-weight: ${linkText.hover.weight};
+        text-decoration: ${linkText.hover.decoration};
+        transform: ${linkText.hover.transform};
+    }
+`;
+
 /* settings style */
 
 const SettingsLink = styled(Link)`
@@ -444,6 +460,7 @@ export const Styled = {
     FormSearchBar,
     InfoText,
     InfoHashTagText,
+    InfoLink,
     SettingsLink
 };
 

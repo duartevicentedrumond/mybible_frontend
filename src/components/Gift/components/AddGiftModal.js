@@ -44,7 +44,7 @@ export default function AddGiftModal(data) {
     const buildings = data.Buildings;
     const gifttypes = data.Gifttypes;
     const subtransactionsByTransaction = data.Transactions;
-    const [addGift, updateGift] = data.Gifts;
+    const [giftInitial, addGift, updateGift] = data.Gifts;
 
     //set state for gift
     const [gift, setGift] = useState({
@@ -286,6 +286,7 @@ export default function AddGiftModal(data) {
         //if gift already exists updates it
         if (gift.giftId) {
             updateGift(gift);
+            handleCloseModal();
         }
         else { //if item doesn't exist adds new
             addGift(gift);
@@ -309,8 +310,12 @@ export default function AddGiftModal(data) {
                 }));
             };
 
+            if (giftInitial) {
+                setGift(giftInitial)
+            }
+
         }
-    , [person]); //page first rendering depends on params.id and persons
+    , [person, giftInitial]); //page first rendering depends on params.id and persons
 
     return (
 
