@@ -10,7 +10,7 @@ import { Styled } from "../../design/style";
 
 function Transaction(data) {
 
-  const [transactions, categoriesSum, debtsSum, addTransaction, updateTransaction, deleteTransaction] = data.Transactions;
+  const [transactions, categoriesSum, debtsSum, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum, getTypes] = data.Transactions;
   const [types, addType, updateType] = data.Types;
 
   return (
@@ -56,7 +56,7 @@ function Transaction(data) {
               path="add"
               element={
                 <TransactionForm
-                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum]}
                   Types={types}
                 />
               }
@@ -65,7 +65,7 @@ function Transaction(data) {
               path="edit/:id"
               element={
                 <TransactionForm
-                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum]}
                   Types={types}
                 />
               }

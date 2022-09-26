@@ -71,7 +71,7 @@ const Home = () => {
                 path="transaction/*"
                 element={
                   <Transaction
-                    Transactions={[transactions, categoriesSum, debtsSum, addTransaction, updateTransaction, deleteTransaction]}
+                    Transactions={[transactions, categoriesSum, debtsSum, addTransaction, updateTransaction, deleteTransaction, getTransactions, getCategoriesSum, getDebtsSum, getTypes]}
                     Types={[types, addType, updateType]}
                   />
                 }
