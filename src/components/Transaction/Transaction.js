@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import TransactionForm from "./TransactionForm";
@@ -6,9 +6,20 @@ import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
 import TransactionChart from "./TransactionChart";
 import TransactionSettings from "./TransactionSettings";
+import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import { Styled } from "../../design/style";
 
 function Transaction() {
+
+  const { transactions, getTransactions } = useContext(TransactionContext);
+
+  //run on the first render and anytime any dependency value changes
+  useEffect(() => {
+
+    getTransactions();
+
+  }, []); //page first rendering dependency
+
   return (
     <div className="container-fluid">
 
@@ -40,7 +51,14 @@ function Transaction() {
           </ul>
 
           <Routes>
-            <Route path="/" element={<TransactionList/>} />
+            <Route
+              path="/"
+              element={
+                <TransactionList
+                  Transactions={transactions}
+                />
+              }
+            />
             <Route path="add" element={<TransactionForm/>} />
             <Route path="edit/:id" element={<TransactionForm/>} />
             <Route path="chart" element={<TransactionChart/>} />

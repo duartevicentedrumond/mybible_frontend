@@ -1,19 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 
-import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import TransactionTable from "./Components/TransactionTable";
 
-const TransactionList = () => {
+export default function TransactionList(data) {
 
-    //Get getTransactions function and transactions state object from TransactionState through TransactionContext
-    const {transactions, getTransactions} = useContext(TransactionContext);
-
-    //Execute getTransactions function as soon as the page is rendered
-    useEffect(
-        () => {
-            getTransactions();
-        }
-    , []);
+    const transactions = data.Transactions;
 
     return (
         
@@ -22,6 +13,4 @@ const TransactionList = () => {
         />
 
     )
-}
-
-export default TransactionList;
+};
