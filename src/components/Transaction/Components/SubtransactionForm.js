@@ -284,7 +284,13 @@ export default function SubtransactionsForm(data) {
                 {
                     amount: null,
                     category: { categoryId: '1' },
-                    person: { personId: '0' }
+                    person: { personId: '0' },
+                    building: null,
+                    room: null,
+                    furniture: null,
+                    section: null,
+                    box: null,
+                    item: null
                 }
             ]
         }));
