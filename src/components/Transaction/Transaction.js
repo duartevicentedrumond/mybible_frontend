@@ -10,7 +10,8 @@ import { Styled } from "../../design/style";
 
 function Transaction(data) {
 
-  const [transactions, categoriesSum, debtsSum] = data.Transactions;
+  const [transactions, categoriesSum, debtsSum, addTransaction, updateTransaction, deleteTransaction] = data.Transactions;
+  const [types, addType, updateType] = data.Types;
 
   return (
     <div className="container-fluid">
@@ -51,8 +52,24 @@ function Transaction(data) {
                 />
               }
             />
-            <Route path="add" element={<TransactionForm/>} />
-            <Route path="edit/:id" element={<TransactionForm/>} />
+            <Route
+              path="add"
+              element={
+                <TransactionForm
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
+                  Types={types}
+                />
+              }
+            />
+            <Route
+              path="edit/:id"
+              element={
+                <TransactionForm
+                  Transactions={[transactions, addTransaction, updateTransaction, deleteTransaction]}
+                  Types={types}
+                />
+              }
+            />
             <Route path="chart" element={<TransactionChart/>} />
             <Route path="settings" element={<TransactionSettings/>} />
           </Routes> 

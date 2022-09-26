@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import ItemList from "./Item/ItemList";
 import AllJoinedList from "./AllJoined/AllJoinedList";
@@ -14,26 +14,18 @@ import SectionView from "./Section/SectionView";
 import FurnitureView from "./Furniture/FurnitureView";
 import RoomView from "./Room/RoomView";
 import BuildingView from "./Building/BuildingView";
-import AllJoinedContext from "../../context/Item/AllJoined/AllJoinedContext";
-import ItemContext from "../../context/Item/Item/ItemContext";
-import BoxContext from "../../context/Item/Box/BoxContext";
-import SectionContext from "../../context/Item/Section/SectionContext";
-import FurnitureContext from "../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "../../context/Item/Room/RoomContext";
-import BuildingContext from "../../context/Item/Building/BuildingContext";
 
 import { Styled } from "../../design/style";
 
-export default function Item() {
-
-  //Get alljoined, item context
-    const { allJoined, getAllJoined } = useContext(AllJoinedContext);
-    const { items, getItems, addItem, updateItem } = useContext(ItemContext);
-    const { boxes, getBoxes, addBox, updateBox } = useContext(BoxContext);
-    const { sections, getSections, addSection, updateSection } = useContext(SectionContext);
-    const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
-    const { rooms, getRooms, addRoom, updateRoom } = useContext(RoomContext);
-    const { buildings, getBuildings, addBuilding, updateBuilding } = useContext(BuildingContext);
+export default function Item(data) {
+  
+  const allJoined = data.AllJoined;
+  const [items, addItem, updateItem] = data.Items;
+  const [boxes, addBox, updateBox] = data.Boxes;
+  const [sections, addSection, updateSection] = data.Sections;
+  const [furnitures, addFurniture, updateFurniture] = data.Furnitures;
+  const [rooms, addRoom, updateRoom] = data.Rooms;
+  const [buildings, addBuilding, updateBuilding] = data.Buildings;
 
   //set state for showNewModal
   const [showNewModal, setShowNewModal] = useState(false);
@@ -49,19 +41,6 @@ export default function Item() {
   function handleCloseNewModal() {
     setShowNewModal(false);
   };
-
-  //Execute getTransactions function as soon as the page is rendered
-  useEffect(
-    () => {
-      getAllJoined();
-      getItems();
-      getBoxes();
-      getSections();
-      getFurnitures();
-      getRooms();
-      getBuildings();
-    }
-    , []);
 
   return (
     <div className="container-fluid">

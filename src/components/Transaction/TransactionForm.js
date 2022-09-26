@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
-import TypeContext from "../../context/Wallet/Type/TypeContext";
 import { Styled } from "../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
 import { RiParentLine, RiHashtag } from "react-icons/ri";
@@ -15,15 +13,10 @@ import SubtransactionsForm from "./Components/SubtransactionForm";
 import TransactionParentForm from "./Components/TransactionParentForm";
 import TypesModal from "./Components/TypesModal";
 
-export default function TransactionForm() {
+export default function TransactionForm(data) {
 
-  //define initial variables
-
-    //get context for addTransaction and updateTransaction functions and transactions object
-    const { addTransaction, transactions, updateTransaction, deleteTransaction, getTransactions } = useContext(TransactionContext);
-
-    //get context for getTypes function and types object
-    const { types, getTypes } = useContext(TypeContext);
+    const [transactions, addTransaction, updateTransaction, deleteTransaction] = data.Transactions;
+    const types = data.Types;
 
     //get frontend directory
     const history = useNavigate();
@@ -143,9 +136,6 @@ export default function TransactionForm() {
       addTransaction(transaction);
     }
 
-    //get transactions
-    getTransactions();
-
     //redirects to transactions list page
     history("/transaction");
   };
@@ -157,9 +147,6 @@ export default function TransactionForm() {
 
     deleteTransaction(transaction.transactionId);
 
-    //get transactions
-    getTransactions();
-
     //redirects to transactions list page
     history("/transaction");
   };
@@ -167,9 +154,6 @@ export default function TransactionForm() {
   //run on the first render and anytime any dependency value changes
   useEffect(
     () => {
-
-      //get all existing types for dropdown input
-      getTypes();
 
       //get transaction (if it exists) from the url id
       const transactionFound = transactions.find( (transaction) => transaction.transactionId === parseFloat(params.id));
