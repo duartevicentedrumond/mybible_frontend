@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Modal } from 'react-bootstrap';
 
 import { Styled } from "../../../design/style";
-import TransactionContext from "../../../context/Wallet/Transaction/TransactionContext";
 import TransactionTable from "./TransactionTable";
 
 import { RiParentLine } from "react-icons/ri";
@@ -15,9 +14,7 @@ export default function TransactionParentForm(data) {
     const [transaction, setTransaction] = data.transactionState;
     const showModal = data.showModal;
     const handleCloseModal = data.handleCloseModal;
-    
-    //get context for addTransaction and updateTransaction functions and transactions object
-    const { transactions } = useContext(TransactionContext);
+    const transactions = data.Transactions;
 
     //get parameters from url
     const params = useParams();
@@ -38,7 +35,7 @@ export default function TransactionParentForm(data) {
     };
 
     //set code to run on transaction list' rows click
-    function onRowClick(e){
+    function onTransactionClick(e){
         
         //prevent page refresh
         e.preventDefault();
@@ -58,18 +55,17 @@ export default function TransactionParentForm(data) {
         () => {
 
             //set current transaction ID from url
-            const currentTransactionId = parseFloat(params.id);
+            const currentTransactionId = String(params.id);
 
-            //update filtered transactions state to retrieve only transactions different than the current one
-            setFilteredTransactions(
-                existingFilteredTransactions => (
-                    existingFilteredTransactions.filter(
-                        (transaction) => (
-                            transaction.transactionId !== currentTransactionId
-                        )
-                    )
-                )
-            );
+            const filteredResult = transactions.filter((transaction) => {
+
+                if (String(transaction.transactionId) !== currentTransactionId) {
+                    return transaction
+                };
+                        
+            })
+
+            setFilteredTransactions(filteredResult);
 
         }
     , [params.id, transactions]); //page first rendering depends on params.id and transactions
@@ -90,8 +86,9 @@ export default function TransactionParentForm(data) {
             <Modal.Body>
                 {/*transactions list input form*/}
                 <TransactionTable
-                    transactions={filteredTransactions}
-                    onRowClick={onRowClick}
+                    Transactions={filteredTransactions}
+                    onTransactionClick={onTransactionClick}
+                    handleCloseModal={handleCloseModal}
                 />
             </Modal.Body>
             <Modal.Footer>

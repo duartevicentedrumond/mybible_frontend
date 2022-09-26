@@ -257,7 +257,7 @@ export default function TransactionForm(data) {
         transactionState={[transaction, setTransaction]}
         showModal={showTransactionParentModal}
         handleCloseModal={handleCloseTransactionParentModal}
-        transactions={transactions}
+        Transactions={transactions}
       />
 
       {/*transaction types button for modal input form*/}

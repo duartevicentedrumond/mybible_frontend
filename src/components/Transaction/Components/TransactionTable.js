@@ -10,8 +10,6 @@ export default function TransactionTable(data) {
     const handleCloseModal = data.handleCloseModal;
     const index = data.index;
 
-    console.log(transactions)
-
     //execute this when a row is selected
     function onRowClick(e) {
 
@@ -28,8 +26,8 @@ export default function TransactionTable(data) {
             handleCloseModal();
         }
 
-    }
-
+    };
+    
     const [searchText, setSearchText] = useState("");
     const filteredTransactions = transactions.filter(
         transaction => {
