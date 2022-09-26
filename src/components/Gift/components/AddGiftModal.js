@@ -2,15 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
 import { Styled } from "../../../design/style";
-import ItemContex from "./../../../context/Item/Item/ItemContext";
-import BoxContext from "./../../../context/Item/Box/BoxContext";
-import SectionContext from "./../../../context/Item/Section/SectionContext";
-import FurnitureContext from "./../../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "./../../../context/Item/Room/RoomContext";
-import BuildingContext from "./../../../context/Item/Building/BuildingContext";
-import TransactionContext from "./../../../context/Wallet/Transaction/TransactionContext";
-import GifttypeContext from "./../../../context/Gift/Gifttype/GifttypeContext";
-import GiftContext from "./../../../context/Gift/Gift/GiftContext";
 import { dateToString } from "./../../../general_components/Functions";
 import BuildingTable from "../../Item/Building/components/BuildingTable";
 import RoomTable from "../../Item/Room/components/RoomTable";
@@ -41,64 +32,54 @@ import { IoAdd, IoSync } from "react-icons/io5";
 export default function AddGiftModal(data) {
 
     //define initial given variables
-        const showModal = data.showModal;
-        const handleCloseModal = data.handleCloseModal;
-        const personId = data.personId;
-        const people = data.people;
+    const showModal = data.showModal;
+    const handleCloseModal = data.handleCloseModal;
+    const people = data.People;
+    const person = data.Person;
+    const items = data.Items;
+    const boxes = data.Boxes;
+    const sections = data.Sections;
+    const furnitures = data.Furnitures;
+    const rooms = data.Rooms;
+    const buildings = data.Buildings;
+    const gifttypes = data.Gifttypes;
+    const transactions = data.Transactions;
+    const [addGift, updateGift] = data.Gifts;
 
     //set state for gift
-        const [gift, setGift] = useState({
-            value: null,
-            date: dateToString(new Date()),
-            description: null,
-            from: true,
-            people: [],
-            gifttype: { gifttypeId: 1 },
-            building: null,
-            room: null,
-            furniture: null,
-            section: null,
-            box: null,
-            item: null,
-            transaction: null
-        });
-
-    //get context for item, box, section, furniture, room, building, transaction and gifttype
-        const { items, getItems } = useContext(ItemContex);
-
-        const { boxes, getBoxes } = useContext(BoxContext);
-
-        const { sections, getSections } = useContext(SectionContext);
-
-        const { furnitures, getFurnitures } = useContext(FurnitureContext);
-
-        const { rooms, getRooms } = useContext(RoomContext);
-
-        const { buildings, getBuildings } = useContext(BuildingContext);
-
-        const { transactions, getTransactions } = useContext(TransactionContext);
-
-        const { gifttypes, getGifttypes } = useContext(GifttypeContext);
-
-        const { gifts, getGifts, addGift, updateGift } = useContext(GiftContext);
+    const [gift, setGift] = useState({
+        value: null,
+        date: dateToString(new Date()),
+        description: null,
+        from: true,
+        people: [],
+        gifttype: { gifttypeId: 1 },
+        building: null,
+        room: null,
+        furniture: null,
+        section: null,
+        box: null,
+        item: null,
+        transaction: null
+    });
 
     //people modal
-        const [showAddPeople, setShowAddPeople] = useState(false);
-        function handleShowAddPeople(e) {  
-            setShowAddPeople(true);
-        };
-        function handleHideAddPeople() {
-            setShowAddPeople(false);
-        };
+    const [showAddPeople, setShowAddPeople] = useState(false);
+    function handleShowAddPeople(e) {
+        setShowAddPeople(true);
+    };
+    function handleHideAddPeople() {
+        setShowAddPeople(false);
+    };
 
     //transaction modal
-        const [showAddTransaction, setShowAddTransaction] = useState(false);
-        function handleShowAddTransaction(e) {  
-            setShowAddTransaction(true);
-        };
-        function handleHideAddTransaction() {
-            setShowAddTransaction(false);
-        };
+    const [showAddTransaction, setShowAddTransaction] = useState(false);
+    function handleShowAddTransaction(e) {
+        setShowAddTransaction(true);
+    };
+    function handleHideAddTransaction() {
+        setShowAddTransaction(false);
+    };
 
     function handleDescriptionChange(e) {
 
@@ -119,7 +100,7 @@ export default function AddGiftModal(data) {
     function handleDateChange(date) {
 
         const dateString = dateToString(date);
-    
+
         setGift(existingGift => ({
             ...existingGift,
             date: dateString
@@ -134,7 +115,7 @@ export default function AddGiftModal(data) {
         }));
 
     };
-    
+
     function onBuildingClick(e) {
 
         //prevent page refresh
@@ -242,7 +223,7 @@ export default function AddGiftModal(data) {
             item: { itemId: itemId }
         }));
     };
-    
+
     function onTransactionClick(e) {
 
         //prevent page refresh
@@ -252,7 +233,7 @@ export default function AddGiftModal(data) {
         const customId = e.target.dataset.customid;
         setGift(existingGift => ({
             ...existingGift,
-            transaction: { 
+            transaction: {
                 transactionId: transactionId,
                 customId: customId
             }
@@ -270,7 +251,7 @@ export default function AddGiftModal(data) {
             ...existingGift,
             people: [
                 ...existingGift.people,
-                { 
+                {
                     personId: personId,
                     nickname: nickname
                 }
@@ -285,7 +266,7 @@ export default function AddGiftModal(data) {
 
         setGift(existingGift => ({
             ...existingGift,
-            people: [ ]
+            people: []
         }));
     };
 
@@ -296,19 +277,6 @@ export default function AddGiftModal(data) {
             gifttype: { gifttypeId: e.target.value }
         }));
     };
-
-    //run on the first render and anytime any dependency value changes
-    useEffect( () => {
-        //get all existing items, sections, furniture, rooms and buildings, transactions and gifttypes
-        getItems();
-        getBoxes();
-        getSections();
-        getFurnitures();
-        getRooms();
-        getBuildings();
-        getTransactions();
-        getGifttypes();
-    }, []); //page first rendering dependency
 
     //saves gift
     function handleSubmit(e) {
@@ -325,9 +293,27 @@ export default function AddGiftModal(data) {
         }
     };
 
+    //run on the first render and anytime any dependency value changes
+    useEffect(
+        () => {
+
+            setGift(existingGift => ({
+                ...existingGift,
+                people: [
+                    ...existingGift.people,
+                    {
+                        personId: person.personId,
+                        nickname: person.nickname
+                    }
+                ]
+            }));
+
+        }
+    , [person]); //page first rendering depends on params.id and persons
+
     return (
 
-        <Modal 
+        <Modal
             show={showModal}
             size="lg"
         >
@@ -343,46 +329,46 @@ export default function AddGiftModal(data) {
 
                     {/*add transaction modal*/}
                     <div className="d-inline-flex flex-row align-items-center py-0">
-                        <Styled.TitleButton 
-                        onClick={handleShowAddTransaction} className='d-flex'
-                        style={{fontSize: "18px"}}
+                        <Styled.TitleButton
+                            onClick={handleShowAddTransaction} className='d-flex'
+                            style={{ fontSize: "18px" }}
                         >
-                            <MdOutlineAttachMoney/>
+                            <MdOutlineAttachMoney />
                         </Styled.TitleButton>
-                        {gift.transaction !== null ? 
+                        {gift.transaction !== null ?
                             <Styled.InfoText>
                                 #{gift.transaction.customId}
                             </Styled.InfoText>
-                        : null }
+                            : null}
                     </div>
 
                     {/*add people modal*/}
                     <div className="d-inline-flex flex-row align-items-center py-0">
-                        <Styled.TitleButton 
-                        onClick={handleShowAddPeople} className='d-flex'
-                        style={{fontSize: "18px"}}
+                        <Styled.TitleButton
+                            onClick={handleShowAddPeople} className='d-flex'
+                            style={{ fontSize: "18px" }}
                         >
-                            <RiParentLine/>
+                            <RiParentLine />
                         </Styled.TitleButton>
                         {gift.people.length > 0 ?
                             <div className="d-inline-flex flex-row align-items-center py-0">
                                 {gift.people.map(
                                     (person) => (
                                         <Styled.InfoText
-                                        className='me-2'
+                                            className='me-2'
                                         >
-                                        {person.nickname}
+                                            {person.nickname}
                                         </Styled.InfoText>
                                     )
                                 )}
-                                <Styled.TitleButton 
+                                <Styled.TitleButton
                                     onClick={handlePeopleDelete} className='d-flex'
-                                    style={{fontSize: "18px"}}
+                                    style={{ fontSize: "18px" }}
                                 >
-                                    <FiX/>
+                                    <FiX />
                                 </Styled.TitleButton>
                             </div>
-                        : null
+                            : null
                         }
                     </div>
 
@@ -390,7 +376,7 @@ export default function AddGiftModal(data) {
                         object={gift}
                         items={[buildings, rooms, furnitures, sections, boxes, items]}
                     />
-                    
+
                     <ItemSelectionBar
                         Building={[false, BuildingTable, buildings, (e) => onBuildingClick(e)]}
                         Room={[false, RoomTable, rooms, (e) => onRoomClick(e)]}
@@ -434,7 +420,7 @@ export default function AddGiftModal(data) {
 
                     {/* subtransaction's category input' */}
                     <SelectForm
-                        value={gift.gifttype.gifttypeId }
+                        value={gift.gifttype.gifttypeId}
                         arrayList={gifttypes}
                         arrayValue="gifttypeId"
                         arrayDescription="description"
@@ -445,10 +431,10 @@ export default function AddGiftModal(data) {
                     {/*Change upload button icon wether the it's a new item or an existing item*/}
                     <div className="d-inline-flex flex-row align-items-center">
                         <Styled.TitleButton onClick={handleSubmit} className='d-flex'>
-                        {gift.giftId ?
-                            <IoSync /> :
-                            <IoAdd />
-                        }
+                            {gift.giftId ?
+                                <IoSync /> :
+                                <IoAdd />
+                            }
                         </Styled.TitleButton>
                     </div>
 
@@ -471,10 +457,10 @@ export default function AddGiftModal(data) {
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <Styled.TitleButton 
+                <Styled.TitleButton
                     onClick={handleCloseModal}
                 >
-                    <IoCloseCircleOutline/>
+                    <IoCloseCircleOutline />
                 </Styled.TitleButton>
             </Modal.Footer>
         </Modal>

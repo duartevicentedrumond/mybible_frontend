@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
-import PersonContext from "../../context/Person/Person/PersonContext";
 import { Styled } from "../../design/style";
 import { IoAdd, IoSync, IoGiftOutline } from "react-icons/io5";
 
@@ -9,12 +8,18 @@ import InputForm from "../../general_components/Forms/InputForm";
 import DateForm from "../../general_components/Forms/DateForm";
 import AddGiftModal from "../Gift/components/AddGiftModal";
 
-export default function PersonForm() {
+export default function PersonForm(data) {
 
-  //define initial variables
-
-    //get context for addTransaction and updateTransaction functions and persons object
-    const { addPerson, people, updatePerson, deletePerson, getPeople } = useContext(PersonContext);
+  const [people, addPerson, updatePerson, deletePerson] = data.People;
+  const items = data.Items;
+  const boxes = data.Boxes;
+  const sections = data.Sections;
+  const furnitures = data.Furnitures;
+  const rooms = data.Rooms;
+  const buildings = data.Buildings;
+  const gifttypes = data.Gifttypes;
+  const transactions = data.Transactions;
+  const [addGift, updateGift] = data.Gifts;
 
     //get frontend directory
     const history = useNavigate();
@@ -92,9 +97,6 @@ export default function PersonForm() {
     else{ //if person doesn't exist adds new
       addPerson(person);
     }
-
-    //get people
-    getPeople();
 
     //redirects to transactions list page
     history("/people");
@@ -215,8 +217,17 @@ export default function PersonForm() {
         <AddGiftModal
           showModal={showAddNewGiftModal}
           handleCloseModal={handleCloseAddNewGiftModal}
-          personId={person.personId}
-          people={people}
+          Person={person}
+          People={people}
+          Items={items}
+          Boxes={boxes}
+          Sections={sections}
+          Furnitures={furnitures}
+          Rooms={rooms}
+          Buildings={buildings}
+          Gifttypes={gifttypes}
+          Transactions={transactions}
+          Gifts={[addGift, updateGift]}
         />
 
     </div>
