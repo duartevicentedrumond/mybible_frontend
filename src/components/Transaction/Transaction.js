@@ -6,19 +6,11 @@ import TransactionList from "./TransactionList";
 import TransactionInfo from "./TransactionInfo";
 import TransactionChart from "./TransactionChart";
 import TransactionSettings from "./TransactionSettings";
-import TransactionContext from "../../context/Wallet/Transaction/TransactionContext";
 import { Styled } from "../../design/style";
 
-function Transaction() {
+function Transaction(data) {
 
-  const { transactions, getTransactions } = useContext(TransactionContext);
-
-  //run on the first render and anytime any dependency value changes
-  useEffect(() => {
-
-    getTransactions();
-
-  }, []); //page first rendering dependency
+  const [transactions, categoriesSum, debtsSum] = data.Transactions;
 
   return (
     <div className="container-fluid">
@@ -68,11 +60,51 @@ function Transaction() {
           
         <div className="col text-start py-3">
           <Routes>
-            <Route path="/" element={<TransactionInfo/>} />
-            <Route path="/add" element={<TransactionInfo/>} />
-            <Route path="/edit/:id" element={<TransactionInfo/>} />
-            <Route path="/chart" element={<TransactionInfo/>} />
-            <Route path="/settings" element={<TransactionInfo/>} />
+            <Route
+              path="/"
+              element={
+                <TransactionInfo
+                  CategoriesSum={categoriesSum}
+                  DebtsSum={debtsSum}
+                />
+              }
+            />
+            <Route
+              path="/add"
+              element={
+                <TransactionInfo
+                  CategoriesSum={categoriesSum}
+                  DebtsSum={debtsSum}
+                />
+              }
+            />
+           <Route
+              path="/edit/:id"
+              element={
+                <TransactionInfo
+                  CategoriesSum={categoriesSum}
+                  DebtsSum={debtsSum}
+                />
+              }
+            />
+            <Route
+              path="/chart"
+              element={
+                <TransactionInfo
+                  CategoriesSum={categoriesSum}
+                  DebtsSum={debtsSum}
+                />
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <TransactionInfo
+                  CategoriesSum={categoriesSum}
+                  DebtsSum={debtsSum}
+                />
+              }
+            />
           </Routes>
         </div>
 

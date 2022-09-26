@@ -7,10 +7,8 @@ import Home from "./general_components/Home";
 import { TransactionContextProvider } from "./context/Wallet/Transaction/TransactionState";
 import { CategoryContextProvider } from "./context/Wallet/Category/CategoryState";
 import { TypeContextProvider } from "./context/Wallet/Type/TypeState";
-import { CategorySumContextProvider } from "./context/Wallet/CategorySum/CategorySumState";
 import { MonthSumContextProvider } from "./context/Wallet/MonthSum/MonthSumState";
 import { PersonContextProvider } from "./context/Person/Person/PersonState";
-import { DebtSumContextProvider } from "./context/Wallet/DebtSum/DebtSumState";
 import { ItemsContextProvider } from "./context/Item/Item/ItemState";
 import { AllJoinedContextProvider } from "./context/Item/AllJoined/AllJoinedState";
 import { BoxesContextProvider } from "./context/Item/Box/BoxState";
@@ -29,42 +27,38 @@ function App() {
       <TransactionContextProvider>
         <CategoryContextProvider>
           <TypeContextProvider>
-            <CategorySumContextProvider>
-              <MonthSumContextProvider>
-                <BuildingsContextProvider>
-                  <RoomsContextProvider>
-                    <FurnituresContextProvider>
-                      <SectionsContextProvider>
-                        <BoxesContextProvider>
-                          <ItemsContextProvider>
-                            <AllJoinedContextProvider>
-                              <PersonContextProvider>
-                                <DebtSumContextProvider>
-                                  <GiftContextProvider>
-                                    <GifttypeContextProvider>
-                                      <GiftByPersonContextProvider>
-                                        <BrowserRouter>
-                                          <Routes>
+            <MonthSumContextProvider>
+              <BuildingsContextProvider>
+                <RoomsContextProvider>
+                  <FurnituresContextProvider>
+                    <SectionsContextProvider>
+                      <BoxesContextProvider>
+                        <ItemsContextProvider>
+                          <AllJoinedContextProvider>
+                            <PersonContextProvider>
+                              <GiftContextProvider>
+                                <GifttypeContextProvider>
+                                  <GiftByPersonContextProvider>
+                                    <BrowserRouter>
+                                      <Routes>
 
-                                            {/* Route for home page which has subpages*/}
-                                            <Route path="/*" element={<Home />} />
+                                        {/* Route for home page which has subpages*/}
+                                        <Route path="/*" element={<Home />} />
 
-                                          </Routes>
-                                        </BrowserRouter>
-                                      </GiftByPersonContextProvider>
-                                    </GifttypeContextProvider>
-                                  </GiftContextProvider>
-                                </DebtSumContextProvider>
-                              </PersonContextProvider>
-                            </AllJoinedContextProvider>
-                          </ItemsContextProvider>
-                        </BoxesContextProvider>
-                      </SectionsContextProvider>
-                    </FurnituresContextProvider>
-                  </RoomsContextProvider>
-                </BuildingsContextProvider>
-              </MonthSumContextProvider>
-            </CategorySumContextProvider>
+                                      </Routes>
+                                    </BrowserRouter>
+                                  </GiftByPersonContextProvider>
+                                </GifttypeContextProvider>
+                              </GiftContextProvider>
+                            </PersonContextProvider>
+                          </AllJoinedContextProvider>
+                        </ItemsContextProvider>
+                      </BoxesContextProvider>
+                    </SectionsContextProvider>
+                  </FurnituresContextProvider>
+                </RoomsContextProvider>
+              </BuildingsContextProvider>
+            </MonthSumContextProvider>
           </TypeContextProvider>
         </CategoryContextProvider>
       </TransactionContextProvider>

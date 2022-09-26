@@ -1,22 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 
-import CategorySumContext from "../../context/Wallet/CategorySum/CategorySumContext";
-import DebtSumContext from "../../context/Wallet/DebtSum/DebtSumContext";
 import { Styled__Title } from "../../design/style";
 
-const TransactionInfo = () => {
+const TransactionInfo = (data) => {
 
-    //Get getTransactions function and transactions state object from TransactionState through TransactionContext
-    const {categoriesSum, getCategoriesSum} = useContext(CategorySumContext);
-    const {debtsSum, getDebtsSum} = useContext(DebtSumContext);
-
-    //Execute getTransactions function as soon as the page is rendered
-    useEffect(
-        () => {
-            getCategoriesSum();
-            getDebtsSum();
-        }
-    , []);
+    const categoriesSum = data.CategoriesSum;
+    const debtsSum = data.DebtsSum;
 
     return (
         <div className="flex">

@@ -5,48 +5,21 @@ import { Route, Routes } from "react-router-dom";
 import PersonList from "./PersonList";
 import PersonForm from "./PersonForm";
 import GiftInfo from "./components/GiftInfo";
-import PersonContext from "../../context/Person/Person/PersonContext";
-import GiftByPersonContext from "../../context/Gift/GiftByPerson/GiftByPersonContext";
-import ItemContex from "./../../context/Item/Item/ItemContext";
-import BoxContext from "./../../context/Item/Box/BoxContext";
-import SectionContext from "./../../context/Item/Section/SectionContext";
-import FurnitureContext from "./../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "./../../context/Item/Room/RoomContext";
-import BuildingContext from "./../../context/Item/Building/BuildingContext";
-import TransactionContext from "./../../context/Wallet/Transaction/TransactionContext";
-import GifttypeContext from "./../../context/Gift/Gifttype/GifttypeContext";
-import GiftContext from "./../../context/Gift/Gift/GiftContext";
+
 import { Styled } from "../../design/style";
 
-export default function Person() {
+export default function Person(data) {
 
-  const { addPerson, people, updatePerson, deletePerson, getPeople } = useContext(PersonContext);
-  const { items, getItems } = useContext(ItemContex);
-  const { boxes, getBoxes } = useContext(BoxContext);
-  const { sections, getSections } = useContext(SectionContext);
-  const { furnitures, getFurnitures } = useContext(FurnitureContext);
-  const { rooms, getRooms } = useContext(RoomContext);
-  const { buildings, getBuildings } = useContext(BuildingContext);
-  const { subtransactionsByTransaction, getSubtransactionsByTransaction } = useContext(TransactionContext);
-  const { gifttypes, getGifttypes } = useContext(GifttypeContext);
-  const { giftsByPerson, getGiftsByPerson } = useContext(GiftByPersonContext);
-  const { addGift, updateGift } = useContext(GiftContext);
-
-  //run on the first render and anytime any dependency value changes
-  useEffect(() => {
-
-    getPeople();
-    getItems();
-    getBoxes();
-    getSections();
-    getFurnitures();
-    getRooms();
-    getBuildings();
-    getSubtransactionsByTransaction();
-    getGifttypes();
-    getGiftsByPerson();
-
-  }, []); //page first rendering dependency
+  const [people, addPerson, updatePerson, deletePerson] = data.People;
+  const items = data.Items;
+  const boxes = data.Boxes;
+  const sections = data.Sections;
+  const furnitures = data.Furnitures;
+  const rooms = data.Rooms;
+  const buildings = data.Buildings;
+  const gifttypes = data.Gifttypes;
+  const subtransactionsByTransaction = data.Transactions;
+  const [addGift, updateGift, giftsByPerson] = data.Gifts;
 
   return (
     <div className="container-fluid">

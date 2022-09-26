@@ -9,7 +9,7 @@ export default function TransactionList(data) {
     return (
         
         <TransactionTable
-            transactions={transactions}
+            Transactions={transactions}
         />
 
     )

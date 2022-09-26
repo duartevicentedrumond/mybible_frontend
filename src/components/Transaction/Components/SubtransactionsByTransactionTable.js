@@ -104,7 +104,6 @@ export default function SubtransactionsByTransactionTable(data) {
                         
                     <tr key={subtransaction.subtransactionId}>
                         <th scope="col" className="text-end align-middle px-4">
-                            {console.log(subtransaction)}
                             <Styled.TableRowLink 
                                 style={{'whiteSpace': 'nowrap'}}
                                 to={`/subtransaction/edit/${subtransaction.subtransactionId}`}

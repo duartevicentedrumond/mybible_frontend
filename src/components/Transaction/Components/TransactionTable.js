@@ -5,10 +5,12 @@ import { Styled } from "./../../../design/style";
 export default function TransactionTable(data) {
 
     //define initial variables
-    const transactions = data.transactions;
+    const transactions = data.Transactions;
     const onTransactionClick = data.onTransactionClick;
     const handleCloseModal = data.handleCloseModal;
     const index = data.index;
+
+    console.log(transactions)
 
     //execute this when a row is selected
     function onRowClick(e) {
