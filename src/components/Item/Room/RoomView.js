@@ -1,28 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import { dateToString } from "../../../general_components/Functions";
 import { getLocation } from "../../../general_components/ItemFunctions";
 import { Styled } from "../../../design/style";
 
-import ItemContext from "../../../context/Item/Item/ItemContext";
-import BoxContext from "../../../context/Item/Box/BoxContext";
-import SectionContext from "../../../context/Item/Section/SectionContext";
-import FurnitureContext from "../../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "../../../context/Item/Room/RoomContext";
-import BuildingContext from "../../../context/Item/Building/BuildingContext";
-
 import RoomForm from './RoomForm';
 
-export default function RoomView() {
+export default function RoomView(data) {
 
-    //get item, box, section, furniture, room and building context context
-    const { items, getItems } = useContext(ItemContext);
-    const { boxes, getBoxes } = useContext(BoxContext);
-    const { sections, getSections } = useContext(SectionContext);
-    const { furnitures, getFurnitures } = useContext(FurnitureContext);
-    const { rooms, getRooms, addRoom, updateRoom } = useContext(RoomContext);
-    const { buildings, getBuildings } = useContext(BuildingContext);
+    const items = data.Items;
+    const boxes = data.Boxes;
+    const sections = data.Sections;
+    const furnitures = data.Furnitures;
+    const [rooms, addRoom, updateRoom] = data.Rooms;
+    const buildings = data.Buildings;
 
     //get parameters from url
     const params = useParams();
@@ -64,11 +56,6 @@ export default function RoomView() {
 
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
-        getItems();
-        getBoxes();
-        getSections();
-        getFurnitures();
-        getBuildings();
 
         //get room (if it exists) from the url id
         const roomFound = rooms.find((room) => room.roomId === parseFloat(params.id));

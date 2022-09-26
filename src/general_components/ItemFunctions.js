@@ -19,13 +19,15 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: filteredElement.buildingId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: filteredElement.buildingId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
             break;
 
@@ -37,17 +39,19 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: null,
-                    name: null
-                },
-                room: {
-                    roomId: filteredElement.roomId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: null,
+                        name: null
+                    },
+                    room: {
+                        roomId: filteredElement.roomId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
             break;
 
@@ -59,21 +63,23 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: null,
-                    name: null
-                },
-                room: {
-                    roomId: null,
-                    name: null
-                },
-                furniture: {
-                    furnitureId: filteredElement.furnitureId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: null,
+                        name: null
+                    },
+                    room: {
+                        roomId: null,
+                        name: null
+                    },
+                    furniture: {
+                        furnitureId: filteredElement.furnitureId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
             break;
 
@@ -85,25 +91,27 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: null,
-                    name: null
-                },
-                room: {
-                    roomId: null,
-                    name: null
-                },
-                furniture: {
-                    furnitureId: null,
-                    name: null
-                },
-                section: {
-                    sectionId: filteredElement.sectionId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: null,
+                        name: null
+                    },
+                    room: {
+                        roomId: null,
+                        name: null
+                    },
+                    furniture: {
+                        furnitureId: null,
+                        name: null
+                    },
+                    section: {
+                        sectionId: filteredElement.sectionId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
             break;
 
@@ -115,29 +123,31 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: null,
-                    name: null
-                },
-                room: {
-                    roomId: null,
-                    name: null
-                },
-                furniture: {
-                    furnitureId: null,
-                    name: null
-                },
-                section: {
-                    sectionId: null,
-                    name: null
-                },
-                box: {
-                    boxId: filteredElement.boxId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: null,
+                        name: null
+                    },
+                    room: {
+                        roomId: null,
+                        name: null
+                    },
+                    furniture: {
+                        furnitureId: null,
+                        name: null
+                    },
+                    section: {
+                        sectionId: null,
+                        name: null
+                    },
+                    box: {
+                        boxId: filteredElement.boxId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
             break;
 
@@ -149,39 +159,41 @@ export function getLocation(
                 }
             })[0];
 
-            setLocation(existingLocation => ({
-                ...existingLocation,
-                building: {
-                    buildingId: null,
-                    name: null
-                },
-                room: {
-                    roomId: null,
-                    name: null
-                },
-                furniture: {
-                    furnitureId: null,
-                    name: null
-                },
-                section: {
-                    sectionId: null,
-                    name: null
-                },
-                box: {
-                    boxId: null,
-                    name: null
-                },
-                item: {
-                    itemId: filteredElement.itemId,
-                    name: filteredElement.name
-                }
-            }));
+            if (filteredElement !== undefined) {
+                setLocation(existingLocation => ({
+                    ...existingLocation,
+                    building: {
+                        buildingId: null,
+                        name: null
+                    },
+                    room: {
+                        roomId: null,
+                        name: null
+                    },
+                    furniture: {
+                        furnitureId: null,
+                        name: null
+                    },
+                    section: {
+                        sectionId: null,
+                        name: null
+                    },
+                    box: {
+                        boxId: null,
+                        name: null
+                    },
+                    item: {
+                        itemId: filteredElement.itemId,
+                        name: filteredElement.name
+                    }
+                }));
+            };
 
         default:
             break;
     };
 
-    if (filteredElement.box !== null && filteredElement.box !== undefined) {
+    if (filteredElement !== null && filteredElement !== undefined && filteredElement.box !== null && filteredElement.box !== undefined) {
         console.log(filteredElement)        
         getLocation(
             [location, setLocation],
@@ -189,7 +201,7 @@ export function getLocation(
             filteredElement.box.boxId,
             "box"
         )
-    } else if (filteredElement.section !== null && filteredElement.section !== undefined) {
+    } else if (filteredElement !== null && filteredElement !== undefined && filteredElement.section !== null && filteredElement.section !== undefined) {
         console.log(filteredElement)
         getLocation(
             [location, setLocation],
@@ -197,21 +209,21 @@ export function getLocation(
             filteredElement.section.sectionId,
             "section"
         )
-    } else if (filteredElement.furniture !== null && filteredElement.furniture !== undefined) {
+    } else if (filteredElement !== null && filteredElement !== undefined && filteredElement.furniture !== null && filteredElement.furniture !== undefined) {
         getLocation(
             [location, setLocation],
             [buildings, rooms, furnitures, sections, boxes, items],
             filteredElement.furniture.furnitureId,
             "furniture"
         )
-    } else if (filteredElement.room !== null && filteredElement.room !== undefined) {
+    } else if (filteredElement !== null && filteredElement !== undefined && filteredElement.room !== null && filteredElement.room !== undefined) {
         getLocation(
             [location, setLocation],
             [buildings, rooms, furnitures, sections, boxes, items],
             filteredElement.room.roomId,
             "room"
         )
-    } else if (filteredElement.building !== null && filteredElement.building !== undefined) {
+    } else if (filteredElement !== null && filteredElement !== undefined && filteredElement.building !== null && filteredElement.building !== undefined) {
         getLocation(
             [location, setLocation],
             [buildings, rooms, furnitures, sections, boxes, items],

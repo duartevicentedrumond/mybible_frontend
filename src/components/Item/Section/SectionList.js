@@ -1,17 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
-import SectionContext from "../../../context/Item/Section/SectionContext";
 import SectionTable from "./components/SectionTable";
 
-export default function SectionList() {
+export default function SectionList(data) {
 
-    //Get getPeople function and people state object from PersonState through PersonContext
-    const {sections, getSections} = useContext(SectionContext);
-
-    //Execute getTransactions function as soon as the page is rendered
-    useEffect(() => {
-        getSections();
-    }, []);
+    const sections = data.Sections;
 
     return (
         

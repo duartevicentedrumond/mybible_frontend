@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 import { Styled } from "../../design/style";
 import ItemForm from "./Item/ItemForm";
@@ -9,39 +9,18 @@ import SectionForm from "./Section/SectionForm";
 import RoomForm from "./Room/RoomForm";
 import FurnitureForm from "./Furniture/FurnitureForm";
 import BuildingForm from "./Building/BuildingForm";
-import ItemContex from "./../../context/Item/Item/ItemContext";
-import BoxContext from "./../../context/Item/Box/BoxContext";
-import SectionContext from "./../../context/Item/Section/SectionContext";
-import FurnitureContext from "./../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "./../../context/Item/Room/RoomContext";
-import BuildingContext from "./../../context/Item/Building/BuildingContext";
-
-import { RiParentLine } from "react-icons/ri";
-import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function AddItemModal(data) {
 
     //define initial given variables
     const showModal = data.showModal;
     const handleCloseModal = data.handleCloseModal;
-
-    //get context for item
-    const { items, getItems, addItem, updateItem } = useContext(ItemContex);
-
-    //get context for box
-    const { boxes, getBoxes, addBox, updateBox } = useContext(BoxContext);
-
-    //get context for section
-    const { sections, getSections, addSection, updateSection } = useContext(SectionContext);
-
-    //get context for furniture
-    const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
-
-    //get context for room
-    const { rooms, getRooms, addRoom, updateRoom } = useContext(RoomContext);
-
-    //get context for building
-    const { buildings, getBuildings, addBuilding, updateBuilding } = useContext(BuildingContext);
+    const [items, addItem, updateItem] = data.Items;
+    const [boxes, addBox, updateBox] = data.Boxes;
+    const [sections, addSection, updateSection] = data.Sections;
+    const [furnitures, addFurniture, updateFurniture] = data.Furnitures;
+    const [rooms, addRoom, updateRoom] = data.Rooms;
+    const [buildings, addBuilding, updateBuilding] = data.Buildings;
 
     //set state for modal title
     const [itemType, setItemType] = useState("Item");
@@ -147,19 +126,6 @@ export default function AddItemModal(data) {
     function handleHideAddBuilding() {
         setShowAddBuilding(false);
     };
-
-    //run on the first render and anytime any dependency value changes
-    useEffect( () => {
-
-      //get all existing items, sections, furniture, rooms and buildings
-      getItems();
-      getBoxes();
-      getSections();
-      getFurnitures();
-      getRooms();
-      getBuildings();
-
-    }, []); //page first rendering depends on params.id and transactions
 
     return (
 

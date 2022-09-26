@@ -15,15 +15,14 @@ import ItemLocationBar from "./../../../general_components/ItemLocationBar";
 
 import ItemForm from "./ItemForm";
 
-export default function ItemView() {
+export default function ItemView(data) {
 
-    //get item, box, section, furniture, room and building context context
-    const { items, getItems, addItem, updateItem } = useContext(ItemContext);
-    const { boxes, getBoxes } = useContext(BoxContext);
-    const { sections, getSections } = useContext(SectionContext);
-    const { furnitures, getFurnitures } = useContext(FurnitureContext);
-    const { rooms, getRooms } = useContext(RoomContext);
-    const { buildings, getBuildings } = useContext(BuildingContext);
+    const [items, addItem, updateItem] = data.Items;
+    const boxes = data.Boxes;
+    const sections = data.Sections;
+    const furnitures = data.Furnitures;
+    const rooms = data.Rooms;
+    const buildings = data.Buildings;
 
     //get parameters from url
     const params = useParams();
@@ -70,12 +69,6 @@ export default function ItemView() {
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
 
-        getBoxes();
-        getSections();
-        getFurnitures();
-        getRooms();
-        getBuildings();
-
         //get transaction (if it exists) from the url id
         const itemFound = items.find((item) => item.itemId === parseFloat(params.id));
 
@@ -104,10 +97,12 @@ export default function ItemView() {
                 </Styled.Title>
             </div>
 
-            { item.itemId ? <ItemForm
-                items={[items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings]}
-                item={item}
-            /> : null }
+            { item.itemId ? 
+                <ItemForm
+                    items={[items, addItem, updateItem, boxes, sections, furnitures, rooms, buildings]}
+                    item={item}
+                />
+            : null }
         </div>
 
     )

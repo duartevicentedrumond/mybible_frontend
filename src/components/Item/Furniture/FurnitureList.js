@@ -1,17 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
-import FurnitureContext from "../../../context/Item/Furniture/FurnitureContext";
 import FurnitureTable from "./components/FurnitureTable";
 
-export default function FurnitureList() {
+export default function FurnitureList(data) {
 
-    //Get getPeople function and people state object from PersonState through PersonContext
-    const {furnitures, getFurnitures} = useContext(FurnitureContext);
-
-    //Execute getTransactions function as soon as the page is rendered
-    useEffect(() => {
-        getFurnitures();
-    }, []);
+    const furnitures = data.Furnitures;
 
     return (
         

@@ -1,28 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import { dateToString } from "../../../general_components/Functions";
 import { getLocation } from "../../../general_components/ItemFunctions";
 import { Styled } from "../../../design/style";
 
-import ItemContext from "../../../context/Item/Item/ItemContext";
-import BoxContext from "../../../context/Item/Box/BoxContext";
-import SectionContext from "../../../context/Item/Section/SectionContext";
-import FurnitureContext from "../../../context/Item/Furniture/FurnitureContext";
-import RoomContext from "../../../context/Item/Room/RoomContext";
-import BuildingContext from "../../../context/Item/Building/BuildingContext";
-
 import FurnitureForm from './FurnitureForm';
 
-export default function FurnitureView() {
+export default function FurnitureView(data) {
 
-    //get item, box, section, furniture, room and building context context
-    const { items, getItems } = useContext(ItemContext);
-    const { boxes, getBoxes } = useContext(BoxContext);
-    const { sections, getSections } = useContext(SectionContext);
-    const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
-    const { rooms, getRooms } = useContext(RoomContext);
-    const { buildings, getBuildings } = useContext(BuildingContext);
+    const items = data.Items;
+    const boxes = data.Boxes;
+    const sections = data.Sections;
+    const [furnitures, addFurniture, updateFurniture] = data.Furnitures;
+    const rooms = data.Rooms;
+    const buildings = data.Buildings;
 
     //get parameters from url
     const params = useParams();
@@ -65,11 +57,6 @@ export default function FurnitureView() {
 
     //run on the first render and anytime any dependency value changes
     useEffect(() => {
-        getItems();
-        getBoxes();
-        getSections();
-        getRooms();
-        getBuildings();
 
         //get furniture (if it exists) from the url id
         const furnitureFound = furnitures.find((furniture) => furniture.furnitureId === parseFloat(params.id));

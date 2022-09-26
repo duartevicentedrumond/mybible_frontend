@@ -14,27 +14,54 @@ import SectionView from "./Section/SectionView";
 import FurnitureView from "./Furniture/FurnitureView";
 import RoomView from "./Room/RoomView";
 import BuildingView from "./Building/BuildingView";
+import AllJoinedContext from "../../context/Item/AllJoined/AllJoinedContext";
+import ItemContext from "../../context/Item/Item/ItemContext";
+import BoxContext from "../../context/Item/Box/BoxContext";
+import SectionContext from "../../context/Item/Section/SectionContext";
+import FurnitureContext from "../../context/Item/Furniture/FurnitureContext";
+import RoomContext from "../../context/Item/Room/RoomContext";
+import BuildingContext from "../../context/Item/Building/BuildingContext";
 
 import { Styled } from "../../design/style";
 
 export default function Item() {
 
-    //define states and variables for types modal form
+  //Get alljoined, item context
+    const { allJoined, getAllJoined } = useContext(AllJoinedContext);
+    const { items, getItems, addItem, updateItem } = useContext(ItemContext);
+    const { boxes, getBoxes, addBox, updateBox } = useContext(BoxContext);
+    const { sections, getSections, addSection, updateSection } = useContext(SectionContext);
+    const { furnitures, getFurnitures, addFurniture, updateFurniture } = useContext(FurnitureContext);
+    const { rooms, getRooms, addRoom, updateRoom } = useContext(RoomContext);
+    const { buildings, getBuildings, addBuilding, updateBuilding } = useContext(BuildingContext);
 
-    //set state for showNewModal
-    const [showNewModal, setShowNewModal] = useState(false);
+  //set state for showNewModal
+  const [showNewModal, setShowNewModal] = useState(false);
 
-    //set functions to handle state change
-    function handleShowNewModal(e) {
+  //set functions to handle state change
+  function handleShowNewModal(e) {
 
-      e.preventDefault();
+    e.preventDefault();
 
-      setShowNewModal(true);
-    };
+    setShowNewModal(true);
+  };
 
-    function handleCloseNewModal() {
-      setShowNewModal(false);
-    };
+  function handleCloseNewModal() {
+    setShowNewModal(false);
+  };
+
+  //Execute getTransactions function as soon as the page is rendered
+  useEffect(
+    () => {
+      getAllJoined();
+      getItems();
+      getBoxes();
+      getSections();
+      getFurnitures();
+      getRooms();
+      getBuildings();
+    }
+    , []);
 
   return (
     <div className="container-fluid">
@@ -80,7 +107,7 @@ export default function Item() {
               </Styled.SecondaryNavBarLink>
             </li>
             <li className="nav-item pe-3">
-              <Styled.SecondaryNavBarLink 
+              <Styled.SecondaryNavBarLink
                 to='#'
                 onClick={handleShowNewModal}
               >
@@ -90,22 +117,143 @@ export default function Item() {
           </ul>
 
           <Routes>
-            <Route path="/allItems" element={<AllJoinedList/>} />
-            <Route path="/item" element={<ItemList/>} />
-            <Route path="/box" element={<BoxList/>} />
-            <Route path="/section" element={<SectionList/>} />
-            <Route path="/furniture" element={<FurnitureList/>} />
-            <Route path="/room" element={<RoomList/>} />
-            <Route path="/building" element={<BuildingList/>} />
-            <Route path="/item/edit/:id" element={<ItemView/>} />
-            <Route path="/box/edit/:id" element={<BoxView/>} />
-            <Route path="/section/edit/:id" element={<SectionView/>} />
-            <Route path="/furniture/edit/:id" element={<FurnitureView/>} />
-            <Route path="/room/edit/:id" element={<RoomView/>} />
-            <Route path="/building/edit/:id" element={<BuildingView/>} />
-          </Routes> 
+            <Route
+              path="/allItems"
+              element={
+                <AllJoinedList
+                  AllJoined={allJoined}
+                />
+              }
+            />
+            <Route
+              path="/item"
+              element={
+                <ItemList
+                  Items={items}
+                />
+              }
+            />
+            <Route
+              path="/box"
+              element={
+                <BoxList
+                  Boxes={boxes}
+                />
+              }
+            />
+            <Route
+              path="/section"
+              element={
+                <SectionList
+                  Sections={sections}
+                />
+              }
+            />
+            <Route
+              path="/furniture"
+              element={
+                <FurnitureList
+                  Furnitures={furnitures}
+                />
+              }
+            />
+            <Route
+              path="/room"
+              element={
+                <RoomList
+                  Rooms={rooms}
+                />
+              }
+            />
+            <Route
+              path="/building"
+              element={
+                <BuildingList
+                  Buildings={buildings}
+                />
+              }
+            />
+            <Route
+              path="/item/edit/:id"
+              element={
+                <ItemView
+                  Items={[items, addItem, updateItem]}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                />
+              }
+            />
+            <Route
+              path="/box/edit/:id"
+              element={
+                <BoxView
+                  Items={items}
+                  Boxes={[boxes, addBox, updateBox]}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                />
+              } 
+            />
+            <Route
+              path="/section/edit/:id"
+              element={
+                <SectionView
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={[sections, addSection, updateSection]}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                />
+              } 
+            />
+            <Route
+              path="/furniture/edit/:id"
+              element={
+                <FurnitureView
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={[furnitures, addFurniture, updateFurniture]}
+                  Rooms={rooms}
+                  Buildings={buildings}
+                />
+              } 
+            />
+            <Route
+              path="/room/edit/:id"
+              element={
+                <RoomView
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={[rooms, addRoom, updateRoom]}
+                  Buildings={buildings}
+                />
+              } 
+            />
+            <Route
+              path="/building/edit/:id"
+              element={
+                <BuildingView
+                  Items={items}
+                  Boxes={boxes}
+                  Sections={sections}
+                  Furnitures={furnitures}
+                  Rooms={rooms}
+                  Buildings={[buildings, addBuilding, updateBuilding]}
+                />
+              } 
+            />
+          </Routes>
         </div>
-          
+
         <div className="col text-start py-3">
           <Routes>
           </Routes>
@@ -115,6 +263,12 @@ export default function Item() {
         <AddItemModal
           showModal={showNewModal}
           handleCloseModal={handleCloseNewModal}
+          Items={[items, addItem, updateItem]}
+          Boxes={[boxes, addBox, updateBox]}
+          Sections={[sections, addSection, updateSection]}
+          Furnitures={[furnitures, addFurniture, updateFurniture]}
+          Rooms={[rooms, addRoom, updateRoom]}
+          Buildings={[buildings, addBuilding, updateBuilding]}
         />
 
       </div>

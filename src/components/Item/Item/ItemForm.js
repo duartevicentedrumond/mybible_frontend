@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { Styled } from "../../../design/style";
 import { IoAdd, IoSync } from "react-icons/io5";
