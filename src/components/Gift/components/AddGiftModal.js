@@ -414,7 +414,7 @@ export default function AddGiftModal(data) {
                     <SwitchForm
                         value={gift.from}
                         onChangeField={handleFromChange}
-                        label="from"
+                        label={["from", "to"]}
                     />
 
                     {/*gift date input form*/}
