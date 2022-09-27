@@ -27,23 +27,20 @@ export default function TransactionTable(data) {
         }
 
     };
-    
+
     const [searchText, setSearchText] = useState("");
-    const filteredTransactions = transactions.filter(
-        transaction => {
-            if (
-                String(transaction.transactionId).includes(searchText) || 
-                String(transaction.customId).includes(searchText) ||
-                transaction.description.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                transaction.date.toLowerCase().includes(searchText.toLocaleLowerCase()) || 
-                String(transaction.totalAmount).includes(searchText)) {
-                return transaction
-            }
+    const filteredTransactions = transactions.filter((transaction) => {
+        if (String(transaction.transactionId).toLocaleLowerCase().includes(searchText) ||
+            String(transaction.customId).toLocaleLowerCase().includes(searchText) ||
+            String(transaction.description).toLocaleLowerCase().includes(searchText) ||
+            String(transaction.date).toLocaleLowerCase().includes(searchText) ||
+            (transaction.totalAmount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).toLocaleLowerCase().includes(searchText)) {
+            return transaction;
         }
-    );
+    });
 
     function handleInput(e) {
-        const text = e.target.value;
+        const text = e.target.value.toLocaleLowerCase();
         setSearchText(text);
         setPageNumber(0);
     };
@@ -51,9 +48,9 @@ export default function TransactionTable(data) {
     const [pageNumber, setPageNumber] = useState(0);
     const transactionsPerPage = 8;
     const pagesVisited = pageNumber * transactionsPerPage;
-    const displayTransactions = filteredTransactions.slice(pagesVisited, pagesVisited+transactionsPerPage);
+    const displayTransactions = filteredTransactions.slice(pagesVisited, pagesVisited + transactionsPerPage);
     const pageCount = Math.ceil(filteredTransactions.length / transactionsPerPage);
-    const changePage = ({selected}) => {
+    const changePage = ({ selected }) => {
         setPageNumber(selected);
     };
 
@@ -84,79 +81,79 @@ export default function TransactionTable(data) {
 
                 <thead>
                     <tr>
-                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{ 'whiteSpace': 'nowrap' }}>
                             #
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{ 'whiteSpace': 'nowrap' }}>
                             Date
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{ 'whiteSpace': 'nowrap' }}>
                             Amount
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
+                        <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{ 'whiteSpace': 'nowrap' }}>
                             Description
                         </Styled.TableTitleColumn>
                     </tr>
                 </thead>
 
-                <tbody style={{borderTop: '0px'}}>
-                    {displayTransactions.map( (transaction) => ( 
-                        
-                    <tr key={transaction.transactionId}>
-                        <th scope="col" className="text-end align-middle px-4">
-                            <Styled.TableRowLink 
-                                style={{'whiteSpace': 'nowrap'}}
-                                to={`/transaction/edit/${transaction.transactionId}`}
-                                onClick={onRowClick}
-                                data-transactionid={transaction.transactionId}
-                                data-customid={transaction.customId
-                                }
-                            >
-                                {transaction.customId}
-                            </Styled.TableRowLink>
-                        </th>
-                        <th scope="col" className="text-end align-middle px-4">
-                            <Styled.TableRowLink 
-                                style={{'whiteSpace': 'nowrap'}}
-                                to={`/transaction/edit/${transaction.transactionId}`}
-                                onClick={onRowClick}
-                                data-transactionid={transaction.transactionId}
-                                data-customid={transaction.customId
-                                }
-                            >
-                                {transaction.date}
-                            </Styled.TableRowLink>
-                        </th>
-                        <th scope="col" className="text-end px-4 align-middle">
-                            <Styled.TableRowLink 
-                                style={{'whiteSpace': 'nowrap'}}
-                                to={`/transaction/edit/${transaction.transactionId}`}
-                                onClick={onRowClick}
-                                data-transactionid={transaction.transactionId}
-                                data-customid={transaction.customId
-                                }
-                            > 
-                                {(transaction.totalAmount).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €
-                            </Styled.TableRowLink>
-                        </th>
-                        <th scope="col" className="text-start px-4 align-middle">
-                            <Styled.TableRowLink 
-                                style={{'whiteSpace': 'nowrap'}}
-                                to={`/transaction/edit/${transaction.transactionId}`}
-                                onClick={onRowClick}
-                                data-transactionid={transaction.transactionId}
-                                data-customid={transaction.customId
-                                }
-                            > 
-                                {
-                                    transaction.description.length > 70 ? 
-                                    transaction.description.substring(0,70) + "..." :
-                                    transaction.description
-                                }
-                            </Styled.TableRowLink>
-                        </th>
-                    </tr>
-                        
+                <tbody style={{ borderTop: '0px' }}>
+                    {displayTransactions.map((transaction) => (
+
+                        <tr key={transaction.transactionId}>
+                            <th scope="col" className="text-end align-middle px-4">
+                                <Styled.TableRowLink
+                                    style={{ 'whiteSpace': 'nowrap' }}
+                                    to={`/transaction/edit/${transaction.transactionId}`}
+                                    onClick={onRowClick}
+                                    data-transactionid={transaction.transactionId}
+                                    data-customid={transaction.customId
+                                    }
+                                >
+                                    {transaction.customId}
+                                </Styled.TableRowLink>
+                            </th>
+                            <th scope="col" className="text-end align-middle px-4">
+                                <Styled.TableRowLink
+                                    style={{ 'whiteSpace': 'nowrap' }}
+                                    to={`/transaction/edit/${transaction.transactionId}`}
+                                    onClick={onRowClick}
+                                    data-transactionid={transaction.transactionId}
+                                    data-customid={transaction.customId
+                                    }
+                                >
+                                    {transaction.date}
+                                </Styled.TableRowLink>
+                            </th>
+                            <th scope="col" className="text-end px-4 align-middle">
+                                <Styled.TableRowLink
+                                    style={{ 'whiteSpace': 'nowrap' }}
+                                    to={`/transaction/edit/${transaction.transactionId}`}
+                                    onClick={onRowClick}
+                                    data-transactionid={transaction.transactionId}
+                                    data-customid={transaction.customId
+                                    }
+                                >
+                                    {(transaction.totalAmount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €
+                                </Styled.TableRowLink>
+                            </th>
+                            <th scope="col" className="text-start px-4 align-middle">
+                                <Styled.TableRowLink
+                                    style={{ 'whiteSpace': 'nowrap' }}
+                                    to={`/transaction/edit/${transaction.transactionId}`}
+                                    onClick={onRowClick}
+                                    data-transactionid={transaction.transactionId}
+                                    data-customid={transaction.customId
+                                    }
+                                >
+                                    {
+                                        transaction.description.length > 70 ?
+                                            transaction.description.substring(0, 70) + "..." :
+                                            transaction.description
+                                    }
+                                </Styled.TableRowLink>
+                            </th>
+                        </tr>
+
                     ))}
                 </tbody>
 
