@@ -332,7 +332,10 @@ export default function AddGiftModal(data) {
             <Modal.Header>
                 <Modal.Title>
                     <Styled.Title className='d-inline-flex flex-row align-items-center'>
-                        Add New Gift
+                        {giftInitial ?
+                            <div>Update gift#{giftInitial.giftId}</div> :
+                            <div>Add new gift</div>
+                        }
                     </Styled.Title>
                 </Modal.Title>
             </Modal.Header>
