@@ -31,19 +31,18 @@ export default function SubtransactionsByTransactionTable(data) {
     const [searchText, setSearchText] = useState("");
     const filteredSubtransactions = subtransactionsByTransaction.filter(
         subtransaction => {
-            if (
-                String(subtransaction.subtransactionId).includes(searchText) || 
-                String(subtransaction.customId).includes(searchText) ||
-                String(subtransaction.description).includes(searchText) ||
-                subtransaction.date.toLowerCase().includes(searchText.toLocaleLowerCase()) || 
-                String(subtransaction.amount).includes(searchText)) {
+            if (String(subtransaction.subtransactionId).toLocaleLowerCase().includes(searchText) || 
+                String(subtransaction.customId).toLocaleLowerCase().includes(searchText) ||
+                String(subtransaction.description).toLocaleLowerCase().includes(searchText) ||
+                String(subtransaction.date).toLocaleLowerCase().includes(searchText) || 
+                String(subtransaction.amount).toLocaleLowerCase().includes(searchText)) {
                 return subtransaction;
             }
         }
     );
 
     function handleInput(e) {
-        const text = e.target.value;
+        const text = e.target.value.toLocaleLowerCase();
         setSearchText(text);
         setPageNumber(0);
     };
@@ -93,6 +92,9 @@ export default function SubtransactionsByTransactionTable(data) {
                         <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
                             Amount
                         </Styled.TableTitleColumn>
+                        <Styled.TableTitleColumn scope="col" className="col-1 text-end px-4" style={{'whiteSpace': 'nowrap'}}>
+                            Person
+                        </Styled.TableTitleColumn>
                         <Styled.TableTitleColumn scope="col" className="text-start px-4" style={{'whiteSpace': 'nowrap'}}>
                             Description
                         </Styled.TableTitleColumn>
@@ -137,6 +139,18 @@ export default function SubtransactionsByTransactionTable(data) {
                                 }
                             > 
                                 {(subtransaction.amount).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits: 2 })} €
+                            </Styled.TableRowLink>
+                        </th>
+                        <th scope="col" className="text-start px-4 align-middle">
+                            <Styled.TableRowLink 
+                                style={{'whiteSpace': 'nowrap'}}
+                                to={`/subtransaction/edit/${subtransaction.subtransactionId}`}
+                                onClick={onRowClick}
+                                data-subtransactionid={subtransaction.subtransactionId}
+                                data-customid={subtransaction.customId
+                                }
+                            > 
+                                {subtransaction.nickname}
                             </Styled.TableRowLink>
                         </th>
                         <th scope="col" className="text-start px-4 align-middle">
