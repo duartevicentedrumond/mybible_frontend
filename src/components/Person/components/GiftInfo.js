@@ -112,7 +112,7 @@ export default function GiftInfo(data) {
                 {filteredGifts.map((gift) => {
                     return (
                         <Styled.InfoLink
-                            className='d-flex flex-row align-items-center pb-0'
+                            className='d-flex flex-row align-items-baseline pb-0'
                             key={gift.giftId}
                             to={'#'}
                             data-giftid={gift.giftId}
@@ -122,30 +122,37 @@ export default function GiftInfo(data) {
                                 <IconTransferIn
                                     data-giftid={gift.giftId}
                                 />
-                                : 
-                                <IconTransferOut
+                                :
+                                <IconTransferOut  
                                     data-giftid={gift.giftId}
-                                />}
+                                />
+                            }
                             {gift.gifttypeDescription === "christmas" ?
                                 <IconChristmasTree
                                     data-giftid={gift.giftId}
                                 />
-                                : null}
+                                : null
+                            }
                             {gift.gifttypeDescription === "anniversary" ?
                                 <IconCake
                                     data-giftid={gift.giftId}
                                 />
-                                : null}
+                                : null
+                            }
                             {gift.gifttypeDescription === "contribution" ?
-                                <IconReceipt2 
+                                <IconReceipt2
                                     data-giftid={gift.giftId}
                                 />
-                                : null}
-                            <span
-                                data-giftid={gift.giftId}
-                            >
-                                {gift.description}
-                            </span>
+                                : null
+                            }
+                            {gift.value ?
+                                <span
+                                    data-giftid={gift.giftId}
+                                >
+                                    &nbsp;{gift.date} | {(gift.value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}€ | {gift.description}
+                                </span>
+                                : null
+                            }
                         </Styled.InfoLink>
                     );
                 })}

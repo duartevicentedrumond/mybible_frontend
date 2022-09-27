@@ -26,7 +26,7 @@ export default function Person(data) {
 
       <div className='row'>
 
-        <div className="col-10 text-start py-3">
+        <div className="col-7 text-start py-3">
 
           <ul className="nav nav-tabs">
             <li className="nav-item pe-3">
