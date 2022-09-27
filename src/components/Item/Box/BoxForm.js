@@ -135,7 +135,7 @@ export default function BoxForm(data) {
       <SwitchForm
         value={box.active}
         onChangeField={(e) => handleActiveChange(e, setBox)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*box since input form*/}

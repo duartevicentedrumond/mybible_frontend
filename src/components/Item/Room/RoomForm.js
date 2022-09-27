@@ -133,7 +133,7 @@ export default function RoomForm(data) {
       <SwitchForm
         value={room.active}
         onChangeField={(e) => handleActiveChange(e, setRoom)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*room since input form*/}

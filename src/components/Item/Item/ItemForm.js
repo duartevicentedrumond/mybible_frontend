@@ -136,7 +136,7 @@ export default function ItemForm(data) {
       <SwitchForm
         value={item.active}
         onChangeField={(e) => handleActiveChange(e, setItem)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*item since input form*/}

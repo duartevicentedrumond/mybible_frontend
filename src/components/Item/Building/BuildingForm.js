@@ -117,7 +117,7 @@ export default function BuildingForm(data) {
       <SwitchForm
         value={building.active}
         onChangeField={(e) => handleActiveChange(e, setBuilding)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*building since input form*/}

@@ -135,7 +135,7 @@ export default function SectionForm(data) {
       <SwitchForm
         value={section.active}
         onChangeField={(e) => handleActiveChange(e, setSection)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*section since input form*/}

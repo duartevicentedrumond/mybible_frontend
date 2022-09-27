@@ -134,7 +134,7 @@ export default function FurnitureForm(data) {
       <SwitchForm
         value={furniture.active}
         onChangeField={(e) => handleActiveChange(e, setFurniture)}
-        label="active"
+        label={["active", "archived"]}
       />
 
       {/*furniture since input form*/}
