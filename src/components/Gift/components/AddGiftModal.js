@@ -295,27 +295,33 @@ export default function AddGiftModal(data) {
     };
 
     //run on the first render and anytime any dependency value changes
-    useEffect(
-        () => {
+    useEffect(() => {
+        //if it is an existing gift, renders info
+        if (giftInitial) {
 
-            if(person) {
-                setGift(existingGift => ({
-                    ...existingGift,
-                    people: [
-                        {
-                            personId: person.personId,
-                            nickname: person.nickname
-                        }
-                    ]
-                }));
-            };
-
-            if (giftInitial) {
-                setGift(giftInitial)
-            }
-
-        }
-    , [person, giftInitial]); //page first rendering depends on params.id and persons
+            //retrieves people's nicknames from gift
+            giftInitial.people.map((person) => {
+                const filteredPeople = people.filter( (filteredPerson) => {
+                    if (String(filteredPerson.personId) === String(person.personId)) {
+                        return filteredPerson;
+                    };
+                })[0];
+                person.personId = filteredPeople.personId;
+                person.nickname = filteredPeople.nickname;
+            });
+            setGift(giftInitial);
+        } else { //if not, sets existing person page to gift
+            setGift(existingGift => ({
+                ...existingGift,
+                people: [
+                    {
+                        personId: person.personId,
+                        nickname: person.nickname
+                    }
+                ]
+            }));
+        };
+    }, [person, giftInitial, people]); //page first rendering dependency
 
     return (
 
