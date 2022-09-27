@@ -29,20 +29,18 @@ export default function PersonTable(data) {
     }
 
     const [searchText, setSearchText] = useState("");
-    const filteredPeople = people.filter(
-        person => {
-            if (
-                String(person.personId).includes(searchText) ||
-                person.nickname.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
-                person.birthday.toLowerCase().includes(searchText.toLocaleLowerCase()) || 
-                String(person.fullName).includes(searchText)) {
-                return person
-            }
-        }
-    );
+    const filteredPeople = people.filter((person) => {
+        if (String(person.personId).toLocaleLowerCase().includes(searchText) ||
+            String(person.nickname).toLocaleLowerCase().includes(searchText) ||
+            String(person.birthday).toLocaleLowerCase().includes(searchText) ||
+            String(person.fullName).toLocaleLowerCase().includes(searchText)) {
+
+            return person;
+        };
+    });
 
     function handleInput(e) {
-        const text = e.target.value;
+        const text = e.target.value.toLocaleLowerCase();
         setSearchText(text);
         setPageNumber(0);
     };
@@ -50,9 +48,9 @@ export default function PersonTable(data) {
     const [pageNumber, setPageNumber] = useState(0);
     const peoplePerPage = 8;
     const pagesVisited = pageNumber * peoplePerPage;
-    const displayPeople = filteredPeople.slice(pagesVisited, pagesVisited+peoplePerPage);
+    const displayPeople = filteredPeople.slice(pagesVisited, pagesVisited + peoplePerPage);
     const pageCount = Math.ceil(filteredPeople.length / peoplePerPage);
-    const changePage = ({selected}) => {
+    const changePage = ({ selected }) => {
         setPageNumber(selected);
     };
 
@@ -85,50 +83,50 @@ export default function PersonTable(data) {
                         <Styled.TableTitleColumn
                             scope="col"
                             className="col-1 text-start px-4"
-                            style={{'whiteSpace': 'nowrap'}}
+                            style={{ 'whiteSpace': 'nowrap' }}
                         >
                             Name
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn 
-                            scope="col" 
-                            className="col text-start px-4" 
-                            style={{'whiteSpace': 'nowrap'}}
+                        <Styled.TableTitleColumn
+                            scope="col"
+                            className="col text-start px-4"
+                            style={{ 'whiteSpace': 'nowrap' }}
                         >
                             Full Name
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn 
-                            scope="col" 
-                            className="col-1 text-start px-4" 
-                            style={{'whiteSpace': 'nowrap'}}
+                        <Styled.TableTitleColumn
+                            scope="col"
+                            className="col-1 text-start px-4"
+                            style={{ 'whiteSpace': 'nowrap' }}
                         >
                             Age
                         </Styled.TableTitleColumn>
-                        <Styled.TableTitleColumn 
-                            scope="col" 
-                            className="col-1 text-start px-4" 
-                            style={{'whiteSpace': 'nowrap'}}
+                        <Styled.TableTitleColumn
+                            scope="col"
+                            className="col-1 text-start px-4"
+                            style={{ 'whiteSpace': 'nowrap' }}
                         >
                             Birthday
                         </Styled.TableTitleColumn>
                     </tr>
                 </thead>
 
-                <tbody style={{borderTop: '0px'}}>
-                    {displayPeople.map( (person) => {
+                <tbody style={{ borderTop: '0px' }}>
+                    {displayPeople.map((person) => {
 
                         if (person.personId !== 0) {
                             return (
                                 <tr key={person.personId}>
-                                    <th 
-                                        scope="col" 
+                                    <th
+                                        scope="col"
                                         className="text-start align-middle px-4"
                                     >
-                                        <Styled.TableRowLink 
-                                            style={{'whiteSpace': 'nowrap'}}
+                                        <Styled.TableRowLink
+                                            style={{ 'whiteSpace': 'nowrap' }}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId} 
-                                            data-nickname={person.nickname} 
+                                            data-personid={person.personId}
+                                            data-nickname={person.nickname}
                                         >
                                             {person.nickname}
                                         </Styled.TableRowLink>
@@ -137,11 +135,11 @@ export default function PersonTable(data) {
                                         scope="col"
                                         className="text-start align-middle px-4"
                                     >
-                                        <Styled.TableRowLink 
-                                            style={{'whiteSpace': 'nowrap'}}
+                                        <Styled.TableRowLink
+                                            style={{ 'whiteSpace': 'nowrap' }}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId} 
+                                            data-personid={person.personId}
                                             data-nickname={person.nickname}
                                         >
                                             {person.fullName}
@@ -151,13 +149,13 @@ export default function PersonTable(data) {
                                         scope="col"
                                         className="text-start px-4 align-middle"
                                     >
-                                        <Styled.TableRowLink 
-                                            style={{'whiteSpace': 'nowrap'}}
+                                        <Styled.TableRowLink
+                                            style={{ 'whiteSpace': 'nowrap' }}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId} 
+                                            data-personid={person.personId}
                                             data-nickname={person.nickname}
-                                        > 
+                                        >
                                             {person.age}
                                         </Styled.TableRowLink>
                                     </th>
@@ -165,20 +163,20 @@ export default function PersonTable(data) {
                                         scope="col"
                                         className="text-start px-4 align-middle"
                                     >
-                                        <Styled.TableRowLink 
-                                            style={{'whiteSpace': 'nowrap'}}
+                                        <Styled.TableRowLink
+                                            style={{ 'whiteSpace': 'nowrap' }}
                                             to={`/people/edit/${person.personId}`}
                                             onClick={onRowClick}
-                                            data-personid={person.personId} 
+                                            data-personid={person.personId}
                                             data-nickname={person.nickname}
-                                        > 
+                                        >
                                             {person.birthday}
                                         </Styled.TableRowLink>
                                     </th>
                                 </tr>
                             );
                         };
-                        
+
                     })}
                 </tbody>
 
